@@ -12,6 +12,10 @@ export const KhotianReducer = (state,action) =>{
             return {
                 khotianList:[action.payload,...state.khotianList]
             }
+        case 'DELETE_KHOTIAN':
+            return{
+                khotianList:state.khotianList.filter((singleKhotian)=>singleKhotian._id!==action.payload._id)
+            }
         default:
             return state
     }

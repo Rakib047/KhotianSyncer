@@ -42,7 +42,7 @@ const deleteKhotian = async (req,res) => {
         }
         const targetKhotian=await khotianModel.findById(req.params.id)
         await khotianModel.deleteOne(targetKhotian)
-        res.status(200).json({msg:"khotian deleted"})
+        res.status(200).json(targetKhotian)
     } catch (err) {
         res.status(400).json({error:err.message})
     }

@@ -68,7 +68,7 @@ const KhotianForm = () => {
             placeholder="Select a date"
         />
 
-        <button>Add khotian</button>
+        <button>Add to khotian</button>
         {success && <div className='success'>{success}</div>}
         {error && <div className='error'>{error}</div>}
     </form>
