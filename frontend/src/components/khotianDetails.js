@@ -26,7 +26,7 @@ const KhotianDetails = ({singleKhotian}) => {
       <p><strong>Task Details :</strong> {singleKhotian.taskDetail}</p>
       <p><strong>Date :</strong> {formatDate(singleKhotian.date)}</p>
       <p><strong>Task added at :</strong>{formatDate(singleKhotian.createdAt)}</p>
-      <span onClick={handleClick}>delete</span>
+      <span className="delete-btn" onClick={handleClick}>Mark as Done</span>
     </div>
   )
 }

@@ -143,6 +143,24 @@ header a {
   font-size: 14px;
 }
 
+/* Add this CSS to your stylesheet or component */
+
+span.delete-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #e7195a; /* Red color for delete button */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+span.delete-btn:hover {
+  background-color: #08b06f; /* Darker shade on hover */
+}
+
+
 
 
 
