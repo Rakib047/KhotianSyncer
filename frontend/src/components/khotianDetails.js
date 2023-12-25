@@ -2,11 +2,17 @@ import React from 'react'
 
 const KhotianDetails = ({singleKhotian}) => {
 
-    // Format date to YYYY-MM-DD
-    const formatDate = (dateString) => {
-      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-      return new Date(dateString).toLocaleDateString('en-US', options);
-    };
+  // Format date to YYYY-MM-DD or use the existing format
+  const formatDate = (dateString) => {
+    const dateObject = new Date(dateString);
+    if (isNaN(dateObject.getTime())) {
+      return dateString; // If the date is invalid, return the original string
+    }
+
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return dateObject.toLocaleDateString('en-US', options);
+  };
+  
   return (
     <div className="workout-details">
       <h4>{singleKhotian.taskTitle}</h4>
