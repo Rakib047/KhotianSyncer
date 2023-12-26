@@ -28,7 +28,7 @@ const KhotianForm = () => {
             setTaskTitle("");
             setTaskDetail("");
             setDate("");
-            setPriority("")
+            setPriority("High")
             setError(null);
             setSuccess("Task added!")
             //console.log("new workout added!", json);
@@ -72,9 +72,9 @@ const KhotianForm = () => {
 
         <label>Priority:</label>
         <select
-          
-          value={priority}
           onChange={(e) => setPriority(e.target.value)}
+          value={priority}
+            
         >
           <option value="High">High</option>
           <option value="Medium">Medium</option>
