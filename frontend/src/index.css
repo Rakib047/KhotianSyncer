@@ -12,7 +12,33 @@ body {
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  background: #1aac83;
+  color: #fff;
+  padding: 10px 0;
+}
+/* .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} */
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.logo-khotian {
+  color: #02100cc7; /* Color for 'Khotian' */
+}
+
+.logo-syncer {
+  color: #ffffffe9; /* Color for 'Syncer' */
 }
 header .container {
   max-width: 1400px;
@@ -26,6 +52,26 @@ header a {
   color: #333;
   text-decoration: none;
 }
+
+nav {
+  display: flex;
+}
+
+nav div {
+  display: flex;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
 .pages{
   max-width: 1400px;
   padding: 20px;
@@ -174,6 +220,55 @@ span.delete-btn {
 span.delete-btn:hover {
   background-color: #08b06f; /* Darker shade on hover */
 }
+
+/* Shared styles for signup and login forms */
+.auth-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.auth-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.auth-form button {
+  background-color: #1aac83;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.auth-form button:hover {
+  background-color: #168f63;
+}
+
 
 
 
