@@ -26,8 +26,8 @@ const getSingleKhotian = async (req,res) => {
 const createKhotian = async (req,res) =>{
     
     try {
-        const {taskTitle,taskDetail,date} = req.body
-        const newKhotianDocument=await khotianModel.create({taskTitle,taskDetail,date})
+        const {taskTitle,taskDetail,date,priority} = req.body
+        const newKhotianDocument=await khotianModel.create({taskTitle,taskDetail,date,priority})
         res.status(200).json(newKhotianDocument)
     } catch (err) {
         res.status(400).json({error:err.message})

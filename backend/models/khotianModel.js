@@ -14,6 +14,10 @@ const khotianSchema=new mongoose.Schema(
         date:{
             type:Date,
             required:true
+        },
+        priority:{
+            type:String,
+            required:true
         }
     },
     {

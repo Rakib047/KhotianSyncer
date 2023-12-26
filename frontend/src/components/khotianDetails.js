@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react'
 import {useKhotianContext} from "../hooks/useKhotianContext"
+
+
 const KhotianDetails = ({singleKhotian}) => {
   const {dispatch} =useKhotianContext()
   const handleClick = async () =>{
@@ -21,11 +23,11 @@ const KhotianDetails = ({singleKhotian}) => {
   };
 
   return (
-    <div className="workout-details">
+    <div className="khotian-details">
       <h4>{singleKhotian.taskTitle}</h4>
       <p><strong>Task Details :</strong> {singleKhotian.taskDetail}</p>
       <p><strong>Date :</strong> {formatDate(singleKhotian.date)}</p>
-      <p><strong>Task added at :</strong>{formatDate(singleKhotian.createdAt)}</p>
+      <p><strong>Priority :</strong> {singleKhotian.priority}</p>
       <span className="delete-btn" onClick={handleClick}>Mark as Done</span>
     </div>
   )

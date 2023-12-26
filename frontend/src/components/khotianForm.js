@@ -5,6 +5,7 @@ const KhotianForm = () => {
     const[taskTitle,setTaskTitle]=useState("")
     const[taskDetail,setTaskDetail]=useState("")
     const[date,setDate]=useState("")
+    const[priority,setPriority]=useState("")
     const[error,setError]=useState("")
     const[success,setSuccess]=useState("")
 
@@ -12,7 +13,7 @@ const KhotianForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const singleKhotian = { taskTitle, taskDetail, date };
+        const singleKhotian = { taskTitle, taskDetail, date,priority };
         
         try {
           const response = await axios.post("/api/khotian", singleKhotian, {
@@ -27,6 +28,7 @@ const KhotianForm = () => {
             setTaskTitle("");
             setTaskDetail("");
             setDate("");
+            setPriority("")
             setError(null);
             setSuccess("Task added!")
             //console.log("new workout added!", json);
@@ -67,6 +69,17 @@ const KhotianForm = () => {
             value={date} 
             placeholder="Select a date"
         />
+
+        <label>Priority:</label>
+        <select
+          
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
 
         <button>Add to khotian</button>
         {success && <div className='success'>{success}</div>}
