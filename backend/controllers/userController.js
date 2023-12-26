@@ -8,7 +8,17 @@ const createToken = (id) =>{
 
 //login user
 const loginUser = async (req,res) =>{
-    res.json({msg:"login user success!"})
+    const {email,password} =req.body
+    try {
+        //return from database,findOne()
+        const loggedInUser=await userModel.loginStatic(email,password)
+
+        const jwtToken=createToken(loggedInUser._id)
+
+        res.status(200).json({email,jwtToken})
+    } catch (err) {
+        res.status(400).json({error:err.message})
+    }
 }
 
 //signupUser
