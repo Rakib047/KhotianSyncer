@@ -5,7 +5,7 @@ const KhotianForm = () => {
     const[taskTitle,setTaskTitle]=useState("")
     const[taskDetail,setTaskDetail]=useState("")
     const[date,setDate]=useState("")
-    const[priority,setPriority]=useState("")
+    const[priority,setPriority]=useState("High")
     const[error,setError]=useState("")
     const[success,setSuccess]=useState("")
 
@@ -22,7 +22,7 @@ const KhotianForm = () => {
             },
           });
           
-          dispatch({type:"CREATE_KHOTIAN",payload:singleKhotian})
+          dispatch({type:"SET_KHOTIANS",payload:response.data})
           // Assuming the response structure is the same as with fetch
        
             setTaskTitle("");
@@ -74,7 +74,7 @@ const KhotianForm = () => {
         <select
           onChange={(e) => setPriority(e.target.value)}
           value={priority}
-            
+          defaultValue="Low"  
         >
           <option value="High">High</option>
           <option value="Medium">Medium</option>

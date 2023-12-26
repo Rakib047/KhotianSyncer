@@ -38,7 +38,21 @@ const createKhotian = async (req,res) =>{
     try {
         const {taskTitle,taskDetail,date,priority} = req.body
         const newKhotianDocument=await khotianModel.create({taskTitle,taskDetail,date,priority})
-        res.status(200).json(newKhotianDocument)
+        //res.status(200).json(newKhotianDocument)
+        //sending sorted khotians
+        const allKhotians = await khotianModel.find();
+
+        // Define the custom order of priorities
+        const priorityOrder = ["High", "Medium", "Low"];
+    
+        // Sort the documents in the desired order
+        const sortedKhotians = allKhotians.sort((a, b) => {
+          const priorityA = priorityOrder.indexOf(a.priority);
+          const priorityB = priorityOrder.indexOf(b.priority);
+          return priorityA - priorityB;
+        });
+    
+        res.status(200).json(sortedKhotians);
     } catch (err) {
         res.status(400).json({error:err.message})
     }
