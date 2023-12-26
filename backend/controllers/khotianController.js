@@ -1,6 +1,6 @@
 const khotianModel=require("../models/khotianModel")
 const mongoose=require("mongoose")
-//get all workouts
+//get all khotian
 const getAllKhotians = async (req,res) => {
     try {
         const allKhotians = await khotianModel.find();
@@ -20,7 +20,7 @@ const getAllKhotians = async (req,res) => {
         res.status(500).json({error:err.message})
     }
 }
-//get a single workout
+//get a single khotian
 const getSingleKhotian = async (req,res) => {
     try {
         if(!mongoose.Types.ObjectId.isValid(req.params.id)){
@@ -58,7 +58,7 @@ const createKhotian = async (req,res) =>{
     }
 } 
 
-//delete a workout
+//delete a khotian
 const deleteKhotian = async (req,res) => {
     try {
         if(!mongoose.Types.ObjectId.isValid(req.params.id)){
@@ -71,7 +71,7 @@ const deleteKhotian = async (req,res) => {
         res.status(400).json({error:err.message})
     }
 }
-//update a workout
+//update a khotian
 const updateKhotian = async (req,res) => {
     try {
         if(!mongoose.Types.ObjectId.isValid(req.params.id)){

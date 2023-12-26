@@ -19,7 +19,7 @@ const Home = () => {
   },[])
   return (
     <div className="home">
-      <div className="workouts">
+      <div className="khotians">
         {khotianList && khotianList.map((singleKhotian)=>(
             <KhotianDetails key={singleKhotian._id} singleKhotian={singleKhotian} />
         ))}

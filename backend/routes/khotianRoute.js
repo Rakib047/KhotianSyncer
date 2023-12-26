@@ -4,7 +4,6 @@ const router=express.Router()
 
 
 
-//post a new workout
 router.route("/")
         .get(controllers.getAllKhotians)
         .post(controllers.createKhotian)

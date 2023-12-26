@@ -31,7 +31,7 @@ const KhotianForm = () => {
             setPriority("High")
             setError(null);
             setSuccess("Task added!")
-            //console.log("new workout added!", json);
+          
         
         } catch (error) {
           // Handle any errors that occurred during the fetch
