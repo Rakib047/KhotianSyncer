@@ -88,6 +88,16 @@ nav button:hover {
   color: #fff; /* White text on hover */
 }
 
+/* Add styles for the user email span */
+nav div span {
+  margin-right: 15px; /* Add some margin to separate email and logout button */
+  font-weight: bold;
+  color: #333; /* Choose the color that matches your design */
+}
+
+/* Add styles for the logout button */
+
+
 .pages{
   max-width: 1400px;
   padding: 20px;

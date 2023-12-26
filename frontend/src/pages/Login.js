@@ -1,13 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
+import { useLogin } from "../hooks/useLogin";
+
 const Login = () =>{
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const {login, isLoading, error}=useLogin()
 
     const handleSubmit =async (e)=>{
         e.preventDefault()
 
-        console.log(email,password)
+        await login(email,password)
     }
 
     return (
@@ -29,7 +32,8 @@ const Login = () =>{
                 placeholder="Enter your Password"
             />
 
-            <button>Log in</button>
+            <button disabled={isLoading}>Log in</button>
+            {error && <div className="error">{error}</div>}
         </form>
     )
 }
