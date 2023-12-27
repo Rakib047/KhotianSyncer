@@ -1,24 +1,34 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import {useKhotianContext} from "../hooks/useKhotianContext"
+import {useAuthContext} from "../hooks/useAuthContext"
+
 const KhotianForm = () => {
     const[taskTitle,setTaskTitle]=useState("")
     const[taskDetail,setTaskDetail]=useState("")
     const[date,setDate]=useState("")
-    const[priority,setPriority]=useState("High")
+    const[priority,setPriority]=useState("Low")
     const[error,setError]=useState("")
     const[success,setSuccess]=useState("")
 
     const {dispatch}=useKhotianContext()
+    const {user}=useAuthContext()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if(!user){
+          setError("You must be logged in")
+          return
+        }
+
         const singleKhotian = { taskTitle, taskDetail, date,priority };
         
         try {
           const response = await axios.post("/api/khotian", singleKhotian, {
             headers: {
               "Content-Type": "application/json",
+              'Authorization' : `Bearer ${user.jwtToken}`
             },
           });
           
@@ -28,7 +38,7 @@ const KhotianForm = () => {
             setTaskTitle("");
             setTaskDetail("");
             setDate("");
-            setPriority("High")
+            setPriority("Low")
             setError(null);
             setSuccess("Task added!")
           
@@ -74,7 +84,7 @@ const KhotianForm = () => {
         <select
           onChange={(e) => setPriority(e.target.value)}
           value={priority}
-          defaultValue="Low"  
+            
         >
           <option value="High">High</option>
           <option value="Medium">Medium</option>

@@ -1,15 +1,34 @@
 import axios from 'axios';
 import React from 'react'
 import {useKhotianContext} from "../hooks/useKhotianContext"
-
+import {useAuthContext} from "../hooks/useAuthContext"
 
 const KhotianDetails = ({singleKhotian}) => {
   const {dispatch} =useKhotianContext()
-  const handleClick = async () =>{
-      axios.delete("/api/khotian/"+singleKhotian._id)
-            .then(response=>dispatch({type:"DELETE_KHOTIAN",payload:response.data}))
-            .catch(err=>{console.log(err)})
-  }
+  const {user}=useAuthContext()
+
+
+  const handleClick = async () => {
+    if (!user) {
+      return;
+    }
+
+    try {
+      const response = await axios.delete(`/api/khotian/${singleKhotian._id}`, {
+        headers: {
+          'Authorization': `Bearer ${user.jwtToken}`,
+        },
+      });
+
+      if (response.status === 200) {
+        const json = response.data;
+        dispatch({ type: 'DELETE_KHOTIAN', payload: json });
+      }
+    } catch (error) {
+      // Handle error, e.g., set an error state or dispatch an error action
+      console.error('Error deleting khotian:', error);
+    }
+  };
 
   // Format date to DD-MM-YYYY or use the existing format
   const formatDate = (dateString) => {
