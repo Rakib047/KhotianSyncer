@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import axios from "axios"
 import {useKhotianContext} from "../hooks/useKhotianContext"
 import {useAuthContext} from "../hooks/useAuthContext"
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const KhotianForm = () => {
     const[taskTitle,setTaskTitle]=useState("")
@@ -10,9 +12,11 @@ const KhotianForm = () => {
     const[priority,setPriority]=useState("Low")
     const[error,setError]=useState("")
     const[success,setSuccess]=useState("")
-
     const {dispatch}=useKhotianContext()
     const {user}=useAuthContext()
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,15 +45,35 @@ const KhotianForm = () => {
             setPriority("Low")
             setError(null);
             setSuccess("Task added!")
-          
+
+                        // Show success message using SweetAlert
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Task added to Khotian!',
+              confirmButtonColor: '#1aac83',
+              background: '#f1f1f1',
+            });
         
         } catch (error) {
           // Handle any errors that occurred during the fetch
           setError("Please fill up all the fields");
           setSuccess(null)
           console.error("Error during fetch:", error);
+
+                // Show error message using SweetAlert
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please fill up all the fields',
+            confirmButtonColor: '#e7195a',
+            background: '#f1f1f1',
+          });
         }
       };
+
+
+
 
 
   return (
@@ -92,8 +116,8 @@ const KhotianForm = () => {
         </select>
 
         <button>Add to khotian</button>
-        {success && <div className='success'>{success}</div>}
-        {error && <div className='error'>{error}</div>}
+        {/* {success && <div className='success'>{success}</div>}
+        {error && <div className='error'>{error}</div>} */}
     </form>
   )
 }

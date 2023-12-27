@@ -1,6 +1,7 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
+
 /* layout */
 :root {
   --primary: #1aac83;
@@ -157,7 +158,7 @@ nav div span {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-height: 500px; /* Adjust the maximum height as needed */
+  max-height: 450px; /* Adjust the maximum height as needed */
   height: auto;
   overflow-y: auto; /* Add scroll if content exceeds max-height */
 }

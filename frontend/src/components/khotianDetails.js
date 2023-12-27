@@ -41,6 +41,8 @@ const KhotianDetails = ({singleKhotian}) => {
     return dateObject.toLocaleDateString('en-US', options);
   };
 
+
+
   return (
     <div className="khotian-details">
       <h4>{singleKhotian.taskTitle}</h4>
