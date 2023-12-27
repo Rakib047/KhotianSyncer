@@ -38,6 +38,24 @@ const Home = () => {
   return (
     <div className="home">
       <div className="khotians">
+      <div className="filter-container">
+        <label >Filter by Name:</label>
+        <input
+          type="text"
+          id="filter"
+          placeholder="Enter name to filter"
+          // value={filter}
+          // onChange={(e) => setFilter(e.target.value)}
+        />
+                <label >Filter by Name:</label>
+        <input
+          type="text"
+          id="filter"
+          placeholder="Enter name to filter"
+          // value={filter}
+          // onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
         {khotianList && khotianList.map((singleKhotian)=>(
             <KhotianDetails key={singleKhotian._id} singleKhotian={singleKhotian} />
         ))}
