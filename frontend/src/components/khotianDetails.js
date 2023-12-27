@@ -45,7 +45,7 @@ const KhotianDetails = ({singleKhotian}) => {
 
   return (
     <div className="khotian-details">
-      <h4>{singleKhotian.taskTitle}</h4>
+      <h4>{singleKhotian.taskTitle} : {singleKhotian.taskType}</h4>
       <p><strong>Task Details :</strong> {singleKhotian.taskDetail}</p>
       <p><strong>Date :</strong> {formatDate(singleKhotian.date)}</p>
       <p><strong>Priority :</strong> {singleKhotian.priority}</p>

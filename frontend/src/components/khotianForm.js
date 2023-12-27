@@ -10,6 +10,7 @@ const KhotianForm = () => {
     const[taskDetail,setTaskDetail]=useState("")
     const[date,setDate]=useState("")
     const[priority,setPriority]=useState("Low")
+    const[taskType,setTaskType]=useState("CT")
     const[error,setError]=useState("")
     const[success,setSuccess]=useState("")
     const {dispatch}=useKhotianContext()
@@ -26,7 +27,7 @@ const KhotianForm = () => {
           return
         }
 
-        const singleKhotian = { taskTitle, taskDetail, date,priority };
+        const singleKhotian = { taskTitle,taskType, taskDetail, date,priority };
         
         try {
           const response = await axios.post("/api/khotian", singleKhotian, {
@@ -41,6 +42,7 @@ const KhotianForm = () => {
        
             setTaskTitle("");
             setTaskDetail("");
+            setTaskType("CT");
             setDate("");
             setPriority("Low")
             setError(null);
@@ -87,6 +89,19 @@ const KhotianForm = () => {
             value={taskTitle} // jodi title er value baire theke change hoy  
             placeholder="Enter task's title" 
         />
+
+        <label>Task's Type:</label>
+        <select
+          onChange={(e) => setTaskType(e.target.value)}
+          value={taskType}
+            
+        >
+          <option value="CT">CT</option>
+          <option value="OFFLINE">OFFLINE</option>
+          <option value="ONLINE">ONLINE</option>
+          <option value="ASSIGNMENT">ASSIGNMENT</option>
+          <option value="EVALUATION">EVALUATION</option>
+        </select>
 
         <label>Task's Details:</label>
         <input

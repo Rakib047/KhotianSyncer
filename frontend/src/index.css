@@ -158,7 +158,7 @@ nav div span {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-height: 450px; /* Adjust the maximum height as needed */
+  max-height: 750px; /* Adjust the maximum height as needed */
   height: auto;
   overflow-y: auto; /* Add scroll if content exceeds max-height */
 }
@@ -312,6 +312,43 @@ nav div a:hover {
   background-color: #0a8050bc; /* Red background on hover */
   color: #fff; /* White text on hover */
 }
+
+/*extra*/
+.filter-container {
+  max-width: 150px;
+  margin-left: 1px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-container label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.filter-container select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add styles for the options */
+.filter-container option {
+  color: #333;
+}
+
+/* Optional: Style the select on hover */
+.filter-container select:hover {
+  border-color: #1aac83; /* Highlight border color on hover */
+}
+
 
 
 

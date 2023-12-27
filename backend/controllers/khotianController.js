@@ -37,10 +37,10 @@ const getSingleKhotian = async (req,res) => {
 const createKhotian = async (req,res) =>{
     
     try {
-        const {taskTitle,taskDetail,date,priority} = req.body
+        const {taskTitle,taskType,taskDetail,date,priority} = req.body
         const user_id=req.userProperty._id
         
-        await khotianModel.create({taskTitle,taskDetail,date,priority,user_id})
+        await khotianModel.create({taskTitle,taskType,taskDetail,date,priority,user_id})
         console.log(user_id)
         //res.status(200).json(newKhotianDocument)
         //sending sorted khotians

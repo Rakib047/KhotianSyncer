@@ -7,6 +7,10 @@ const khotianSchema=new mongoose.Schema(
             type:String,
             required:true
         },
+        taskType:{
+            type:String,
+            required:true
+        },
         taskDetail:{
             type:String,
             required:true
