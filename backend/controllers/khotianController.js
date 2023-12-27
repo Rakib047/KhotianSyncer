@@ -3,7 +3,8 @@ const mongoose=require("mongoose")
 //get all khotian
 const getAllKhotians = async (req,res) => {
     try {
-        const allKhotians = await khotianModel.find();
+        const user_id=req.userProperty._id
+        const allKhotians = await khotianModel.find({user_id});
 
         // Define the custom order of priorities
         const priorityOrder = ["High", "Medium", "Low"];
@@ -37,11 +38,14 @@ const createKhotian = async (req,res) =>{
     
     try {
         const {taskTitle,taskDetail,date,priority} = req.body
-        const newKhotianDocument=await khotianModel.create({taskTitle,taskDetail,date,priority})
+        const user_id=req.userProperty._id
+        
+        await khotianModel.create({taskTitle,taskDetail,date,priority,user_id})
+        console.log(user_id)
         //res.status(200).json(newKhotianDocument)
         //sending sorted khotians
-        const allKhotians = await khotianModel.find();
-
+        const allKhotians = await khotianModel.find({user_id});
+        
         // Define the custom order of priorities
         const priorityOrder = ["High", "Medium", "Low"];
     

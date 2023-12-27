@@ -18,6 +18,10 @@ const khotianSchema=new mongoose.Schema(
         priority:{
             type:String,
             required:true
+        },
+        user_id: {
+            type:String,
+            required:true
         }
     },
     {

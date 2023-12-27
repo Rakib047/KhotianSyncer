@@ -20,6 +20,7 @@ const requireAuth =async (req,res,next) =>{
         const {_id} = jwt.verify(token,process.env.SECRET_KEY) //extracting the id from payload by verifying the token
         
         //attaching userProperty to req so that we can later use it
+        //this userProperty(id) will be used to user specific khotians
         req.userProperty=await userModel.findOne({_id}).select("_id") 
         next()
     } catch (error) {

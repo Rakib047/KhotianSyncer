@@ -68,15 +68,13 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
+
 
 nav button {
   background-color: transparent;
-  color: #ffffff; /* Red color for text */
+  color: #ffffff; 
   padding: 10px 15px;
-  border: 2px solid #fcfcfc; /* Red border for the button */
+  border: 2px solid #fcfcfc; 
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
@@ -293,6 +291,25 @@ span.delete-btn:hover {
 
 .auth-form button:hover {
   background-color: #168f63;
+}
+
+nav div button,
+nav div a {
+  background-color: transparent;
+  color: #ffff; /* Red color for text */
+  padding: 10px 15px;
+  border: 2px solid #fcfcfc; /* Red border for the button */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 15px; /* Add some margin between buttons */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+}
+
+nav div button:hover,
+nav div a:hover {
+  background-color: #0a8050bc; /* Red background on hover */
+  color: #fff; /* White text on hover */
 }
 
 
