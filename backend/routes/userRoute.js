@@ -2,6 +2,8 @@ const express = require("express")
 const controllers=require("../controllers/userController")
 const router=express.Router()
 
+
+
 //login route
 
 router.route("/login")
