@@ -63,7 +63,7 @@ const KhotianForm = () => {
           setSuccess(null)
           console.error("Error during fetch:", error);
 
-                // Show error message using SweetAlert
+          // Show error message using SweetAlert
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -101,6 +101,7 @@ const KhotianForm = () => {
           <option value="ONLINE">ONLINE</option>
           <option value="ASSIGNMENT">ASSIGNMENT</option>
           <option value="EVALUATION">EVALUATION</option>
+          <option value="THESIS">THESIS WORK</option>
         </select>
 
         <label>Assessment Details:</label>

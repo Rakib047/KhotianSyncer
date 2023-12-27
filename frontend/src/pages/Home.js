@@ -66,15 +66,16 @@ const Home = () => {
             value={filterType}
             onChange={(e) => {
               setFilterType(e.target.value)
-              
             }}
+            
           >
-            <option value="All">All Types</option>
+            <option value="All">All Assessments</option>
             <option value="CT">CT</option>
             <option value="OFFLINE">Offline</option>
             <option value="ONLINE">Online</option>
             <option value="ASSIGNMENT">Assignment</option>
             <option value="EVALUATION">Evaluation</option>
+            <option value="THESIS">THESIS WORK</option>
           </select>
 
           <select
@@ -85,7 +86,7 @@ const Home = () => {
               
             }}
           >
-            <option value="All">All Types</option>
+            <option value="All">All Priorites</option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
