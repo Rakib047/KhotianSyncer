@@ -341,12 +341,16 @@ nav div a:hover {
 
 /* Optional: Add styles for the options */
 .filter-container option {
-  color: #333;
+  color: #e31212;
 }
 
+
+
 /* Optional: Style the select on hover */
-.filter-container select:hover {
+.filter-container select:active,select:hover {
   border-color: #1aac83; /* Highlight border color on hover */
+  color: #1aac83;
+
 }
 
 

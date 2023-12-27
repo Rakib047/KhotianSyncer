@@ -51,8 +51,8 @@ const KhotianForm = () => {
                         // Show success message using SweetAlert
             Swal.fire({
               icon: 'success',
-              title: 'Success',
-              text: 'Task added to Khotian!',
+              title: 'New Assesment!',
+              text: `${singleKhotian.taskTitle}:${singleKhotian.taskType} added to Khotian!`,
               confirmButtonColor: '#1aac83',
               background: '#f1f1f1',
             });
