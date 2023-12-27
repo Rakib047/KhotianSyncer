@@ -80,17 +80,17 @@ const KhotianForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}>
-        <h3>Add a new task</h3>
+        <h3>Add a new Assessment</h3>
 
-        <label>Task's Title:</label>
+        <label>Course Title:</label>
         <input
             type="text"
             onChange={(e)=>{setTaskTitle(e.target.value)}}
             value={taskTitle} // jodi title er value baire theke change hoy  
-            placeholder="Enter task's title" 
+            placeholder="e.g.,CSE 405" 
         />
 
-        <label>Task's Type:</label>
+        <label>Assessment Type:</label>
         <select
           onChange={(e) => setTaskType(e.target.value)}
           value={taskType}
@@ -103,12 +103,12 @@ const KhotianForm = () => {
           <option value="EVALUATION">EVALUATION</option>
         </select>
 
-        <label>Task's Details:</label>
+        <label>Assessment Details:</label>
         <input
             type="text"
             onChange={(e)=>{setTaskDetail(e.target.value)}}
             value={taskDetail} 
-            placeholder="Enter task's details"
+            placeholder="Enter assesment details"
         />
 
         <label>Date:</label>

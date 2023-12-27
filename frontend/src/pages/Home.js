@@ -12,6 +12,7 @@ const Home = () => {
   const { khotianList, dispatch } = useKhotianContext();
   const { user } = useAuthContext();
   const [filterType, setFilterType] = useState("All");
+  const [priorityType, setpriorityType] = useState("All");
   const [filteredKhotians, setFilteredKhotians] = useState([]);
 
   //this function will be fired once as soon as this component is rendered
@@ -37,29 +38,36 @@ const Home = () => {
     }
   }, [dispatch, user]);
 
-      //filtering
-    // UseEffect to filter khotians whenever filterType changes
-    useEffect(() => {
-      const filteredList = filterKhotians();
-      setFilteredKhotians(filteredList);
-    }, [filterType, khotianList]);
+  //filtering
+  // UseEffect to filter khotians whenever filterType changes
+  useEffect(() => {
+    const filteredList = filterKhotians();
+    setFilteredKhotians(filteredList);
+  }, [priorityType,filterType, khotianList]);
 
-    const filterKhotians = () => {
-      if (filterType === "All") {
-        return khotianList;
-      } else {
-        return khotianList.filter((khotian) => khotian.taskType === filterType);
+  //function for different filtering 
+  const filterKhotians = () => {
+      let currentList=khotianList
+      if(filterType!=="All"){
+        currentList=currentList.filter((khotian) => khotian.taskType === filterType)
       }
-    };
+      if(priorityType!=="All"){
+        currentList=currentList.filter((khotian) => khotian.priority === priorityType)
+      }
+      return currentList
+  };
 
   return (
     <div className="home">
       <div className="khotians">
         <div className="filter-container">
           <select
-            //id="filterType"
+            
             value={filterType}
-            onChange={(e) => setFilterType(e.target.value)}
+            onChange={(e) => {
+              setFilterType(e.target.value)
+              
+            }}
           >
             <option value="All">All Types</option>
             <option value="CT">CT</option>
@@ -67,6 +75,20 @@ const Home = () => {
             <option value="ONLINE">Online</option>
             <option value="ASSIGNMENT">Assignment</option>
             <option value="EVALUATION">Evaluation</option>
+          </select>
+
+          <select
+            
+            value={priorityType}
+            onChange={(e) => {
+              setpriorityType(e.target.value)
+              
+            }}
+          >
+            <option value="All">All Types</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
           </select>
         </div>
 

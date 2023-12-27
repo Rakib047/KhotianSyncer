@@ -316,13 +316,9 @@ nav div a:hover {
 /*extra*/
 .filter-container {
   max-width: 150px;
-  margin-left: 1px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  margin-left: 0px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
 .filter-container label {
@@ -332,12 +328,16 @@ nav div a:hover {
 }
 
 .filter-container select {
-  width: 100%;
+  flex: 1; /* Use flex property to distribute available space equally between the selects */
+  max-width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  margin-right: 6px; /* Add margin to create space between the selects */
 }
+
+
 
 /* Optional: Add styles for the options */
 .filter-container option {
