@@ -14,8 +14,9 @@ const loginUser = async (req,res) =>{
         const loggedInUser=await userModel.loginStatic(email,password)
 
         const jwtToken=createToken(loggedInUser._id)
-
-        res.status(200).json({email,jwtToken})
+        
+        const username=loggedInUser.username
+        res.status(200).json({email,jwtToken,username})
     } catch (err) {
         res.status(400).json({error:err.message})
     }

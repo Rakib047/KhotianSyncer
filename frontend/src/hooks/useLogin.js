@@ -20,7 +20,7 @@ export const useLogin = () => {
 
       // Assuming the server returns JSON
       const json = response.data;
-
+      // console.log(json.username)
       // Handle successful response
       // save the user to local storage
       localStorage.setItem('user', JSON.stringify(json));
