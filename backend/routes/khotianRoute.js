@@ -4,7 +4,7 @@ const requireAuth=require("../middleware/requireAuth")
 const router=express.Router()
 
 router.use(requireAuth)
-//before using these the user has to be authenticated,thats why we put the above middle function
+//before using these the user has to be authenticated,thats why we put the above middleware function
 
 router.route("/")
         .get(controllers.getAllKhotians)

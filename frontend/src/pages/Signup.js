@@ -4,17 +4,26 @@ import { useSignup } from "../hooks/useSignup";
 const Signup = () =>{
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [username,setUsername]= useState("")
     const {signup,isLoading,error}=useSignup()
 
     const handleSubmit =async (e)=>{
         e.preventDefault()
-
-        await signup(email,password)
+    
+        await signup(email,password,username)
     }
 
     return (
         <form className="auth-form" onSubmit={handleSubmit}>
             <h3>Sign up</h3>
+
+            <label>Username:</label>
+            <input
+                type="text"
+                onChange={(e)=>setUsername(e.target.value)}
+                value={username}
+                placeholder="Enter your Username"
+            />
 
             <label>Email:</label>
             <input

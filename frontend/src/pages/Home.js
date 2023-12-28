@@ -46,7 +46,7 @@ const Home = () => {
     const filteredList = filterKhotians();
 
     setFilteredKhotians(filteredList);
-    
+
   }, [priorityType,filterType, khotianList]);
 
   //function for different filtering 
@@ -80,6 +80,7 @@ const Home = () => {
             <option value="ASSIGNMENT">Assignment</option>
             <option value="EVALUATION">Evaluation</option>
             <option value="THESIS">THESIS WORK</option>
+            <option value="PRESENTATION">PRESENTATION</option>
           </select>
 
           <select

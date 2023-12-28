@@ -24,16 +24,17 @@ const loginUser = async (req,res) =>{
 //signupUser
 const signupUser = async (req,res) =>{
 
-    const {email,password} =req.body
+    const {email,password,username} =req.body
+    
     try {
         //create in database will happen in signupStatic
-        const newUser=await userModel.signupStatic(email,password)
+        const newUser=await userModel.signupStatic(email,password,username)
 
         const jwtToken=createToken(newUser._id)
-
-        res.status(200).json({email,jwtToken})
+        
+        res.status(200).json({email,jwtToken,username})
     } catch (err) {
-        res.status(400).json({error:err.message})
+        res.status(400).json({error:err.message},"here")
     }
 
 }

@@ -22,9 +22,16 @@ const Navbar = () => {
         </Link>
         <nav>
           {user && (
-            <div>
-              <span>{user.email}</span>
-              <button onClick={handleClick}>Log out</button>
+            <div className="username-container">
+              
+              <span >{user.username}</span>
+              
+              <button
+                className="material-symbols-outlined"
+                onClick={handleClick}
+              >
+                logout
+              </button>
             </div>
           )}
 
