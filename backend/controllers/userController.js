@@ -43,6 +43,36 @@ const signupUser = async (req,res) =>{
 
 }
 
+//user update
+const updateUser = async (req, res) => {
+    const { prevEmail,username,roll,currentSemester,department,email } = req.body;
+    const user = await userModel.profileInfoStatic(prevEmail); // Assuming you have middleware to extract user information from the token
+    console.log("hmm")
+    console.log(user._id)
+    
+    console.log(user.username)
+    try {
+      // Update user profile in the database
+      const updatedUser = await userModel.findByIdAndUpdate(
+        user._id,
+        {
+          username,
+          roll,
+          currentSemester,
+          department,
+          email
+        },
+        { new: true }
+      );
+      
+      // Respond with the updated user profile
+      res.status(200).json(updatedUser);
+    } catch (err) {
+        
+      res.status(400).json({ error: err.message });
+    }
+  };
+
 module.exports={
-    loginUser,signupUser
+    loginUser,signupUser,updateUser
 }

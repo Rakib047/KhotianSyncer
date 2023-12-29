@@ -83,4 +83,12 @@ userSchema.statics.loginStatic = async function(email,password){
 
 }
 
+userSchema.statics.profileInfoStatic= async function(prevEmail){
+    const user=await this.findOne({email:prevEmail})
+    if(!user){
+        console.log("no user vai")
+    }
+    return user
+}
+
 module.exports=mongoose.model("User",userSchema)
