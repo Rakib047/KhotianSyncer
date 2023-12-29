@@ -103,6 +103,7 @@ const KhotianForm = () => {
           <option value="EVALUATION">EVALUATION</option>
           <option value="THESIS">THESIS WORK</option>
           <option value="PRESENTATION">PRESENTATION</option>
+          <option value="LAB QUIZ">LAB QUIZ</option>
         </select>
 
         <label>Assessment Details:</label>

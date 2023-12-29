@@ -9,7 +9,7 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const signup = async (email,password,username,roll) => {
+  const signup = async (email,password,username,roll,currentSemester,department) => {
     setIsLoading(true);
     setError(null);
     console.log("here")
@@ -19,12 +19,14 @@ export const useSignup = () => {
         email,
         password,
         username,
-        roll
+        roll,
+        currentSemester,
+        department
       });
 
       // Assuming the server returns JSON
       const json = response.data;
-      console.log(response.data.email)
+      console.log(response.data.currentSemester)
 
       // Handle successful response
       // save the user to local storage

@@ -7,8 +7,8 @@ const ProfileDetails = () => {
 
   // Dummy data (replace this with actual data from your user object)
   const studentId = user.roll;
-  const currentSemester = "Spring 2023";
-  const department = "Computer Science";
+  const currentSemester = user.currentSemester;
+  const department = user.department;
 
   return (
     <div className="profile-card">
