@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import {useAuthContext} from "../hooks/useAuthContext"
 import axios from "axios";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 const ProfileCustomize = () => {
   
-  const {user} = useAuthContext()
+  const {user,dispatch} = useAuthContext()
   const [username,setNewUsername] = useState(user.username)
   const [currentSemester,setNewCurrentSemester] = useState(user.currentSemester)
   const [roll,setNewStudentId] = useState(user.roll)
@@ -16,13 +18,25 @@ const ProfileCustomize = () => {
       e.preventDefault();
 
       const updatedUser={prevEmail,username,roll,currentSemester,department,email}
-      console.log(updatedUser)
+      
       
       try {
         
         const response = await axios.put('/api/user/profile',updatedUser);
 
         console.log(response.data)
+
+        dispatch({type:"LOGIN",payload:response.data})
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Profile Updated!',
+          text: "",
+          confirmButtonColor: '#1aac83',
+          background: '#f1f1f1',
+        });
+
+        
         
       } catch (error) {
           console.log(error)

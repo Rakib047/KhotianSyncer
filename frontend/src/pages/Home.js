@@ -2,8 +2,7 @@ import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { useKhotianContext } from "../hooks/useKhotianContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+
 //components
 import KhotianDetails from "../components/khotianDetails";
 import KhotianForm from "../components/khotianForm";

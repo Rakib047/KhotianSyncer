@@ -14,7 +14,7 @@ export const useLogout = () =>{
         Swal.fire({
             icon: 'info',
             title: 'Logging out!',
-            text: `Logging out from user ${user.username}`,
+            text: "",
             confirmButtonColor: '#1aac83',
             background: '#f1f1f1',
         });
