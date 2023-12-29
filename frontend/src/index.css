@@ -436,7 +436,7 @@ nav div a:hover {
   background: #fff;
   border-radius: 4px;
   margin: 20px auto; /* Adjust margin as needed */
-  padding: 50px; /* Increase padding for better appearance */
+  padding: 60px; /* Increase padding for better appearance */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease-in-out;
   max-width: 700px; /* Adjust the maximum width as needed */
@@ -485,7 +485,7 @@ nav div a:hover {
   background: #fff;
   border-radius: 4px;
   margin: 20px auto; /* Adjust margin as needed */
-  padding: 20px;
+  padding: 60px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease-in-out;
   max-width: 600px; /* Adjust the maximum width as needed */
@@ -522,6 +522,39 @@ nav div a:hover {
   color: #02100cc7; /* Color for 'Khotian' */
 }
 
+.upcoming-assessments-card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upcoming-assessments-card label {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.upcoming-assessments-card input {
+  flex: 1; /* Use flex property to distribute available space equally among input fields */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 60%;
+   /* Ensure 100% width within the flex container */
+}
+
+.upcoming-assessments-card button{
+  width: 60%;
+  background-color: #1aac83;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
 
 
