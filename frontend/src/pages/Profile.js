@@ -1,12 +1,14 @@
+// YourMainComponent.js
 import React from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
-export const Profile = () => {
-  const { user } = useAuthContext();
-  return (
-<div className="profile-card">
-    username: {user.username}
-    email : {user.email}
-</div>
+import ProfileDetails from "../components/ProfileDetails";
+import KhotianSummary from "../components/KhotianSummary";
 
+export const Profile = () => {
+  return (
+    <div className="card-container">
+      <ProfileDetails />
+      <KhotianSummary />
+    </div>
   );
 };
+

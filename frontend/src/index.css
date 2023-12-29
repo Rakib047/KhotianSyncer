@@ -414,22 +414,108 @@ nav div a:hover {
   align-items: center;
 }
 
-/* .user-button{
-  font-size: 1rem;
-  border: none;
-  outline: none;
-  padding :10px 12px;
-  border-radius: 10px;
-} */
+/* Add these styles to your existing CSS or create a new style block */
 
-/* user profile */
-/* Overall dashboard container */
+/* Add these styles to your existing CSS or create a new style block */
 
+/* Add these styles to your existing CSS or create a new style block */
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; /* Adjust the gap as needed */
+}
 
+.profile-card,
+.upcoming-assessments-card {
+  flex: 1;
+}
 
+.profile-card {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto; /* Adjust margin as needed */
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+  max-width: 700px; /* Adjust the maximum width as needed */
+}
 
+.profile-card:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
 
+.profile-card h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.8em;
+  color: var(--primary);
+}
+
+.profile-card p {
+  margin: 0;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.profile-card strong {
+  font-weight: bold;
+  color: var(--primary); /* Adjust the color to match your design */
+}
+
+.profile-card .username-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-card .username {
+  font-weight: bold;
+  color: #fcfdfd; /* Choose a color that matches your design */
+  text-transform: capitalize; /* Capitalize the text */
+  font-size: 18px; /* Adjust the font size as needed */
+  margin-right: 8px; /* Adjust the margin as needed */
+}
+
+.upcoming-assessments-card {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto; /* Adjust margin as needed */
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+  max-width: 600px; /* Adjust the maximum width as needed */
+}
+
+.upcoming-assessments-card:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.upcoming-assessments-card h1 {
+  margin: 0 0 20px 0;
+  font-size: 1.8em;
+  color: var(--primary);
+}
+
+.upcoming-assessments-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.upcoming-assessments-card li {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.upcoming-assessments-card strong {
+  font-weight: bold;
+  color: var(--primary); /* Adjust the color to match your design */
+}
+
+.upcoming-assessments-card .logo-khotian {
+  color: #02100cc7; /* Color for 'Khotian' */
+}
 
 
 
