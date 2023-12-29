@@ -424,7 +424,7 @@ nav div a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px; /* Adjust the gap as needed */
+  gap: 30px; /* Adjust the gap as needed */
 }
 
 .profile-card,
@@ -436,7 +436,7 @@ nav div a:hover {
   background: #fff;
   border-radius: 4px;
   margin: 20px auto; /* Adjust margin as needed */
-  padding: 20px;
+  padding: 200px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease-in-out;
   max-width: 700px; /* Adjust the maximum width as needed */
