@@ -6,7 +6,7 @@ const ProfileDetails = () => {
   const { user } = useAuthContext();
 
   // Dummy data (replace this with actual data from your user object)
-  const studentId = "12345";
+  const studentId = user.roll;
   const currentSemester = "Spring 2023";
   const department = "Computer Science";
 
