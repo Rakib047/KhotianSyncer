@@ -16,16 +16,20 @@ const userSchema=new mongoose.Schema(
         username:{
             type:String,
             required:true
+        },
+        roll:{
+            type:String,
+            required:true
         }
     }
 )
 
 //static signup method where we will use hashing for storing password in a safe manner
-userSchema.statics.signupStatic=async function(email,password,username){
+userSchema.statics.signupStatic=async function(email,password,username,roll){
     //we must use function not arrow one to have this keyword
     //this bcz we dont have the model yet
     
-    if(!email||!password||!username){
+    if(!email||!password||!username||!roll){
         throw Error("All fields must be filled")
     }
     if(!validator.isEmail(email)){
@@ -44,7 +48,7 @@ userSchema.statics.signupStatic=async function(email,password,username){
     const salt=await bcrypt.genSalt(10)
     const hashedPassword=await bcrypt.hash(password,salt)
 
-    const newUser=await this.create({email,password:hashedPassword,username})
+    const newUser=await this.create({email,password:hashedPassword,username,roll})
 
     return newUser
 }

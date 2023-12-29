@@ -5,12 +5,12 @@ const Signup = () =>{
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [username,setUsername]= useState("")
+    const [studentId,setStudentId]= useState("")
     const {signup,isLoading,error}=useSignup()
 
     const handleSubmit =async (e)=>{
         e.preventDefault()
-    
-        await signup(email,password,username)
+        await signup(email,password,username,studentId)
     }
 
     return (
@@ -38,6 +38,13 @@ const Signup = () =>{
                 onChange={(e)=>setPassword(e.target.value)}
                 value={password}
                 placeholder="Enter your Password"
+            />
+
+            <input
+                type="text"
+                onChange={(e)=>setStudentId(e.target.value)}
+                value={studentId}
+                placeholder="Enter your Student Id"
             />
 
             <button disabled={isLoading}>Sign up</button>
