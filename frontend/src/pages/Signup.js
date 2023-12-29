@@ -17,7 +17,7 @@ const Signup = () =>{
         <form className="auth-form" onSubmit={handleSubmit}>
             <h3>Sign up</h3>
 
-            <label>Username:</label>
+            
             <input
                 type="text"
                 onChange={(e)=>setUsername(e.target.value)}
@@ -25,14 +25,14 @@ const Signup = () =>{
                 placeholder="Enter your Username"
             />
 
-            <label>Email:</label>
+            
             <input
                 type="email"
                 onChange={(e)=>setEmail(e.target.value)}
                 value={email}
                 placeholder="Enter your Email"
             />
-            <label>Password:</label>
+            
             <input
                 type="password"
                 onChange={(e)=>setPassword(e.target.value)}

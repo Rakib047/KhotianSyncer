@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from './useAuthContext';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -30,6 +32,15 @@ export const useLogin = () => {
 
       // update loading state
       setIsLoading(false);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful!',
+        text: `Logged in as ${json.username}`,
+        confirmButtonColor: '#1aac83',
+        background: '#f1f1f1',
+      });
+
     } catch (error) {
       // Handle error response
       setIsLoading(false);
