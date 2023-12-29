@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+import {useAuthContext} from "../hooks/useAuthContext"
+import axios from "axios";
+const ProfileCustomize = () => {
+  
+  const {user} = useAuthContext()
+  const [username,setNewUsername] = useState(user.username)
+  const [currentSemester,setNewCurrentSemester] = useState(user.currentSemester)
+  const [roll,setNewStudentId] = useState(user.roll)
+  const [department,setNewDepartment] = useState(user.department)
+  const [email,setNewEmail]=useState(user.email)
 
-const ProfileCustomize = ({ user, onUpdateProfile }) => {
-  // const [formData, setFormData] = useState({
-  //   username: user.username,
-  //   currentSemester: user.currentSemester,
-  //   studentId: user.studentId,
-  //   department: user.department,
-  //   email: user.email,
-  // });
+  const prevEmail=user.email
 
-  const handleChange = (e) => {
-    //const { name, value } = e.target;
-    //setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  const handleSubmit = async (e) => {
+      e.preventDefault();
 
-  const handleSubmit = () => {
-    // Pass the updated profile information to the parent component
-    //onUpdateProfile(formData);
+      const updatedUser={prevEmail,username,roll,currentSemester,department,email}
+      console.log(updatedUser)
+      
+      try {
+        
+        const response = await axios.put('/api/user/profile',updatedUser);
+
+        console.log(response.data)
+        
+      } catch (error) {
+          console.log(error)
+      }
   };
 
   return (
@@ -25,57 +35,47 @@ const ProfileCustomize = ({ user, onUpdateProfile }) => {
         <span className="logo-khotian" >Edit Profile</span>
       </h1>
       <form>
-        
-          <label >Username:</label>
+          
           <input
             type="text"
-            id="username"
-            name="username"
-            //value={formData.username}
-            //onChange={handleChange}
+            onChange={(e)=>setNewUsername(e.target.value)}
+            
+            placeholder="Change username (optional)"
+          />
+        
+          <input
+            type="text"
+            onChange={(e)=>setNewCurrentSemester(e.target.value)}
+           
+            placeholder="Update current Semester (optional)"
+          />
+        
+        
+          <input
+            type="text"
+            onChange={(e)=>setNewStudentId(e.target.value)}
+            
+            placeholder="Change Student Id (optional)"
+          />
+        
+        
+          <input
+            type="text"
+            onChange={(e)=>setNewDepartment(e.target.value)}
+            
+            placeholder="Update Department name (optional)"
           />
         
       
-          <label htmlFor="currentSemester">Current Semester:</label>
-          <input
-            type="text"
-            id="currentSemester"
-            name="currentSemester"
-            //value={formData.currentSemester}
-            //onChange={handleChange}
-          />
-        
-        
-          <label htmlFor="studentId">Student ID:</label>
-          <input
-            type="text"
-            id="studentId"
-            name="studentId"
-            //value={formData.studentId}
-            //onChange={handleChange}
-          />
-        
-        
-          <label htmlFor="department">Department:</label>
-          <input
-            type="text"
-            id="department"
-            name="department"
-            //value={formData.department}
-            //onChange={handleChange}
-          />
-        
-      
-          <label htmlFor="email">Email:</label>
           <input
             type="email"
-            id="email"
-            name="email"
-            //value={formData.email}
-            //onChange={handleChange}
+
+            onChange={(e)=>setNewEmail(e.target.value)}
+            
+            placeholder="Change your Email  (optional)"
           />
         
-        <button type="button" onClick={handleSubmit}>
+        <button type="submit" onClick={handleSubmit}>
           Update Profile
         </button>
       

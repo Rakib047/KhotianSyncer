@@ -17,7 +17,6 @@ export const useLogin = () => {
       const response = await axios.post('/api/user/login', {
         email,
         password,
-      
       });
 
       // Assuming the server returns JSON
