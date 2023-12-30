@@ -56,9 +56,9 @@ const ProfileCustomize = () => {
   
 
   return (
-    <div className="upcoming-assessments-card">
-      <h1 >
-        <span className="logo-khotian" >Edit Profile</span>
+    <div className="profile-customize-card">
+      <h1 className="logo-khotian">
+        <span>Edit Profile</span>
       </h1>
       <form onSubmit={handleSubmit} id="update-profile-form">
           

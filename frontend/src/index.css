@@ -428,7 +428,7 @@ nav div a:hover {
 }
 
 .profile-card,
-.upcoming-assessments-card {
+.profile-customize-card {
   flex: 1;
 }
 
@@ -438,7 +438,7 @@ nav div a:hover {
   margin: 20px auto; /* Adjust margin as needed */
   padding: 60px; /* Increase padding for better appearance */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
   max-width: 700px; /* Adjust the maximum width as needed */
   display: flex;
   flex-direction: column;
@@ -447,7 +447,8 @@ nav div a:hover {
 }
 
 .profile-card:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Increase the size on hover */
 }
 
 .profile-card h2 {
@@ -481,72 +482,82 @@ nav div a:hover {
   margin-right: 8px; /* Adjust the margin as needed */
 }
 
-.upcoming-assessments-card {
+.profile-customize-card {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
   background: #fff;
   border-radius: 4px;
   margin: 20px auto; /* Adjust margin as needed */
   padding: 60px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
   max-width: 600px; /* Adjust the maximum width as needed */
 }
 
-.upcoming-assessments-card:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+.profile-customize-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Increase the size on hover */
 }
 
-.upcoming-assessments-card h1 {
-  margin: 0 0 20px 0;
-  font-size: 1.8em;
-  color: var(--primary);
+
+.profile-customize-card h1 {
+
+  margin: 20px 0;
+  font-size: 1.6em;
+  color: #02100cc7;
 }
 
-.upcoming-assessments-card ul {
+.profile-customize-card ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.upcoming-assessments-card li {
+.profile-customize-card li {
   margin-bottom: 10px;
   font-size: 1.1em;
   color: #555;
 }
 
-.upcoming-assessments-card strong {
+.profile-customize-card strong {
   font-weight: bold;
   color: var(--primary); /* Adjust the color to match your design */
 }
 
-.upcoming-assessments-card .logo-khotian {
+.profile-customize-card .logo-khotian {
+  
   color: #02100cc7; /* Color for 'Khotian' */
 }
 
-.upcoming-assessments-card form {
+.profile-customize-card form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.upcoming-assessments-card label {
+.profile-customize-card label {
   margin-bottom: 5px;
   font-size: 1.2em;
   color: #555;
 }
 
-.upcoming-assessments-card input {
+.profile-customize-card input {
   flex: 1; /* Use flex property to distribute available space equally among input fields */
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
-  width: 60%;
+  width: 450px;
    /* Ensure 100% width within the flex container */
 }
 
-.upcoming-assessments-card button{
-  width: 60%;
+.profile-customize-card button{
+  width: 100%;
   background-color: #1aac83;
   color: #fff;
   padding: 10px 15px;
@@ -555,6 +566,14 @@ nav div a:hover {
   cursor: pointer;
   font-size: 16px;
 }
+
+.profile-customize-card button:hover{
+    background-color: #168f63;
+  
+}
+
+
+
 
 
 
