@@ -6,16 +6,21 @@ import "sweetalert2/dist/sweetalert2.min.css";
 const ProfileCustomize = () => {
   
   const {user,dispatch} = useAuthContext()
-  const [username,setNewUsername] = useState(user.username)
-  const [currentSemester,setNewCurrentSemester] = useState(user.currentSemester)
-  const [roll,setNewStudentId] = useState(user.roll)
-  const [department,setNewDepartment] = useState(user.department)
-  const [email,setNewEmail]=useState(user.email)
+  var [username,setNewUsername] = useState("")
+  var [currentSemester,setNewCurrentSemester] = useState("")
+  var [roll,setNewStudentId] = useState("")
+  var [department,setNewDepartment] = useState("")
+  var [email,setNewEmail]=useState("")
 
   const prevEmail=user.email
 
   const handleSubmit = async (e) => {
       e.preventDefault();
+      if(username=="") username=user.username
+      if(currentSemester=="") currentSemester=user.currentSemester
+      if(roll=="") roll=user.roll
+      if(department=="") department=user.department
+      if(email=="") email=user.email
 
       const updatedUser={prevEmail,username,roll,currentSemester,department,email}
       
@@ -35,32 +40,39 @@ const ProfileCustomize = () => {
           confirmButtonColor: '#1aac83',
           background: '#f1f1f1',
         });
-
         
+        setNewDepartment("")
+        setNewEmail("")
+        setNewStudentId("")
+        setNewUsername("")
+        setNewCurrentSemester("")
         
       } catch (error) {
           console.log(error)
       }
   };
 
+
+  
+
   return (
     <div className="upcoming-assessments-card">
       <h1 >
         <span className="logo-khotian" >Edit Profile</span>
       </h1>
-      <form>
+      <form onSubmit={handleSubmit} id="update-profile-form">
           
           <input
             type="text"
             onChange={(e)=>setNewUsername(e.target.value)}
-            
+            value={username}
             placeholder="Change username (optional)"
           />
         
           <input
             type="text"
             onChange={(e)=>setNewCurrentSemester(e.target.value)}
-           
+            value={currentSemester}
             placeholder="Update current Semester (optional)"
           />
         
@@ -68,7 +80,7 @@ const ProfileCustomize = () => {
           <input
             type="text"
             onChange={(e)=>setNewStudentId(e.target.value)}
-            
+            value={roll}
             placeholder="Change Student Id (optional)"
           />
         
@@ -76,7 +88,7 @@ const ProfileCustomize = () => {
           <input
             type="text"
             onChange={(e)=>setNewDepartment(e.target.value)}
-            
+            value={department}
             placeholder="Update Department name (optional)"
           />
         
@@ -85,11 +97,11 @@ const ProfileCustomize = () => {
             type="email"
 
             onChange={(e)=>setNewEmail(e.target.value)}
-            
+            value={email}
             placeholder="Change your Email  (optional)"
           />
         
-        <button type="submit" onClick={handleSubmit}>
+        <button>
           Update Profile
         </button>
       

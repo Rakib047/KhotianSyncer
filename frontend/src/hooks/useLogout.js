@@ -13,7 +13,7 @@ export const useLogout = () =>{
         dispatch({type:"LOGOUT"})
         Swal.fire({
             icon: 'info',
-            title: 'Logging out!',
+            title: 'Logged out!',
             text: "",
             confirmButtonColor: '#1aac83',
             background: '#f1f1f1',
