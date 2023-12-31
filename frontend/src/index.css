@@ -594,6 +594,24 @@ nav div a:hover {
   background-color: #168f63;
 }
 
+.cancel-btn{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px ; /* Add margin for spacing */
+  padding: 8px 16px; /* Adjust padding as needed */
+  background-color: #e7195a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #a6083a;
+}
+
 .edit-form {
   max-width: 400px;
   margin: 20px auto;
@@ -631,11 +649,14 @@ nav div a:hover {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .edit-form button:hover {
   background-color: #168f63;
 }
+
+
 
 
 

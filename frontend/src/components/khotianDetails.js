@@ -93,7 +93,7 @@ const KhotianDetails = ({ singleKhotian }) => {
       )
       :
       (
-        <button className="edit-btn" onClick={handleEditClose}>
+        <button className="cancel-btn" onClick={handleEditClose}>
         <i class="fa-sharp fa-solid fa-xmark"></i> <b>Cancel</b>
         </button>
       )

@@ -36,9 +36,9 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
         const updatedKhotian = response.data;
         onUpdate(updatedKhotian);
         Swal.fire({
-          icon: "success",
-          title: "Task Updated!",
-          text: "Your task has been updated successfully.",
+          icon: "info",
+          title: "Assesment Updated!",
+          text: "",
           confirmButtonColor: "#1aac83",
           background: "#f1f1f1",
         });
@@ -96,7 +96,7 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
           onChange={handleChange}
         />
       </label>
-      
+
       <label>Priority:</label>
       <select
         name="priority"

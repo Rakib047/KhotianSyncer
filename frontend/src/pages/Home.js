@@ -74,10 +74,10 @@ const Home = () => {
           >
             <option value="All">All Assessments</option>
             <option value="CT">CT</option>
-            <option value="OFFLINE">Offline</option>
-            <option value="ONLINE">Online</option>
-            <option value="ASSIGNMENT">Assignment</option>
-            <option value="EVALUATION">Evaluation</option>
+            <option value="OFFLINE">OFFLINE</option>
+            <option value="ONLINE">ONLINE</option>
+            <option value="ASSIGNMENT">ASSIGNMENT</option>
+            <option value="EVALUATION">EVALUATION</option>
             <option value="THESIS">THESIS WORK</option>
             <option value="PRESENTATION">PRESENTATION</option>
             <option value="LAB QUIZ">LAB QUIZ</option>
