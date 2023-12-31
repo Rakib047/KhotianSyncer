@@ -17,22 +17,20 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
   };
 
   const handleUpdate = async () => {
-
     if (!user) {
-        return;
+      return;
     }
 
     try {
-        const response = await axios.patch(
-            `/api/khotian/${editedKhotian._id}`,
-            editedKhotian,
-            {
-              headers: {
-                Authorization: `Bearer ${user.jwtToken}`,
-              },
-            }
-        );
-      
+      const response = await axios.patch(
+        `/api/khotian/${editedKhotian._id}`,
+        editedKhotian,
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwtToken}`,
+          },
+        }
+      );
 
       if (response.status === 200) {
         const updatedKhotian = response.data;
@@ -54,7 +52,7 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
   return (
     <div className="edit-form">
       <label>
-        Task Title:
+        Course Title:
         <input
           type="text"
           name="taskTitle"
@@ -62,32 +60,33 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
           onChange={handleChange}
         />
       </label>
+
+      <label>Assessment Type:</label>
+      <select
+        name="taskType"
+        value={editedKhotian.taskType}
+        onChange={handleChange}
+      >
+          <option value="CT">CT</option>
+          <option value="OFFLINE">OFFLINE</option>
+          <option value="ONLINE">ONLINE</option>
+          <option value="ASSIGNMENT">ASSIGNMENT</option>
+          <option value="EVALUATION">EVALUATION</option>
+          <option value="THESIS">THESIS WORK</option>
+          <option value="PRESENTATION">PRESENTATION</option>
+          <option value="LAB QUIZ">LAB QUIZ</option>
+Ï
+      </select>
+
       <label>
-        Task Type:
-        <input
-          type="text"
-          name="taskType"
-          value={editedKhotian.taskType}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Task Details:
+        Assessment Details:
         <textarea
           name="taskDetail"
           value={editedKhotian.taskDetail}
           onChange={handleChange}
         />
       </label>
-      <label>
-        Priority:
-        <input
-          type="text"
-          name="priority"
-          value={editedKhotian.priority}
-          onChange={handleChange}
-        />
-      </label>
+
       <label>
         Date:
         <input
@@ -97,6 +96,18 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
           onChange={handleChange}
         />
       </label>
+      
+      <label>Priority:</label>
+      <select
+        name="priority"
+        value={editedKhotian.priority}
+        onChange={handleChange}
+      >
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+
       <button onClick={handleUpdate}>Update</button>
     </div>
   );

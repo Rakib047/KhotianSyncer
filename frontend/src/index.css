@@ -157,7 +157,7 @@ nav div span {
 
 .create {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 54px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -612,7 +612,8 @@ nav div a:hover {
 }
 
 .edit-form input,
-.edit-form textarea {
+.edit-form textarea,
+.edit-form select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
