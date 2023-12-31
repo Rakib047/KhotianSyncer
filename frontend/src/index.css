@@ -236,18 +236,22 @@ nav div span {
 
 /* Add this CSS to your stylesheet or component */
 
-span.delete-btn {
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: inline-block;
-  padding: 8px 16px;
+  margin:20px;
+  padding: 8px 7px;
   background-color: #e7195a; /* Red color for delete button */
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
-span.delete-btn:hover {
+.delete-btn:hover {
   background-color: #08b06f; /* Darker shade on hover */
 }
 
@@ -571,6 +575,68 @@ nav div a:hover {
     background-color: #168f63;
   
 }
+
+.edit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px ; /* Add margin for spacing */
+  padding: 8px 16px; /* Adjust padding as needed */
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+  background-color: #168f63;
+}
+
+.edit-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.edit-form button {
+  width: 100%;
+  background-color: #1aac83;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-form button:hover {
+  background-color: #168f63;
+}
+
+
 
 
 

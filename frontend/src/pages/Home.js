@@ -37,7 +37,7 @@ const Home = () => {
     if (user) {
       fetchKhotians();
     }
-  }, [dispatch, user]);
+  }, [dispatch, user,khotianList]);
 
   //filtering
   // UseEffect to filter khotians whenever filterType changes

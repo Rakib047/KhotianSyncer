@@ -1,13 +1,34 @@
 import axios from "axios";
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { useKhotianContext } from "../hooks/useKhotianContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import KhotianEdit from "./KhotianEdit";
 
 const KhotianDetails = ({ singleKhotian }) => {
-  const { dispatch } = useKhotianContext();
+  const { khotianList,dispatch } = useKhotianContext();
   const { user } = useAuthContext();
+  const [isEditing, setEditing] = useState(false);
+
+  useEffect(() => {
+    // This effect will run whenever khotianList changes
+    
+    // Reload the page
+  }, [khotianList]);
+  
+
+  const handleEditClick = () => {
+    setEditing(true);
+  };
+
+  const handleEditClose = () => {
+    setEditing(false);
+  };
+
+  const handleUpdate = (updatedKhotian) => {
+    dispatch({ type: "UPDATE_KHOTIAN", payload: updatedKhotian });
+  };
 
   const handleClick = async () => {
     if (!user) {
@@ -64,9 +85,21 @@ const KhotianDetails = ({ singleKhotian }) => {
       <p>
         <strong>Priority :</strong> {singleKhotian.priority}
       </p>
-      <span className="delete-btn" onClick={handleClick}>
-        Mark as Done
-      </span>
+      <button className="delete-btn" onClick={handleClick}>
+        <i class="fa-regular fa-circle-check"></i> <b>Turn In</b>
+      </button>
+      <button className="edit-btn" onClick={handleEditClick}>
+        <i class="fa-solid fa-pen-to-square"></i> <b>Edit</b>
+      </button>
+
+      {isEditing && (
+        <KhotianEdit
+          singleKhotian={singleKhotian}
+          onClose={handleEditClose}
+          onUpdate={handleUpdate}
+        />
+      )}
+
     </div>
   );
 };
