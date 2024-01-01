@@ -17,6 +17,9 @@ export const KhotianCalendar = ({ khotianList }) => {
       //console.log(dates)
       setMarkedDates(dates);
     }
+    else{
+      setMarkedDates([])
+    }
   }, [khotianList]);
 
   const getTileClassName = ({ date }) => {
