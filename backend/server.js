@@ -2,16 +2,19 @@ require("dotenv").config();
 const express = require("express");
 const colors = require("colors");
 const morgan = require("morgan");
+const cors = require('cors');
 const app = express();
 const mongoose = require("mongoose");
 const khotianRoute = require("./routes/khotianRoute");
 const userRoute = require("./routes/userRoute");
 
 //middleware
+app.use(cors());
 app.use(express.json()); //to grab all fields from req object
 app.use(morgan("dev"));
 
 //routes
+
 app.use("/api/khotian", khotianRoute);
 app.use("/api/user",userRoute)
 
