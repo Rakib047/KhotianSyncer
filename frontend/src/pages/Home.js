@@ -37,11 +37,25 @@ const Home = () => {
     };
 
     if (user) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      //function for different filtering
+      const filterKhotians = () => {
+        let currentList = khotianList;
+        if (filterType !== "All") {
+          currentList = currentList.filter(
+            (khotian) => khotian.taskType === filterType
+          );
+        }
+        if (priorityType !== "All") {
+          currentList = currentList.filter(
+            (khotian) => khotian.priority === priorityType
+          );
+        }
+        return currentList;
+      };
+      
       fetchKhotians();
     }
   }, [dispatch, user, khotianList]);
-
 
   //filtering
   // UseEffect to filter khotians whenever filterType changes
@@ -49,24 +63,7 @@ const Home = () => {
     const filteredList = filterKhotians();
 
     setFilteredKhotians(filteredList);
-
   }, [priorityType, filterType, khotianList]);
-
-  //function for different filtering
-  const filterKhotians = () => {
-    let currentList = khotianList;
-    if (filterType !== "All") {
-      currentList = currentList.filter(
-        (khotian) => khotian.taskType === filterType
-      );
-    }
-    if (priorityType !== "All") {
-      currentList = currentList.filter(
-        (khotian) => khotian.priority === priorityType
-      );
-    }
-    return currentList;
-  };
 
   return (
     <div className="home">
@@ -112,12 +109,12 @@ const Home = () => {
       </div>
 
       <div>
-      <div className="calendar-container">
+        <div className="calendar-container">
           {khotianList !== null && (
             <KhotianCalendar khotianList={filteredKhotians} />
           )}
         </div>
-        <KhotianForm />  
+        <KhotianForm />
       </div>
     </div>
   );
