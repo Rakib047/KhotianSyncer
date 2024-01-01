@@ -156,7 +156,7 @@ nav div span {
 /* Add this CSS to your stylesheet or component */
 
 .create {
-  max-width: 315px;
+  max-width: 310px;
   margin: 54px 20px 20px 0; /* Adjusted the right margin to 0 */
   padding: 20px;
   border: 1px solid #ccc;
@@ -656,10 +656,23 @@ nav div a:hover {
   background-color: #168f63;
 }
 
+.react-calendar { 
+  max-width: 315px;
+  margin: 40px 20px 20px 0; /* Adjusted the right margin to 0 */
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-height: 550px;
+  height: auto;
+  overflow-y: auto;
+}
+
 /* Add this to your stylesheet or in the style tag of your React component */
 .react-calendar .markedDate {
-  background-color: rgba(218, 6, 98, 0.8); /* Red with 30% opacity */
-  padding: 5px;
+  background-color: #1aac83; /* Red with 30% opacity */
+  
 }
 
 

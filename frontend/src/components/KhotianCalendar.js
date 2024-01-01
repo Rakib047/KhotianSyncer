@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 
-export const CustomCalendar = ({ khotianList }) => {
+export const KhotianCalendar = ({ khotianList }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [markedDates, setMarkedDates] = useState([]);
 
@@ -39,4 +39,4 @@ export const CustomCalendar = ({ khotianList }) => {
   );
 };
 
-export default CustomCalendar;
+export default KhotianCalendar;

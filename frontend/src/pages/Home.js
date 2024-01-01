@@ -4,7 +4,7 @@ import { useKhotianContext } from "../hooks/useKhotianContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import CustomCalendar from "../components/CustomCalendar";
+import KhotianCalendar from "../components/KhotianCalendar";
 
 //components
 import KhotianDetails from "../components/khotianDetails";
@@ -115,7 +115,7 @@ const Home = () => {
         <KhotianForm />
         <div className="calendar-container">
           {khotianList !== null && (
-            <CustomCalendar khotianList={filteredKhotians} />
+            <KhotianCalendar khotianList={filteredKhotians} />
           )}
         </div>
       </div>
