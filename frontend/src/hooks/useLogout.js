@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 export const useLogout = () =>{
-    const {dispatch,user} = useAuthContext()
+    const {dispatch} = useAuthContext()
     const {dispatch:khotianDispatch} = useKhotianContext()
 
     const logout = () =>{

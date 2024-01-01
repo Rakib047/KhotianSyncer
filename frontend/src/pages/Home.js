@@ -2,7 +2,6 @@ import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { useKhotianContext } from "../hooks/useKhotianContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import KhotianCalendar from "../components/KhotianCalendar";
 

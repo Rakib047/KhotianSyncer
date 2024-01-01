@@ -16,7 +16,8 @@ const KhotianForm = () => {
     const {dispatch}=useKhotianContext()
     const {user}=useAuthContext()
 
-
+    console.log(error)
+    console.log(success)
 
 
     const handleSubmit = async (e) => {
