@@ -112,12 +112,12 @@ const Home = () => {
       </div>
 
       <div>
-        <KhotianForm />
-        <div className="calendar-container">
+      <div className="calendar-container">
           {khotianList !== null && (
             <KhotianCalendar khotianList={filteredKhotians} />
           )}
         </div>
+        <KhotianForm />  
       </div>
     </div>
   );
