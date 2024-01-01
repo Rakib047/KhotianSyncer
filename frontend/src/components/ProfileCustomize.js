@@ -27,7 +27,7 @@ const ProfileCustomize = () => {
       
       try {
         
-        const response = await axios.put('/api/user/profile',updatedUser);
+        const response = await axios.put('https://khotiansyncer-backend.onrender.com/api/user/profile',updatedUser);
 
         console.log(response.data)
 

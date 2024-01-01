@@ -34,7 +34,7 @@ const KhotianDetails = ({ singleKhotian }) => {
     }
 
     try {
-      const response = await axios.delete(`/api/khotian/${singleKhotian._id}`, {
+      const response = await axios.delete(`https://khotiansyncer-backend.onrender.com/api/khotian/${singleKhotian._id}`, {
         headers: {
           Authorization: `Bearer ${user.jwtToken}`,
         },

@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     const fetchKhotians = async () => {
       try {
-        const response = await axios.get("/api/khotian", {
+        const response = await axios.get("https://khotiansyncer-backend.onrender.com/api/khotian", {
           headers: { Authorization: `Bearer ${user.jwtToken}` },
         });
 

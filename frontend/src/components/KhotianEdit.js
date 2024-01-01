@@ -23,7 +23,7 @@ const KhotianEdit = ({ singleKhotian, onClose, onUpdate }) => {
 
     try {
       const response = await axios.patch(
-        `/api/khotian/${editedKhotian._id}`,
+        `https://khotiansyncer-backend.onrender.com/api/khotian/${editedKhotian._id}`,
         editedKhotian,
         {
           headers: {
