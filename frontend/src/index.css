@@ -41,6 +41,7 @@ h1 {
 .logo-syncer {
   color: #ffffffe9; /* Color for 'Syncer' */
 }
+
 header .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -63,7 +64,7 @@ nav div {
 }
 
 nav a {
-  color: #fff;
+  color: #f6f5f5;
   text-decoration: none;
   padding: 0 15px;
   font-weight: bold;
@@ -75,23 +76,27 @@ nav button {
   background-color: transparent;
   color: #ffffff; 
   padding: 10px 15px;
-  border: 2px solid #fcfcfc; 
-  border-radius: 4px;
+  border: 1px solid #fcfcfc; 
+  border-radius: 0px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  padding :10px 12px;
 }
 
 nav button:hover {
   background-color: #0a8050bc; /* Red background on hover */
-  color: #fff; /* White text on hover */
+  color: #ffffff; /* White text on hover */
 }
 
 /* Add styles for the user email span */
 nav div span {
   margin-right: 15px; /* Add some margin to separate email and logout button */
   font-weight: bold;
-  color: #333; /* Choose the color that matches your design */
+  color: #e8e4e4; /* Choose the color that matches your design */
 }
 
 /* Add styles for the logout button */
@@ -151,16 +156,16 @@ nav div span {
 /* Add this CSS to your stylesheet or component */
 
 .create {
-  max-width: 400px;
-  margin: 20px auto;
+  max-width: 310px;
+  margin: 54px 20px 20px 0; /* Adjusted the right margin to 0 */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-height: 450px; /* Adjust the maximum height as needed */
+  max-height: 550px;
   height: auto;
-  overflow-y: auto; /* Add scroll if content exceeds max-height */
+  overflow-y: auto;
 }
 
 .create select {
@@ -231,30 +236,38 @@ nav div span {
 
 /* Add this CSS to your stylesheet or component */
 
-span.delete-btn {
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: inline-block;
-  padding: 8px 16px;
+  margin:20px;
+  padding: 8px 7px;
   background-color: #e7195a; /* Red color for delete button */
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
-span.delete-btn:hover {
+.delete-btn:hover {
   background-color: #08b06f; /* Darker shade on hover */
 }
 
 /* Shared styles for signup and login forms */
 .auth-form {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 130px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+}
+
+.auth-form:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Change box-shadow on hover */
 }
 
 .auth-form h3 {
@@ -264,10 +277,10 @@ span.delete-btn:hover {
 }
 
 .auth-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: transform 0.3s, font-size 0.3s, color 0.3s;
 }
 
 .auth-form input {
@@ -277,7 +290,24 @@ span.delete-btn:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
+
+.auth-form input:focus + label,
+.auth-form input:not(:placeholder-shown) + label {
+  transform: translateY(-20px);
+  font-size: 12px;
+  color: #1aac83; /* Change color to match your design */
+}
+
+
+
+.auth-form input:focus {
+  padding: 12px; /* Increase padding when input is focused */
+  border-width: 2px; /* Increase border width when input is focused */
+}
+
 
 .auth-form button {
   background-color: #1aac83;
@@ -298,8 +328,8 @@ nav div button,
 nav div a {
   background-color: transparent;
   color: #ffff; /* Red color for text */
-  padding: 10px 15px;
-  border: 2px solid #fcfcfc; /* Red border for the button */
+  padding: 8px 10px;
+  border: transparent; /* Red border for the button */
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
@@ -312,6 +342,349 @@ nav div a:hover {
   background-color: #0a8050bc; /* Red background on hover */
   color: #fff; /* White text on hover */
 }
+
+/*extra*/
+.filter-container {
+  max-width: 150px;
+  margin-left: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-container label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.filter-container select {
+  flex: 1; /* Use flex property to distribute available space equally between the selects */
+  max-width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-right: 6px; /* Add margin to create space between the selects */
+}
+
+
+
+/* Optional: Add styles for the options */
+.filter-container option {
+  color: #e31212;
+}
+
+
+
+
+
+/* Optional: Style the select on hover */
+.filter-container select:active,select:hover {
+  border-color: #1aac83; /* Highlight border color on hover */
+  color: #1aac83;
+
+}
+
+/* Add these styles to your existing CSS or create a new style block */
+/* Add these styles to your existing CSS or create a new style block */
+.username-container {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  font-weight: bold;
+  color: #fcfdfd; /* Choose a color that matches your design */
+  text-transform: capitalize; /* Capitalize the text */
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-right: 8px; /* Adjust the margin as needed */
+}
+
+/* Add these styles to your existing CSS or create a new style block */
+
+
+.material-symbols-outlined {
+  
+  margin-right:  auto; /* Add margin to the right for spacing */
+  background-color: transparent; /* Logout button background color */
+  color: #ffffff; /* Logout button text color */
+  padding: 12px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+/* Add these styles to your existing CSS or create a new style block */
+
+/* Add these styles to your existing CSS or create a new style block */
+
+/* Add these styles to your existing CSS or create a new style block */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px; /* Adjust the gap as needed */
+}
+
+.profile-card,
+.profile-customize-card {
+  flex: 1;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto; /* Adjust margin as needed */
+  padding: 60px; /* Increase padding for better appearance */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  max-width: 700px; /* Adjust the maximum width as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Increase the size on hover */
+}
+
+.profile-card h2 {
+  margin: 20px 0; /* Adjust margin for better spacing */
+  font-size: 2em; /* Increase font size */
+  color: var(--primary);
+}
+
+.profile-card p {
+  margin: 10px 0; /* Adjust margin for better spacing */
+  font-size: 1.3em; /* Increase font size */
+  color: #555;
+}
+
+.profile-card strong {
+  font-weight: bold;
+  color: var(--primary); /* Adjust the color to match your design */
+}
+
+.profile-card .username-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Adjust margin for better spacing */
+}
+
+.profile-card .username {
+  font-weight: bold;
+  color: #fcfdfd; /* Choose a color that matches your design */
+  text-transform: capitalize; /* Capitalize the text */
+  font-size: 24px; /* Increase font size */
+  margin-right: 8px; /* Adjust the margin as needed */
+}
+
+.profile-customize-card {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto; /* Adjust margin as needed */
+  padding: 60px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  max-width: 600px; /* Adjust the maximum width as needed */
+}
+
+.profile-customize-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Increase the size on hover */
+}
+
+
+.profile-customize-card h1 {
+
+  margin: 20px 0;
+  font-size: 1.6em;
+  color: #02100cc7;
+}
+
+.profile-customize-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-customize-card li {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.profile-customize-card strong {
+  font-weight: bold;
+  color: var(--primary); /* Adjust the color to match your design */
+}
+
+.profile-customize-card .logo-khotian {
+  
+  color: #02100cc7; /* Color for 'Khotian' */
+}
+
+.profile-customize-card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-customize-card label {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.profile-customize-card input {
+  flex: 1; /* Use flex property to distribute available space equally among input fields */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 450px;
+   /* Ensure 100% width within the flex container */
+}
+
+.profile-customize-card button{
+  width: 100%;
+  background-color: #1aac83;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.profile-customize-card button:hover{
+    background-color: #168f63;
+  
+}
+
+.edit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px ; /* Add margin for spacing */
+  padding: 8px 16px; /* Adjust padding as needed */
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+  background-color: #168f63;
+}
+
+.cancel-btn{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px ; /* Add margin for spacing */
+  padding: 8px 16px; /* Adjust padding as needed */
+  background-color: #e7195a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #a6083a;
+}
+
+.edit-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.edit-form button {
+  width: 100%;
+  background-color: #1aac83;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.edit-form button:hover {
+  background-color: #168f63;
+}
+
+.react-calendar { 
+  max-width: 315px;
+  margin: 50px 20px 20px 0; /* Adjusted the right margin to 0 */
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-height: 550px;
+  height: auto;
+  overflow-y: auto;
+}
+
+/* Add this to your stylesheet or in the style tag of your React component */
+.react-calendar .markedDate {
+  background-color: #1aac83; /* Red with 30% opacity */
+  
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

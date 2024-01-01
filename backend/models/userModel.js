@@ -12,16 +12,32 @@ const userSchema=new mongoose.Schema(
         password:{
             type:String,
             required:true
+        },
+        username:{
+            type:String,
+            required:true
+        },
+        roll:{
+            type:String,
+            required:true
+        },
+        currentSemester:{
+            type:String,
+            required:true
+        },
+        department:{
+            type:String,
+            required:true
         }
     }
 )
 
 //static signup method where we will use hashing for storing password in a safe manner
-userSchema.statics.signupStatic=async function(email,password){
+userSchema.statics.signupStatic=async function(email,password,username,roll,currentSemester,department){
     //we must use function not arrow one to have this keyword
     //this bcz we dont have the model yet
-
-    if(!email||!password){
+    
+    if(!email||!password||!username||!roll||!currentSemester||!department){
         throw Error("All fields must be filled")
     }
     if(!validator.isEmail(email)){
@@ -40,7 +56,7 @@ userSchema.statics.signupStatic=async function(email,password){
     const salt=await bcrypt.genSalt(10)
     const hashedPassword=await bcrypt.hash(password,salt)
 
-    const newUser=await this.create({email,password:hashedPassword})
+    const newUser=await this.create({email,password:hashedPassword,username,roll,currentSemester,department})
 
     return newUser
 }
@@ -65,6 +81,14 @@ userSchema.statics.loginStatic = async function(email,password){
 
     return user
 
+}
+
+userSchema.statics.profileInfoStatic= async function(prevEmail){
+    const user=await this.findOne({email:prevEmail})
+    if(!user){
+        console.log("no user vai")
+    }
+    return user
 }
 
 module.exports=mongoose.model("User",userSchema)

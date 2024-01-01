@@ -1,24 +1,32 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from './useAuthContext';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const signup = async (email, password) => {
+  const signup = async (email,password,username,roll,currentSemester,department) => {
     setIsLoading(true);
     setError(null);
+    console.log("here")
 
     try {
       const response = await axios.post('/api/user/signup', {
         email,
         password,
+        username,
+        roll,
+        currentSemester,
+        department
       });
 
       // Assuming the server returns JSON
       const json = response.data;
+      console.log(response.data.currentSemester)
 
       // Handle successful response
       // save the user to local storage
@@ -29,6 +37,13 @@ export const useSignup = () => {
 
       // update loading state
       setIsLoading(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: `Logged in as ${json.username}`,
+        confirmButtonColor: '#1aac83',
+        background: '#f1f1f1',
+      });
     } catch (error) {
       // Handle error response
       setIsLoading(false);

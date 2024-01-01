@@ -10,6 +10,7 @@ const KhotianForm = () => {
     const[taskDetail,setTaskDetail]=useState("")
     const[date,setDate]=useState("")
     const[priority,setPriority]=useState("Low")
+    const[taskType,setTaskType]=useState("CT")
     const[error,setError]=useState("")
     const[success,setSuccess]=useState("")
     const {dispatch}=useKhotianContext()
@@ -26,7 +27,7 @@ const KhotianForm = () => {
           return
         }
 
-        const singleKhotian = { taskTitle, taskDetail, date,priority };
+        const singleKhotian = { taskTitle,taskType, taskDetail, date,priority };
         
         try {
           const response = await axios.post("/api/khotian", singleKhotian, {
@@ -41,6 +42,7 @@ const KhotianForm = () => {
        
             setTaskTitle("");
             setTaskDetail("");
+            setTaskType("CT");
             setDate("");
             setPriority("Low")
             setError(null);
@@ -49,8 +51,8 @@ const KhotianForm = () => {
                         // Show success message using SweetAlert
             Swal.fire({
               icon: 'success',
-              title: 'Success',
-              text: 'Task added to Khotian!',
+              title: 'New Assesment!',
+              text: `${singleKhotian.taskTitle}:${singleKhotian.taskType} added to Khotian!`,
               confirmButtonColor: '#1aac83',
               background: '#f1f1f1',
             });
@@ -61,7 +63,7 @@ const KhotianForm = () => {
           setSuccess(null)
           console.error("Error during fetch:", error);
 
-                // Show error message using SweetAlert
+          // Show error message using SweetAlert
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -78,22 +80,38 @@ const KhotianForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}>
-        <h3>Add a new task</h3>
+        <h3>Add a new Assessment</h3>
 
-        <label>Task's Title:</label>
+        <label>Course Title:</label>
         <input
             type="text"
             onChange={(e)=>{setTaskTitle(e.target.value)}}
             value={taskTitle} // jodi title er value baire theke change hoy  
-            placeholder="Enter task's title" 
+            placeholder="e.g.,CSE 405" 
         />
 
-        <label>Task's Details:</label>
+        <label>Assessment Type:</label>
+        <select
+          onChange={(e) => setTaskType(e.target.value)}
+          value={taskType}
+            
+        >
+          <option value="CT">CT</option>
+          <option value="OFFLINE">OFFLINE</option>
+          <option value="ONLINE">ONLINE</option>
+          <option value="ASSIGNMENT">ASSIGNMENT</option>
+          <option value="EVALUATION">EVALUATION</option>
+          <option value="THESIS">THESIS WORK</option>
+          <option value="PRESENTATION">PRESENTATION</option>
+          <option value="LAB QUIZ">LAB QUIZ</option>
+        </select>
+
+        <label>Assessment Details:</label>
         <input
             type="text"
             onChange={(e)=>{setTaskDetail(e.target.value)}}
             value={taskDetail} 
-            placeholder="Enter task's details"
+            placeholder="Enter assesment details"
         />
 
         <label>Date:</label>
