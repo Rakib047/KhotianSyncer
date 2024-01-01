@@ -60,11 +60,13 @@ const KhotianDetails = ({ singleKhotian }) => {
 
   // Format date to DD-MM-YYYY or use the existing format
   const formatDate = (dateString) => {
+    //console.log(dateString)  
+  
     const dateObject = new Date(dateString);
     if (isNaN(dateObject.getTime())) {
       return dateString; // If the date is invalid, return the original string
     }
-
+    
     const options = { day: "2-digit", month: "2-digit", year: "numeric" };
     return dateObject.toLocaleDateString("en-US", options);
   };

@@ -156,16 +156,16 @@ nav div span {
 /* Add this CSS to your stylesheet or component */
 
 .create {
-  max-width: 400px;
-  margin: 54px auto;
+  max-width: 315px;
+  margin: 54px 20px 20px 0; /* Adjusted the right margin to 0 */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-height: 550px; /* Adjust the maximum height as needed */
+  max-height: 550px;
   height: auto;
-  overflow-y: auto; /* Add scroll if content exceeds max-height */
+  overflow-y: auto;
 }
 
 .create select {
@@ -655,6 +655,15 @@ nav div a:hover {
 .edit-form button:hover {
   background-color: #168f63;
 }
+
+/* Add this to your stylesheet or in the style tag of your React component */
+.react-calendar .markedDate {
+  background-color: rgba(218, 6, 98, 0.8); /* Red with 30% opacity */
+  padding: 5px;
+}
+
+
+
 
 
 

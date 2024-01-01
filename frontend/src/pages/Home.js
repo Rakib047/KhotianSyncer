@@ -2,6 +2,9 @@ import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { useKhotianContext } from "../hooks/useKhotianContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import CustomCalendar from "../components/CustomCalendar";
 
 //components
 import KhotianDetails from "../components/khotianDetails";
@@ -37,7 +40,8 @@ const Home = () => {
     if (user) {
       fetchKhotians();
     }
-  }, [dispatch, user,khotianList]);
+  }, [dispatch, user, khotianList]);
+
 
   //filtering
   // UseEffect to filter khotians whenever filterType changes
@@ -46,18 +50,22 @@ const Home = () => {
 
     setFilteredKhotians(filteredList);
 
-  }, [priorityType,filterType, khotianList]);
+  }, [priorityType, filterType, khotianList]);
 
-  //function for different filtering 
+  //function for different filtering
   const filterKhotians = () => {
-      let currentList=khotianList
-      if(filterType!=="All"){
-        currentList=currentList.filter((khotian) => khotian.taskType === filterType)
-      }
-      if(priorityType!=="All"){
-        currentList=currentList.filter((khotian) => khotian.priority === priorityType)
-      }
-      return currentList
+    let currentList = khotianList;
+    if (filterType !== "All") {
+      currentList = currentList.filter(
+        (khotian) => khotian.taskType === filterType
+      );
+    }
+    if (priorityType !== "All") {
+      currentList = currentList.filter(
+        (khotian) => khotian.priority === priorityType
+      );
+    }
+    return currentList;
   };
 
   return (
@@ -65,12 +73,10 @@ const Home = () => {
       <div className="khotians">
         <div className="filter-container">
           <select
-            
             value={filterType}
             onChange={(e) => {
-              setFilterType(e.target.value)
+              setFilterType(e.target.value);
             }}
-            
           >
             <option value="All">All Assessments</option>
             <option value="CT">CT</option>
@@ -84,11 +90,9 @@ const Home = () => {
           </select>
 
           <select
-            
             value={priorityType}
             onChange={(e) => {
-              setpriorityType(e.target.value)
-              
+              setpriorityType(e.target.value);
             }}
           >
             <option value="All">All Priorites</option>
@@ -106,7 +110,15 @@ const Home = () => {
             />
           ))}
       </div>
-      <KhotianForm />
+
+      <div>
+        <KhotianForm />
+        <div className="calendar-container">
+          {khotianList !== null && (
+            <CustomCalendar khotianList={filteredKhotians} />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
