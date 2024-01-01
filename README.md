@@ -11,6 +11,19 @@ Visit the deployed KhoticanSyncer application: [https://khotian-syncer-frontend.
 - 🔄 Sort assessments by types and priority levels (low, medium, hard).
 - 📅 Calendar view to visualize upcoming assessments and deadlines.
 - 👤 User profiles with the ability to view and edit personal information.
+
+## Adding Upcoming Assessments
+📆 **Upcoming Assessments:**
+
+Easily add upcoming assessments to stay organized and on top of your academic schedule. Follow these steps:
+
+1. Navigate to the "Upcoming Assessments" section on the dashboard.
+2. Click on the "Add Assessment" button.
+3. Fill in the required details, such as assessment type, priority level, and deadline.
+4. Save the assessment to have it automatically sorted and displayed in the calendar.
+
+This feature ensures that you can manage your upcoming assessments efficiently and keep track of important deadlines.
+
 ## Get Involved
 
 I welcome contributions and ideas from you! If you have suggestions, new features to add, or improvements to make, please feel free to:
