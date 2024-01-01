@@ -18,7 +18,7 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 - 📢 Share your ideas by creating [GitHub issues](https://github.com/your-username/KhoticanSyncer/issues).
 - 🤝 Contribute to the codebase by submitting pull requests.
 
-<span style="background-color: #c8e6c9; padding: 0 5px; border-radius: 3px;">This project is an ongoing effort, and I aim to create a comprehensive platform where university students can find all the information and resources they need in one place.</span>
+<strong>This project is an ongoing effort, and I aim to create a comprehensive platform where university students can find all the information and resources they need in one place.</strong>
 
 
 ## Installation
