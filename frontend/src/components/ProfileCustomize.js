@@ -16,11 +16,11 @@ const ProfileCustomize = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      if(username=="") username=user.username
-      if(currentSemester=="") currentSemester=user.currentSemester
-      if(roll=="") roll=user.roll
-      if(department=="") department=user.department
-      if(email=="") email=user.email
+      if(username==="") username=user.username
+      if(currentSemester==="") currentSemester=user.currentSemester
+      if(roll==="") roll=user.roll
+      if(department==="") department=user.department
+      if(email==="") email=user.email
 
       const updatedUser={prevEmail,username,roll,currentSemester,department,email}
       
