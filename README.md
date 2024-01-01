@@ -24,7 +24,7 @@ Easily add upcoming assessments to stay organized and on top of your academic sc
 
 This feature ensures that you can manage your upcoming assessments efficiently and keep track of important deadlines.
 
-## Get Involved
+## Get Involved 🤝
 
 I welcome contributions and ideas from you! If you have suggestions, new features to add, or improvements to make, please feel free to:
 
@@ -71,4 +71,4 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 
 
 ## NOTE: MongoDB Database Access Problem
-<strong>You may face the problem of connection to the database as currently I have allowed limited IP addresses to access the database.Soon I will give access to any IP address.</strong>
+<strong>You may face the problem of connecting to the database as currently I have allowed limited IP addresses to access the database.Soon I will give access to any IP address.</strong>
