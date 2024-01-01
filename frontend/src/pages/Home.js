@@ -37,6 +37,7 @@ const Home = () => {
     };
 
     if (user) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       fetchKhotians();
     }
   }, [dispatch, user, khotianList]);
