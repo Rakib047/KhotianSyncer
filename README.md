@@ -16,4 +16,8 @@ KhoticanSyncer is a comprehensive Assessment Management System designed to strea
 
    ```bash
    git clone https://github.com/your-username/KhoticanSyncer.git
+2. Navigate to the backend directory:
+
+   ```bash
    cd KhoticanSyncer/backend
+
