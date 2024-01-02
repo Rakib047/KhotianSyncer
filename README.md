@@ -69,5 +69,6 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 
    ```bash
    npm start
+## NOTE: YOU MUST CHANGE THE PROXY TO "http://localhost:YOUR PREFERRED PORT NO" IN THE FRONTEND package.json.Also YOU HAVE TO DELETE THE PART-"https://khotiansyncer-backend.onrender.com" IN ANY FRONT END CODE WHERE axios IS USED
 ## NOTE: MongoDB Database Access Problem
 <strong>You may face the problem of connecting to the database as currently I have allowed limited IP addresses to access the database.Soon I will give access to any IP address.</strong>
