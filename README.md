@@ -69,7 +69,5 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 
    ```bash
    npm start
-
-
 ## NOTE: MongoDB Database Access Problem
 <strong>You may face the problem of connecting to the database as currently I have allowed limited IP addresses to access the database.Soon I will give access to any IP address.</strong>
