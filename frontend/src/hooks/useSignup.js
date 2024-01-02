@@ -15,7 +15,7 @@ export const useSignup = () => {
     console.log("here")
 
     try {
-      const response = await axios.post('https://khotiansyncer-backend.onrender.com/api/user/signup', {
+      const response = await axios.post('/api/user/signup', {
         email,
         password,
         username,

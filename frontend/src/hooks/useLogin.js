@@ -14,7 +14,7 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post('https://khotiansyncer-backend.onrender.com/api/user/login', {
+      const response = await axios.post('/api/user/login', {
         email,
         password,
       });

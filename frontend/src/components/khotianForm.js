@@ -31,7 +31,7 @@ const KhotianForm = () => {
         const singleKhotian = { taskTitle,taskType, taskDetail, date,priority };
         
         try {
-          const response = await axios.post("https://khotiansyncer-backend.onrender.com/api/khotian", singleKhotian, {
+          const response = await axios.post("/api/khotian", singleKhotian, {
             headers: {
               "Content-Type": "application/json",
               'Authorization' : `Bearer ${user.jwtToken}`
