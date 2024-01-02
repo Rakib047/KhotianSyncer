@@ -1,10 +1,10 @@
-# KhoticanSyncer - Assessment Management System 📚
+# KhotianSyncer - Assessment Management System 📚
 
-KhoticanSyncer is a comprehensive Assessment Management System designed to streamline and organize various types of assessments, deadlines, and user profiles. This application is built using the MERN (MongoDB, Express.js, React.js, Node.js) stack and is currently hosted on RENDER (backend) and VERCEL (frontend).
+KhotianSyncer is a comprehensive Assessment Management System designed to streamline and organize various types of assessments, deadlines, and user profiles. This application is built using the MERN (MongoDB, Express.js, React.js, Node.js) stack and is currently hosted on RENDER (backend) and VERCEL (frontend).
 
 ## Deployed Website 🚀
 
-Visit the deployed KhoticanSyncer application: [https://khotian-syncer-frontend.vercel.app/](https://khotian-syncer-frontend.vercel.app/)
+Visit the deployed KhotianSyncer application: [https://khotian-syncer-frontend.vercel.app/](https://khotian-syncer-frontend.vercel.app/)
 
 ## Features
 
@@ -29,7 +29,7 @@ This feature ensures that you can manage your upcoming assessments efficiently a
 
 I welcome contributions and ideas from you! If you have suggestions, new features to add, or improvements to make, please feel free to:
 
-- 📢 Share your ideas by creating [GitHub issues](https://github.com/your-username/KhoticanSyncer/issues).
+- 📢 Share your ideas by creating [GitHub issues](https://github.com/your-username/KhotianSyncer/issues).
 - 🤝 Contribute to the codebase by submitting pull requests.
 
 <strong>This project is an ongoing effort and a personal project, and I aim to create a comprehensive platform where university students can find all the information and resources they need in one place.</strong>
@@ -42,11 +42,11 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Rakib047/KhoticanSyncer.git
+   git clone https://github.com/Rakib047/KhotianSyncer.git
 2. Navigate to the backend directory:
 
    ```bash
-   cd KhoticanSyncer/backend
+   cd KhotianSyncer/backend
 3. Install the dependencies in backend:
 
    ```bash
@@ -60,7 +60,7 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 1. Navigate to the frontend directory::
 
    ```bash
-   cd KhoticanSyncer/frontend
+   cd KhotianSyncer/frontend
 2. Install the dependencies:
 
    ```bash
