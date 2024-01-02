@@ -9,6 +9,7 @@ Visit the deployed KhoticanSyncer application: [https://khotian-syncer-frontend.
 ## Features
 
 - 🔄 Sort assessments by types and priority levels (low, medium, hard).
+- 🔧 Edit assesments later if required.
 - 📅 Calendar view to visualize upcoming assessments and deadlines.
 - 👤 User profiles with the ability to view and edit personal information.
 
