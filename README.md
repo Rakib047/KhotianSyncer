@@ -42,7 +42,7 @@ I welcome contributions and ideas from you! If you have suggestions, new feature
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/KhoticanSyncer.git
+   git clone https://github.com/Rakib047/KhoticanSyncer.git
 2. Navigate to the backend directory:
 
    ```bash
