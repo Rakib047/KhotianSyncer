@@ -683,7 +683,7 @@ nav div a:hover {
   width: 150px;
   height: 100%;
   padding: 20px;
-  background-color: #077b5a;
+  background-color: #1aac83;
   transition: all 300ms ease-in-out;
 }
 
@@ -803,5 +803,12 @@ nav div a:hover {
 
   }
   
+}
+
+.sidebarLink{
+  color: #f6f5f5;
+}
+.sidebarLink:hover{
+  color: #02100cc7;
 }
 

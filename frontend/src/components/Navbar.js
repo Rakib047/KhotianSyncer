@@ -22,9 +22,9 @@ const Navbar = () => {
 
         <div class="slideout-sidebar">
           <ul>
-            <li>Home</li>
-            <li>Catalog</li>
-            <li>About Us</li>
+            <li><Link to="/" className="sidebarLink">Home</Link></li>
+            <li><Link to="/profile" className="sidebarLink">Profile</Link></li>
+            <li><Link className="sidebarLink">Resources</Link></li>
             <li>Blog</li>
             <li>Contact</li>
           </ul>
