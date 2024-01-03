@@ -15,20 +15,26 @@ const Navbar = () => {
   return (
     <header>
       <div className="container">
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="menu-icon">
-          <i class="fa fa-bars"></i>
-        </label>
+        
+      {user && (
+          <>
+            <input type="checkbox" id="menu-toggle" />
+            <label htmlFor="menu-toggle" className="menu-icon">
+              <i className="fa fa-bars"></i>
+            </label>
 
-        <div class="slideout-sidebar">
-          <ul>
-            <li><Link to="/" className="sidebarLink">Home</Link></li>
-            <li><Link to="/profile" className="sidebarLink">Profile</Link></li>
-            <li><Link className="sidebarLink">Resources</Link></li>
-            <li>Blog</li>
-            <li>Contact</li>
-          </ul>
-        </div>
+            <div className="slideout-sidebar">
+              <ul>
+                <li><Link to="/" className="sidebarLink">Home</Link></li>
+                <li><Link to="/profile" className="sidebarLink">Profile</Link></li>
+                <li><Link className="sidebarLink">Resources</Link></li>
+                <li>Blog</li>
+                <li>Contact</li>
+              </ul>
+            </div>
+          </>
+        )}
+
 
         <Link to="/">
           <h1>
