@@ -6,10 +6,17 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const Navbar = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const [sidebarOpen,setSidebarOpen] = useState(false)
+
   //console.log(user.username)
   const handleClick = () => {
     logout();
   };
+
+  const handleToggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
 
 
   return (
@@ -18,18 +25,18 @@ const Navbar = () => {
         
       {user && (
           <>
-            <input type="checkbox" id="menu-toggle" />
-            <label htmlFor="menu-toggle" className="menu-icon">
+            <input type="checkbox" id="menu-toggle" checked={sidebarOpen}/>
+            <label htmlFor="menu-toggle" className="menu-icon" onClick={handleToggleSidebar}>
               <i className="fa fa-bars"></i>
             </label>
 
             <div className="slideout-sidebar">
               <ul>
-                <li><Link to="/" className="sidebarLink">Home</Link></li>
-                <li><Link to="/profile" className="sidebarLink">Profile</Link></li>
-                <li><Link className="sidebarLink">Resources</Link></li>
-                <li>Blog</li>
-                <li>Contact</li>
+                <li><Link to="/" className="sidebarLink" onClick={handleToggleSidebar}>Home</Link></li>
+                <li><Link to="/profile" className="sidebarLink" onClick={handleToggleSidebar}>Profile</Link></li>
+                <li><Link to="/resource" className="sidebarLink" onClick={handleToggleSidebar}>Resources</Link></li>
+                <li onClick={handleToggleSidebar}>Discussion Forum</li>
+                <li onClick={handleToggleSidebar}>Contact</li>
               </ul>
             </div>
           </>

@@ -812,3 +812,102 @@ nav div a:hover {
   color: #02100cc7;
 }
 
+/* Add this CSS to your existing stylesheet or component */
+
+.resource-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
+  justify-content: flex-start; /* Align items to the start of the container */
+  margin-top: 30px; /* Add some top margin for spacing */
+  gap: 20px;
+}
+
+
+.resource-card {
+  background: #fff;
+  border-radius: 4px;
+  margin-right: 20px; /* Add margin to create space between cards */
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+  color: #1aac83; /* Set the text color to #1aac83 */
+  flex: 0 0 auto; /* Allow the cards to take the content's natural width */
+  width: 240px; /* Set a wider fixed width for each card */
+  height: 288px; /* Set a taller fixed height for each card */
+  box-sizing: border-box;
+  aspect-ratio: 1 / 1.2; /* Maintain a 1:1.2 aspect ratio for each card */
+}
+
+/* Optional: Remove the margin from the last card to prevent extra spacing */
+.resource-card:last-child {
+  margin-right: 0;
+}
+
+.resource-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.resource-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.5em; /* Increase the font size for the heading */
+  color: var(--primary);
+}
+
+.resource-card p {
+  margin: 0;
+  font-size: 1.1em; /* Increase the font size for the paragraph */
+  color: #555;
+}
+
+.resource-card span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
+.plus-button {
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.addResource-form {
+  display: flex;
+  align-items: center;
+}
+
+.addResource-button {
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-left: 10px;
+}
+
+.addResource-button:hover {
+  background-color: #168f63;
+}
+
+.add-input {
+  flex: 0;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+
+
+
