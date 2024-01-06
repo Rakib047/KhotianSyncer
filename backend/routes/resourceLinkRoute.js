@@ -9,4 +9,7 @@ router.route("/")
         .get(controllers.getAllResourceLink)
         .post(controllers.createResourceLink)
 
+router.route("/:tag/:id")
+        .delete(controllers.deleteResourceLink)
+
 module.exports=router

@@ -28,15 +28,36 @@ const createResourceLink = async (req,res)=>{
 const getAllResourceLink = async (req,res)=>{
     try {
         const {tag} = req.query
-        console.log(tag)
         const user_id=req.userProperty._id
         const allTaggedResources = await ResourceLinkModel.find({tag,user_id})
-        
-        res.status(200).json(allTaggedResources.links)
+        const linksOnly = allTaggedResources.map(resource => resource.links);
+        console.log(linksOnly)
+        res.status(200).json(linksOnly)
     } catch (err) {
         console.log("Error fetching data from database")
         res.status(500).json({error: err.message})
     }
 }
 
-module.exports ={createResourceLink,getAllResourceLink}
+const deleteResourceLink = async (req,res) =>{
+    try {
+        const {tag,id} = req.params;
+
+        const resource = await ResourceLinkModel.findOne({tag,user_id:req.userProperty._id})
+
+        if(!resource){
+            return res.status(404).json({error:"Resource not found"})
+        }
+
+        resource.links = resource.links.filter(link=>link._id.toString() !==id)
+
+        await resource.save()
+
+        res.status(200).json({message:"link deleted!"})
+
+    } catch (err) {
+        res.status(500).json({message:"Error deleting link"})
+    }
+}
+
+module.exports ={createResourceLink,getAllResourceLink,deleteResourceLink}

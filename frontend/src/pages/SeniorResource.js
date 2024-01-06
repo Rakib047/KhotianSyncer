@@ -13,25 +13,28 @@ const SeniorResource = () => {
   const { user } = useAuthContext();
   const [resourceLinks,setResourceLinks] = useState([])
 
-  useEffect(()=>{
-    const fetchSeniorResourceLinks = async () =>{
-      const response = await axios.get("/api/resource", {
-        params: { tag: "senior resource" },
-        headers: {
-          Authorization: `Bearer ${user.jwtToken}`,
-        },
-      });
-      
-      if(response.status===200){
-        //console.log(response)
-        //setResourceLinks(response.data)
-      }
+  const fetchSeniorResourceLinks = async () =>{
+    const response = await axios.get("/api/resource", {
+      params: { tag: "senior resource" },
+      headers: {
+        Authorization: `Bearer ${user.jwtToken}`,
+      },
+    });
+    
+    if(response.status===200){
+      setResourceLinks(response.data.flat())
     }
+  }
 
+  useEffect(()=>{
     if(user){
       fetchSeniorResourceLinks()
     }
   },[])
+
+  const updateLinks = () =>{
+    fetchSeniorResourceLinks()
+  }
 
   const handleFormOpen = () => {
     setFormOpen(true);
@@ -104,6 +107,9 @@ const SeniorResource = () => {
           title={link.title}
           semester={link.semester}
           link={link.link}
+          tag="senior resource"
+          _id= {link._id}
+          updateLinks={updateLinks}
         />
       ))}
     </div>
