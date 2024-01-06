@@ -30,11 +30,11 @@ export const ResourceLink = ({_id,tag,updateLinks,title,semester,link}) => {
   return (
     <div className="khotian-details">
       <h4>{title}</h4>
-      <p>Semester: {semester}</p>
-      <a href={link} target="_blank" rel="noopener noreferrer">
+      <p><strong>Semester :</strong> {semester}</p>
+       <strong><a href={link} target="_blank" rel="noopener noreferrer" className='custom-link'>
         {link}
-      </a>
-      <button onClick={handleDelete}>Delete</button>
+      </a> </strong>
+      <button className="delete-btn" onClick={handleDelete}>Delete</button>
     </div>
   )
 }

@@ -11,33 +11,40 @@ const SeniorResource = () => {
     link: "",
   });
   const { user } = useAuthContext();
-  const [resourceLinks,setResourceLinks] = useState([])
+  const [resourceLinks, setResourceLinks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const fetchSeniorResourceLinks = async () =>{
+  const fetchSeniorResourceLinks = async () => {
     const response = await axios.get("/api/resource", {
       params: { tag: "senior resource" },
       headers: {
         Authorization: `Bearer ${user.jwtToken}`,
       },
     });
-    
-    if(response.status===200){
-      setResourceLinks(response.data.flat())
-    }
-  }
 
-  useEffect(()=>{
-    if(user){
-      fetchSeniorResourceLinks()
+    if (response.status === 200) {
+      setResourceLinks(response.data.flat());
     }
-  },[])
+  };
 
-  const updateLinks = () =>{
-    fetchSeniorResourceLinks()
-  }
+  useEffect(() => {
+    if (user) {
+      fetchSeniorResourceLinks();
+    }
+  }, []);
+
+  const updateLinks = () => {
+    fetchSeniorResourceLinks();
+  };
 
   const handleFormOpen = () => {
     setFormOpen(true);
+  };
+
+  const handleCancel = () => {
+    // Reset form data and close the form
+    setResourceData({ title: "", semester: "", link: "" });
+    setFormOpen(false);
   };
 
   const handleFormSubmit = async (e) => {
@@ -54,19 +61,30 @@ const SeniorResource = () => {
       }
     );
     if (response.status === 200) {
-      console.log(response.data)
-      setResourceLinks([...resourceLinks,response.data])
+      console.log(response.data);
+      setResourceLinks([...resourceLinks, response.data]);
     }
     // Reset form data and close the form
     setResourceData({ title: "", semester: "", link: "" });
     setFormOpen(false);
   };
 
+  const filteredLinks = resourceLinks.filter((link) =>
+  link.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
-      <button onClick={handleFormOpen}>Add Resource Link</button>
+      <button className="add-resource-link-button" onClick={handleFormOpen}>
+        Add Resource Link
+      </button>
       {isFormOpen && (
-        <form onSubmit={handleFormSubmit}>
+        <button className="dlt-btn" onClick={handleCancel}>
+          Cancel
+        </button>
+      )}
+      {isFormOpen && (
+        <form className="form-container" onSubmit={handleFormSubmit}>
           <label>
             Resource Title:
             <input
@@ -100,15 +118,24 @@ const SeniorResource = () => {
           <button type="submit">Submit</button>
         </form>
       )}
+
+      <input
+        className="searchbar"
+        type="text"
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+
       {/* Render ResourceLink components based on your data */}
-      {resourceLinks.map((link, index) => (
+      {filteredLinks.map((link, index) => (
         <ResourceLink
           key={index}
           title={link.title}
           semester={link.semester}
           link={link.link}
           tag="senior resource"
-          _id= {link._id}
+          _id={link._id}
           updateLinks={updateLinks}
         />
       ))}
