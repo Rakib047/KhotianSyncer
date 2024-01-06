@@ -1,20 +1,41 @@
-import React, { useState } from 'react';
-import {ResourceLink} from "../components/ResourceLink";
+import React, { useState } from "react";
+import { ResourceLink } from "../components/ResourceLink";
+import { useAuthContext } from "../hooks/useAuthContext";
+import axios from "axios";
 
 const SeniorResource = () => {
   const [isFormOpen, setFormOpen] = useState(false);
-  const [resourceData, setResourceData] = useState({ title: '', semester: '', link: '' });
+  const [resourceData, setResourceData] = useState({
+    title: "",
+    semester: "",
+    link: "",
+  });
+  const { user } = useAuthContext();
+  const [resourceLinks,setResourceLinks] = useState([])
 
   const handleFormOpen = () => {
     setFormOpen(true);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Handle submitting the form data (you can send it to the backend or update state as needed)
-    console.log('Form submitted:', resourceData);
+    // Handle submitting the form data
+    const { title, semester, link } = resourceData;
+    const response = await axios.post(
+      "/api/resource",
+      { tag: "senior resource", title, semester, link },
+      {
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      console.log(response.data)
+      setResourceLinks([...resourceLinks,response.data])
+    }
     // Reset form data and close the form
-    setResourceData({ title: '', semester: '', link: '' });
+    setResourceData({ title: "", semester: "", link: "" });
     setFormOpen(false);
   };
 
@@ -28,7 +49,9 @@ const SeniorResource = () => {
             <input
               type="text"
               value={resourceData.title}
-              onChange={(e) => setResourceData({ ...resourceData, title: e.target.value })}
+              onChange={(e) =>
+                setResourceData({ ...resourceData, title: e.target.value })
+              }
             />
           </label>
           <label>
@@ -36,7 +59,9 @@ const SeniorResource = () => {
             <input
               type="text"
               value={resourceData.semester}
-              onChange={(e) => setResourceData({ ...resourceData, semester: e.target.value })}
+              onChange={(e) =>
+                setResourceData({ ...resourceData, semester: e.target.value })
+              }
             />
           </label>
           <label>
@@ -44,14 +69,23 @@ const SeniorResource = () => {
             <input
               type="text"
               value={resourceData.link}
-              onChange={(e) => setResourceData({ ...resourceData, link: e.target.value })}
+              onChange={(e) =>
+                setResourceData({ ...resourceData, link: e.target.value })
+              }
             />
           </label>
           <button type="submit">Submit</button>
         </form>
       )}
       {/* Render ResourceLink components based on your data */}
-      <ResourceLink title="Example Title" semester="Example Semester" link="https://example.com" />
+      {resourceLinks.map((link, index) => (
+        <ResourceLink
+          key={index}
+          title={link.title}
+          semester={link.semester}
+          link={link.link}
+        />
+      ))}
     </div>
   );
 };
