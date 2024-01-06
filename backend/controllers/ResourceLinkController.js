@@ -27,10 +27,12 @@ const createResourceLink = async (req,res)=>{
 
 const getAllResourceLink = async (req,res)=>{
     try {
+        const {tag} = req.query
+        console.log(tag)
         const user_id=req.userProperty._id
-        const allResources = await ResourceLinkModel.find({user_id})
-
-        res.status(200).json(allResources)
+        const allTaggedResources = await ResourceLinkModel.find({tag,user_id})
+        
+        res.status(200).json(allTaggedResources.links)
     } catch (err) {
         console.log("Error fetching data from database")
         res.status(500).json({error: err.message})

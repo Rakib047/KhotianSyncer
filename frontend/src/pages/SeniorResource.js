@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ResourceLink } from "../components/ResourceLink";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
@@ -12,6 +12,26 @@ const SeniorResource = () => {
   });
   const { user } = useAuthContext();
   const [resourceLinks,setResourceLinks] = useState([])
+
+  useEffect(()=>{
+    const fetchSeniorResourceLinks = async () =>{
+      const response = await axios.get("/api/resource", {
+        params: { tag: "senior resource" },
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      });
+      
+      if(response.status===200){
+        //console.log(response)
+        //setResourceLinks(response.data)
+      }
+    }
+
+    if(user){
+      fetchSeniorResourceLinks()
+    }
+  },[])
 
   const handleFormOpen = () => {
     setFormOpen(true);
