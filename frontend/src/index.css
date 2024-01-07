@@ -898,62 +898,11 @@ nav div a:hover {
 
 /* Form container */
 /* Update the form container styles */
-.form-container {
-  display: auto;
-  /* flex-wrap: wrap; */
-  justify-content: space-between;
-}
-
-/* Update label styles */
-.form-container label {
-   /* Adjust the width as needed */
-  margin-left: 15px;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
-}
-
-/* Update input styles */
-.form-container input {
-   /* Adjust the width as needed */
-  padding: 10px;
-  margin-left: 5px;
-  margin-bottom: 15px;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-/* Add margin to the last input (adjust as needed) */
-.form-container input:last-child {
-  margin-right: 30px; /* Add your desired margin */
-}
-
-
-/* Update button styles */
-.form-container button {
-  /* width: 20%; */
-  height: 40px;
-  background-color: #1aac83;
-  color: #fff;
-  padding: 10px 15px;
-  border: none; 
-  margin-right: auto;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.form-container button:hover {
-  background-color: #168f63;
-}
-
 .add-resource-link-button {
   background-color: #1aac83;
   color: #fff;
   margin-bottom: 10px;
-  padding: 5px 5px;
+  padding: 8px 8px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -967,13 +916,86 @@ nav div a:hover {
 
 /* Add this CSS to your stylesheet */
 
+.searchbar {
+  width: 240px;
+  position: relative;
+  margin-left: 2rem; /* Adjust the margin as needed */
+  padding: 10px; /* Adjust the padding as needed */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff; /* Background color */
+}
+
+/* You can add more styles as needed, such as focus styles */
+.searchbar:focus {
+  outline: none; /* Remove the default outline on focus */
+  border-color: #3498db; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Add a subtle box shadow on focus */
+}
 
 
+/* Styles for the outermost container */
+.form-container-wrapper {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+/* Styles for the form container */
+.form-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust the width as needed */
+}
 
+.form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
 
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
+.form-container button {
+  width: 100%;
+  padding: 8px;
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
 
+.form-container button.cancel-button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  background-color: #e7195a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.form-container button:hover {
+  background-color: #158357;
+}
+.form-container button.cancel-button:hover {
+  background-color: #bf0741;
+}
 
 
 

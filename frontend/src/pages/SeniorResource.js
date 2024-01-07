@@ -70,62 +70,70 @@ const SeniorResource = () => {
   };
 
   const filteredLinks = resourceLinks.filter((link) =>
-  link.title.toLowerCase().includes(searchQuery.toLowerCase())
+    ( link.title.toLowerCase().includes(searchQuery.toLowerCase()) 
+      || link.semester.toLowerCase().includes(searchQuery.toLowerCase())
+    )
   );
 
   return (
     <div>
+      <div>
       <button className="add-resource-link-button" onClick={handleFormOpen}>
-        Add Resource Link
+      <i class="fa-solid fa-plus"></i> Add Resource
       </button>
-      {isFormOpen && (
-        <button className="dlt-btn" onClick={handleCancel}>
-          Cancel
-        </button>
-      )}
-      {isFormOpen && (
-        <form className="form-container" onSubmit={handleFormSubmit}>
-          <label>
-            Resource Title:
-            <input
-              type="text"
-              value={resourceData.title}
-              onChange={(e) =>
-                setResourceData({ ...resourceData, title: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Semester:
-            <input
-              type="text"
-              value={resourceData.semester}
-              onChange={(e) =>
-                setResourceData({ ...resourceData, semester: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Link:
-            <input
-              type="text"
-              value={resourceData.link}
-              onChange={(e) =>
-                setResourceData({ ...resourceData, link: e.target.value })
-              }
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      )}
-
+      
       <input
         className="searchbar"
         type="text"
-        placeholder="Search..."
+        placeholder="Search by Title or Semester..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+      
+
+      </div>
+
+      <div className="form-container-wrapper">
+        {isFormOpen && (
+          <form className="form-container" onSubmit={handleFormSubmit}>
+            <label>
+              Resource Title:
+              <input
+                type="text"
+                value={resourceData.title}
+                onChange={(e) =>
+                  setResourceData({ ...resourceData, title: e.target.value })
+                }
+              />
+            </label>
+            <label>
+              Semester:
+              <input
+                type="text"
+                value={resourceData.semester}
+                onChange={(e) =>
+                  setResourceData({ ...resourceData, semester: e.target.value })
+                }
+              />
+            </label>
+            <label>
+              Link:
+              <input
+                type="text"
+                value={resourceData.link}
+                onChange={(e) =>
+                  setResourceData({ ...resourceData, link: e.target.value })
+                }
+              />
+            </label>
+            <button type="submit">Submit</button>
+            <button className="cancel-button" onClick={handleCancel}>
+                  Cancel
+            </button>
+          </form>
+        )}
+      </div>
+
 
       {/* Render ResourceLink components based on your data */}
       {filteredLinks.map((link, index) => (
