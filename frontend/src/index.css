@@ -916,6 +916,8 @@ nav div a:hover {
 
 /* Add this CSS to your stylesheet */
 
+
+
 .searchbar {
   width: 240px;
   position: relative;
@@ -923,6 +925,7 @@ nav div a:hover {
   padding: 10px; /* Adjust the padding as needed */
   border: 1px solid #ddd;
   border-radius: 4px;
+  background-size: 20px auto;
   background-color: #fff; /* Background color */
 }
 
@@ -997,5 +1000,30 @@ nav div a:hover {
   background-color: #bf0741;
 }
 
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 10px;
+  color: green;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.headings{
+  color:#02100cc7;
+}
 
 

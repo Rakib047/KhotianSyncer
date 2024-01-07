@@ -11,12 +11,13 @@ export const Resource = () => {
     { tag:"ctquestion",title: "CT questions", description: "Questions of previous years Class tests" },
     { tag:"classnote",title: "Class notes", description: "Class notes of our classmates and seniors" },
     { tag:"classrecording",title: "Class Recordings", description: "All currently available recordings of different courses" },
+    { tag:"book",title: "Books", description: "All academic books" },
   ];
 
 
   return (
     <div>
-
+      <h2 className="headings"><i class="fa-regular fa-folder-open"></i> Resources</h2>
       <div className="resource-container">
         {resourceList.map((resource, index) => (
           <Link className="resource-link" key={index} to={`/resource/${resource.tag}`}>

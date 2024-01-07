@@ -69,27 +69,29 @@ const SeniorResource = () => {
     setFormOpen(false);
   };
 
-  const filteredLinks = resourceLinks.filter((link) =>
-    ( link.title.toLowerCase().includes(searchQuery.toLowerCase()) 
-      || link.semester.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+  const filteredLinks = resourceLinks.filter(
+    (link) =>
+      link.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      link.semester.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div>
       <div>
-      <button className="add-resource-link-button" onClick={handleFormOpen}>
-      <i class="fa-solid fa-plus"></i> Add Resource
-      </button>
-      
-      <input
-        className="searchbar"
-        type="text"
-        placeholder="Search by Title or Semester..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      
+        <h2 className="headings"><i class="fa-solid fa-link"></i> Seniors Resources</h2>
+        <button className="add-resource-link-button" onClick={handleFormOpen}>
+          <i class="fa-solid fa-plus"></i> Add Resource
+        </button>
+
+    
+          <input
+            className="searchbar"
+            type="search"
+            placeholder="Search by Title or Semester..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        
 
       </div>
 
@@ -128,12 +130,11 @@ const SeniorResource = () => {
             </label>
             <button type="submit">Submit</button>
             <button className="cancel-button" onClick={handleCancel}>
-                  Cancel
+              Cancel
             </button>
           </form>
         )}
       </div>
-
 
       {/* Render ResourceLink components based on your data */}
       {filteredLinks.map((link, index) => (
