@@ -72,9 +72,9 @@ const Home = () => {
 
 
   return (
-    
+    <div>
+      <h2 className="headings"><i class="fa-solid fa-list-check"></i> Assessments</h2>
     <div className="home">
-      
       <div className="khotians">
         <div className="filter-container">
           <select
@@ -124,6 +124,7 @@ const Home = () => {
         </div>
         <KhotianForm />  
       </div>
+    </div>
     </div>
   );
 };

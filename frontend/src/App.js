@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import { Profile } from "./pages/Profile";
 import {Resource} from "./pages/Resource"
 import SeniorResource from "./pages/SeniorResource";
+import { CourseSlide } from "./pages/CourseSlide";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/profile" element={user? <Profile />:<Navigate to="/login" />} />
             <Route path="/resource" element={user? <Resource />:<Navigate to="/login" />} />
             <Route path="/resource/seniorresource" element={user? <SeniorResource/>:<Navigate to="/login" />} />
+            <Route path="/resource/courseslide" element={user? <CourseSlide/>:<Navigate to="/login" />} />
           </Routes>
         </div>
       </BrowserRouter>
