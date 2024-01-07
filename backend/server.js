@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const khotianRoute = require("./routes/khotianRoute");
 const userRoute = require("./routes/userRoute");
 const resourceLinkRoute = require("./routes/resourceLinkRoute");
+const uploadSlideRoute = require("./routes/uploadSlideRoute");
 
 //middleware
 app.use(cors());
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 
 app.use("/api/khotian", khotianRoute);
 app.use("/api/resource", resourceLinkRoute);
+app.use("/api/slide",uploadSlideRoute)
 app.use("/api/user",userRoute)
 
 //connect to DB

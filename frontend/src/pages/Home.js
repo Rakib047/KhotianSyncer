@@ -42,7 +42,6 @@ const Home = () => {
     }
   }, [dispatch, user, khotianList]);
 
-
   //filtering
   // UseEffect to filter khotians whenever filterType changes
   useEffect(() => {
@@ -65,66 +64,64 @@ const Home = () => {
     const filteredList = filterKhotians();
 
     setFilteredKhotians(filteredList);
-
   }, [priorityType, filterType, khotianList]);
-
-  
-
 
   return (
     <div>
-      <h2 className="headings"><i class="fa-solid fa-list-check"></i> Assessments</h2>
-    <div className="home">
-      <div className="khotians">
-        <div className="filter-container">
-          <select
-            value={filterType}
-            onChange={(e) => {
-              setFilterType(e.target.value);
-            }}
-          >
-            <option value="All">All Assessments</option>
-            <option value="CT">CT</option>
-            <option value="OFFLINE">OFFLINE</option>
-            <option value="ONLINE">ONLINE</option>
-            <option value="ASSIGNMENT">ASSIGNMENT</option>
-            <option value="EVALUATION">EVALUATION</option>
-            <option value="THESIS">THESIS WORK</option>
-            <option value="PRESENTATION">PRESENTATION</option>
-            <option value="LAB QUIZ">LAB QUIZ</option>
-          </select>
+      <h2 className="headings">
+        <i class="fa-solid fa-list-check"></i> Assessments
+      </h2>
+      <div className="home">
+        <div className="khotians">
+          <div className="filter-container">
+            <select
+              value={filterType}
+              onChange={(e) => {
+                setFilterType(e.target.value);
+              }}
+            >
+              <option value="All">All Assessments</option>
+              <option value="CT">CT</option>
+              <option value="OFFLINE">OFFLINE</option>
+              <option value="ONLINE">ONLINE</option>
+              <option value="ASSIGNMENT">ASSIGNMENT</option>
+              <option value="EVALUATION">EVALUATION</option>
+              <option value="THESIS">THESIS WORK</option>
+              <option value="PRESENTATION">PRESENTATION</option>
+              <option value="LAB QUIZ">LAB QUIZ</option>
+            </select>
 
-          <select
-            value={priorityType}
-            onChange={(e) => {
-              setpriorityType(e.target.value);
-            }}
-          >
-            <option value="All">All Priorites</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
+            <select
+              value={priorityType}
+              onChange={(e) => {
+                setpriorityType(e.target.value);
+              }}
+            >
+              <option value="All">All Priorites</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+
+          {filteredKhotians &&
+            filteredKhotians.map((singleKhotian) => (
+              <KhotianDetails
+                key={singleKhotian._id}
+                singleKhotian={singleKhotian}
+              />
+            ))}
         </div>
 
-        {filteredKhotians &&
-          filteredKhotians.map((singleKhotian) => (
-            <KhotianDetails
-              key={singleKhotian._id}
-              singleKhotian={singleKhotian}
-            />
-          ))}
-      </div>
-
-      <div>
-      <div className="calendar-container">
-          {khotianList !== null && (
-            <KhotianCalendar khotianList={filteredKhotians} />
-          )}
+        <div>
+          <div className="calendar-container">
+            {khotianList !== null && (
+              <KhotianCalendar khotianList={filteredKhotians} />
+            )}
+          </div>
+          <KhotianForm />
         </div>
-        <KhotianForm />  
       </div>
-    </div>
     </div>
   );
 };
