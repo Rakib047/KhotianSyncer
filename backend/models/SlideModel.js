@@ -13,6 +13,9 @@ const slideSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  slideUrl : {
+    type:String,
+  }
 });
 
 const Slide = mongoose.model('Slide', slideSchema);

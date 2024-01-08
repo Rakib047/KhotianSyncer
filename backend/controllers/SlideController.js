@@ -1,5 +1,6 @@
 const { crypto } = require("crypto");
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand,GetObjectCommand } = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const SlideModel = require("../models/SlideModel");
 
 const bucketName = process.env.BUCKET_NAME;
@@ -46,6 +47,27 @@ const handleSlideUpload = async (req, res) => {
 
 };
 
+const getAllSlide = async (req,res)=>{
+    const allSlides= await SlideModel.find()
+
+    // Loop over each slide
+    for (const slide of allSlides) {
+      const getObjectParams = {
+        Bucket: bucketName,
+        Key: slide.slideName,
+      };
+
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+      slide.slideUrl=url
+      
+      // Add more actions as needed
+    }
+
+
+    res.json({allSlides})
+}
+
 module.exports = {
-  handleSlideUpload,
+  handleSlideUpload,getAllSlide
 };
