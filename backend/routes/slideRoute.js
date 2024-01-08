@@ -5,7 +5,7 @@ const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
 
-//router.use(requireAuth);
+router.use(requireAuth);
 
 // Set up Multer middleware
 const storage = multer.memoryStorage(); // You can change this to store files in memory

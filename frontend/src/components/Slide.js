@@ -2,12 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export const Slide = ({slideId,courseTitle, slideName, semester, slideUrl,fetchSlides }) => {
+    const { user } = useAuthContext();
 
     const handleDelete = async ()=>{
         try {
-            await axios.delete(`/api/slide/${slideId}`)
+            await axios.delete(`/api/slide/${slideId}`,{
+              headers: {
+                Authorization: `Bearer ${user.jwtToken}`,
+              },
+            })
 
             Swal.fire({
                 icon: 'warning',

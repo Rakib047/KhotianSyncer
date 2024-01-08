@@ -3,6 +3,7 @@ import {Slide} from '../components/Slide'; // Import the Slide component
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export const CourseSlide = () => {
   const [isFormOpen, setFormOpen] = useState(false);
@@ -12,6 +13,7 @@ export const CourseSlide = () => {
     file: null,
   });
   const [slides, setSlides] = useState([]);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     // Fetch slides from the server when the component mounts
@@ -20,7 +22,11 @@ export const CourseSlide = () => {
 
   const fetchSlides = async () => {
     try {
-      const response = await axios.get('/api/slide');
+      const response = await axios.get('/api/slide',{
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      });
       setSlides(response.data.allSlides);
     } catch (error) {
       console.error('Error fetching slides:', error);
@@ -60,7 +66,11 @@ export const CourseSlide = () => {
       formData.append('courseTitle', courseData.title);
       formData.append('semester', courseData.semester);
       formData.append('slide', courseData.file);
-      await axios.post('/api/slide', formData);
+      await axios.post('/api/slide', formData,{
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      });
 
       Swal.fire({
         icon: 'success',

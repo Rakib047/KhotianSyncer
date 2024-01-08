@@ -36,10 +36,12 @@ const handleSlideUpload = async (req, res) => {
 
   // Extract information from the request body
   const { courseTitle, semester } = req.body;
+  const user_id=req.userProperty._id
 
   // Save information to MongoDB
   const newSlide = new SlideModel({
     courseTitle,
+    user_id,
     semester,
     slideName,
   });
@@ -51,7 +53,8 @@ const handleSlideUpload = async (req, res) => {
 };
 
 const getAllSlide = async (req, res) => {
-  const allSlides = await SlideModel.find();
+  const user_id=req.userProperty._id
+  const allSlides = await SlideModel.find({user_id});
 
   // Loop over each slide
   for (const slide of allSlides) {
@@ -72,7 +75,8 @@ const getAllSlide = async (req, res) => {
 
 const deleteSlide = async (req, res) => {
   const { slideId } = req.params;
-  const slideToDelete = await SlideModel.findOne({ _id: slideId });
+  const user_id=req.userProperty._id
+  const slideToDelete = await SlideModel.findOne({ _id: slideId ,user_id});
 
   if(!slideToDelete){
     res.status(404).json({message:"slide not found"})
