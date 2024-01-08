@@ -30,9 +30,9 @@ export const Slide = ({slideId,courseTitle, slideName, semester, slideUrl,fetchS
       <p><strong>Slide Name :</strong> {slideName}</p>
       <p><strong>Semester :</strong> {semester}</p>
       <a href={slideUrl} target="_blank" rel="noopener noreferrer" className='custom-link'>
-        <strong>View Slide</strong>
+        <strong><i class="fa-solid fa-cloud-arrow-down"></i> View Slide</strong>
       </a>
-      <button onClick={handleDelete} className='delete-btn'>Delete</button>
+      <button onClick={handleDelete} className='delete-btn'><i class="fa-solid fa-trash-can"></i> Delete</button>
     </div>
   );
 };

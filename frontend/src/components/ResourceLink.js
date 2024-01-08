@@ -32,9 +32,9 @@ export const ResourceLink = ({_id,tag,updateLinks,title,semester,link}) => {
       <h4>{title}</h4>
       <p><strong>Semester :</strong> {semester}</p>
        <strong><a href={link} target="_blank" rel="noopener noreferrer" className='custom-link'>
-        {link}
+       <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit
       </a> </strong>
-      <button className="delete-btn" onClick={handleDelete}>Delete</button>
+      <button className="delete-btn" onClick={handleDelete}><i class="fa-solid fa-trash-can"></i> Delete</button>
     </div>
   )
 }
