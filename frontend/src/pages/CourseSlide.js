@@ -68,10 +68,29 @@ export const CourseSlide = () => {
     handleFormClose();
   };
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const filteredSlides = slides.filter(
+    (slide) =>
+      slide.courseTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      slide.semester.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
         <h2 className="headings"><i class="fa-regular fa-file-powerpoint"></i> Courses Slides</h2>
-      <button className='add-resource-link-button' onClick={handleFormOpen}>Add PDF/Slide</button>
+
+        <div>
+        <button className='add-resource-link-button' onClick={handleFormOpen}>Add PDF/Slide</button>
+        <input
+          className="searchbar"
+          type="text"
+          placeholder="Search by Title or Semester..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
+      
       <div>
       {isFormOpen && (
         <div className="form-container-wrapper">
@@ -113,7 +132,7 @@ export const CourseSlide = () => {
       )}
       </div>
       {/* Display slides */}
-      {slides.map((slide) => (
+      {filteredSlides.map((slide) => (
         <Slide
           key={slide._id}
           courseTitle={slide.courseTitle}
