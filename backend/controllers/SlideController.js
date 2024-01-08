@@ -1,4 +1,3 @@
-const { crypto } = require("crypto");
 const {
   S3Client,
   PutObjectCommand,
@@ -75,17 +74,25 @@ const deleteSlide = async (req, res) => {
   const { slideId } = req.params;
   const slideToDelete = await SlideModel.findOne({ _id: slideId });
 
-  // Delete the slide from S3
-  // const deleteObjectParams = {
+  if(!slideToDelete){
+    res.status(404).json({message:"slide not found"})
+    return 
+  }
+
+  //Delete the slide from S3
+
+  // const params = {
   //   Bucket: bucketName,
   //   Key: slideToDelete.slideName,
   // };
-  // await s3.send(new DeleteObjectCommand(deleteObjectParams));
+  // console.log(params.Key)
+  // const command = new DeleteObjectCommand(params)
+  // await s3.send(command)
 
-  // Delete the slide from MongoDB
-  //await SlideModel.findByIdAndDelete({ _id: slideId });
+  //Delete the slide from MongoDB
+  await SlideModel.findByIdAndDelete({ _id: slideId });
 
-  res.send(slideToDelete);
+  res.status(200).json({message:"slide deleted hogaye"})
 };
 
 module.exports = {
