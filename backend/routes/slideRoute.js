@@ -13,8 +13,11 @@ const upload = multer({ storage: storage });
 
 // Define your route
 router.route("/")
-  .post(upload.single('slide'), controllers.handleSlideUpload)
-  .get(controllers.getAllSlide)
+      .post(upload.single('slide'), controllers.handleSlideUpload)
+      .get(controllers.getAllSlide)
+
+router.route("/:slideId")
+      .delete(controllers.deleteSlide)
 
 
 module.exports = router;
