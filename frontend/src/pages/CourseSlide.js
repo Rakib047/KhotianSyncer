@@ -75,6 +75,8 @@ export const CourseSlide = () => {
       slide.semester.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+
+
   return (
     <div>
         <h2 className="headings"><i class="fa-regular fa-file-powerpoint"></i> Courses Slides</h2>
@@ -135,10 +137,12 @@ export const CourseSlide = () => {
       {filteredSlides.map((slide) => (
         <Slide
           key={slide._id}
+          slideId={slide._id}
           courseTitle={slide.courseTitle}
           semester={slide.semester}
           slideName={slide.slideName}
           slideUrl={slide.slideUrl}
+          fetchSlides={fetchSlides}
         />
       ))}
     </div>
