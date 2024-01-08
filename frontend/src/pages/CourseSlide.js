@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {Slide} from '../components/Slide'; // Import the Slide component
+import axios from 'axios';
 
 export const CourseSlide = () => {
   const [isFormOpen, setFormOpen] = useState(false);
@@ -7,6 +9,21 @@ export const CourseSlide = () => {
     semester: '',
     file: null,
   });
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    // Fetch slides from the server when the component mounts
+    fetchSlides();
+  }, []);
+
+  const fetchSlides = async () => {
+    try {
+      const response = await axios.get('/api/slide');
+      setSlides(response.data.allSlides);
+    } catch (error) {
+      console.error('Error fetching slides:', error);
+    }
+  };
 
   const handleFormOpen = () => {
     setFormOpen(true);
@@ -32,10 +49,21 @@ export const CourseSlide = () => {
     setCourseData({ ...courseData, file });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     // Implement file upload logic here (e.g., send a request to your server)
     console.log('Form submitted with data:', courseData);
+    try {
+      const formData = new FormData();
+      formData.append('courseTitle', courseData.title);
+      formData.append('semester', courseData.semester);
+      formData.append('slide', courseData.file);
+      await axios.post('/api/slide', formData);
+      // Refresh slides after successful submission
+      fetchSlides();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
     // Reset form data after successful submission
     handleFormClose();
   };
@@ -84,7 +112,18 @@ export const CourseSlide = () => {
         </div>
       )}
       </div>
+      {/* Display slides */}
+      {slides.map((slide) => (
+        <Slide
+          key={slide._id}
+          courseTitle={slide.courseTitle}
+          semester={slide.semester}
+          slideName={slide.slideName}
+          slideUrl={slide.slideUrl}
+        />
+      ))}
     </div>
   );
 };
 
+export default CourseSlide;
