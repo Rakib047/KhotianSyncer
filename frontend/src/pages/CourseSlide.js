@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Slide} from '../components/Slide'; // Import the Slide component
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export const CourseSlide = () => {
   const [isFormOpen, setFormOpen] = useState(false);
@@ -59,6 +61,15 @@ export const CourseSlide = () => {
       formData.append('semester', courseData.semester);
       formData.append('slide', courseData.file);
       await axios.post('/api/slide', formData);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'New Slide!',
+        text: `${courseData.title}:${courseData.file.name} added to Slides!`,
+        confirmButtonColor: '#1aac83',
+        background: '#f1f1f1',
+      });
+
       // Refresh slides after successful submission
       fetchSlides();
     } catch (error) {
@@ -82,7 +93,7 @@ export const CourseSlide = () => {
         <h2 className="headings"><i class="fa-regular fa-file-powerpoint"></i> Courses Slides</h2>
 
         <div>
-        <button className='add-resource-link-button' onClick={handleFormOpen}>Add PDF/Slide</button>
+        <button className='add-resource-link-button' onClick={handleFormOpen}>Add Slide</button>
         <input
           className="searchbar"
           type="text"
