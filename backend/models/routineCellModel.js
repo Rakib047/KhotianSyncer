@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const classSchema = new mongoose.Schema({
+const routineCellSchema = new mongoose.Schema({
   courseName: {
     type: String,
   },
@@ -23,6 +23,6 @@ const classSchema = new mongoose.Schema({
   }
 });
 
-const RoutineCellModel = mongoose.model('RoutineCell', classSchema);
+const RoutineCellModel = mongoose.model('RoutineCell', routineCellSchema);
 
 module.exports = RoutineCellModel;
