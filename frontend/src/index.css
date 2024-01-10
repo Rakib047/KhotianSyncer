@@ -1032,7 +1032,7 @@ nav div a:hover {
 .routine-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background: #fff;
@@ -1052,19 +1052,54 @@ nav div a:hover {
 
 .routine-table th,
 .routine-table td {
-  padding: 30px; /* Increase padding for cells */
+  padding: 20px; /* Increase padding for cells */
   text-align: center;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   font-size: 18px; /* Increase font size for cells */
 }
 
 .routine-table th {
-  background-color: #f1f1f1;
+  background-color: #1aac83;
 }
 
 .routine-table .has-class {
-  background-color: #f0f9e8;
+  background-color: #fff;
 }
+
+.class-cell-container button.edit-button {
+  background-color: #1aac83;
+  color: #fff;
+  padding: 3px 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: auto; /* Move the button to the bottom */
+  margin-left: auto; /* Move the button to the right */
+  display: block; /* Ensure the button takes full width */
+}
+
+.class-cell-container button.edit-button:hover {
+  background-color: #bf0741;
+}
+
+.class-cell-container button.save-button{
+  background-color: #1aac83;
+  color: #fff;
+  padding: 3px 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.class-cell-container button.save-button:hover {
+  background-color: #bf0741;
+}
+
+
 
 
 

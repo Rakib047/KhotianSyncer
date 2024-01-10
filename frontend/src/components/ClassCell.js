@@ -1,0 +1,121 @@
+// ClassCell.js
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+const ClassCell = ({ rowIndex, colIndex }) => {
+  const [cellId, setCellId] = useState();
+  const [courseName, setCourseName] = useState();
+  const [courseTeacher, setCourseTeacher] = useState();
+  const [roomNumber, setRoomNumber] = useState();
+  const [link, setLink] = useState();
+  const [isEditing, setEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setEditing(true);
+  };
+
+  useEffect(() => {
+    // Fetch initial data when component mounts
+      axios
+        .get(`/api/routine/${rowIndex}/${colIndex}`)
+        .then((response) => {
+          const { courseName, courseTeacher, roomNumber, onlineLink } =
+            response.data;
+          setCourseName(courseName);
+          setCourseTeacher(courseTeacher);
+          setRoomNumber(roomNumber);
+          setLink(onlineLink);
+          setCellId(response.data._id)
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  , []); // Run the effect when cellId changes
+
+  const handleSaveClick = () => {
+    // Determine whether it's an update or a create operation
+    const axiosMethod = cellId ? axios.put : axios.post;
+
+    // Send data to the backend
+    axiosMethod(`/api/routine${cellId ? `/${cellId}` : ""}`, {
+      courseName,
+      courseTeacher,
+      roomNumber,
+      onlineLink: link,
+      rowIndex,
+      colIndex
+    })
+      .then((response) => {
+        setCellId(response.data._id);
+        setEditing(false);
+      })
+      .catch((error) => {
+        console.error("Error saving data:", error);
+      });
+  };
+
+  return (
+    <div className="class-cell-container">
+      {isEditing ? (
+        <>
+          <input
+            type="text"
+            value={courseName}
+            onChange={(e) => setCourseName(e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            value={courseTeacher}
+            onChange={(e) => setCourseTeacher(e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            value={roomNumber}
+            onChange={(e) => setRoomNumber(e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+          />
+          <br />
+          <button className="save-button" onClick={handleSaveClick}>
+            Save
+          </button>
+        </>
+      ) : (
+        <>
+          <strong>{courseName ? courseName : "-"}</strong>
+          <br />
+          {courseTeacher && <span>{courseTeacher}</span>}
+          <br />
+          {roomNumber && <span>{roomNumber}</span>}
+          <br />
+
+          {link && (
+            <>
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="custom-link"
+              >
+                Zoom Link
+              </a>{" "}
+            </>
+          )}
+
+          <button className="edit-button" onClick={handleEditClick}>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ClassCell;
