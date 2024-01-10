@@ -1,77 +1,32 @@
-import React, { useState } from 'react';
-import DayRow from '../components/routine/DayRow';
-//import './Routine.css'; // Import local CSS file
+import React from 'react';
 
-const Routine = () => {
-  const [routineData, setRoutineData] = useState([
-    {
-        name: 'Saturday',
-        timeSlots: [
-          { startTime: '08:00', endTime: '09:00', class: 'Chemistry' },
-          { startTime: '09:00', endTime: '10:00', class: 'Math' },
-          { startTime: '10:00', endTime: '11:00', class: 'Physics' },
-          { startTime: '11:00', endTime: '12:00', class: 'Chemistry' },
-          { startTime: '11:00', endTime: '12:00', class: 'Chemistry' },
-          { startTime: '02:30', endTime: '05:00', class: 'Chemistry' },
-        ],
-      },
-      {
-        name: 'Sunday',
-        timeSlots: [
-          { startTime: '09:00', endTime: '10:00', class: 'Math' },
-          { startTime: '10:00', endTime: '11:00', class: 'Physics' },
-          { startTime: '11:00', endTime: '12:00', class: 'Chemistry' },
-        ],
-      },
-      {
-        name: 'Monday',
-        timeSlots: [
-          { startTime: '09:00', endTime: '10:00', class: 'Math' },
-          { startTime: '10:00', endTime: '11:00', class: 'Physics' },
-          { startTime: '11:00', endTime: '12:00', class: 'Chemistry' },
-        ],
-      },
-    {
-      name: 'Tuesday',
-      timeSlots: [
-        { startTime: '09:00', endTime: '10:00', class: 'Math' },
-        { startTime: '10:00', endTime: '11:00', class: 'Physics' },
-        { startTime: '11:00', endTime: '12:00', class: 'Chemistry' },
-      ],
-    },
-    {
-      name: 'Wednesday',
-      timeSlots: [
-        { startTime: '09:00', endTime: '10:00', class: 'English' },
-        { startTime: '10:00', endTime: '11:00', class: 'History' },
-      ],
-    },
-    // ... add more days as needed
-  ]);
+const ClassRoutine = () => {
+  // Define the days and time slots
+  const days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'];
+  const timeSlots = ['09.00-10.00', '10.00-11.00', '11.00-12.00', '12.00-01.00', '2.30-5.00'];
 
   return (
     <div className="routine-container">
-      <h2 className="routine-title">Weekly Routine</h2>
+      <h2 className="routine-title">Class Routine</h2>
       <table className="routine-table">
         <thead>
           <tr>
-            <th>Day</th>
-            {routineData.length > 0 && (
-              <th colSpan={routineData[0].timeSlots.length}>Time Slots</th>
-            )}
+            <th></th> {/* Empty cell for the top-left corner */}
+            {timeSlots.map((timeSlot, index) => (
+              <th key={index}>{timeSlot}</th>
+            ))}
           </tr>
-          {routineData.length > 0 && (
-            <tr>
-              <th />
-              {routineData[0].timeSlots.map((timeSlot, index) => (
-                <th key={index}>{timeSlot.startTime} - {timeSlot.endTime}</th>
-              ))}
-            </tr>
-          )}
         </thead>
         <tbody>
-          {routineData.map((day, index) => (
-            <DayRow key={index} day={day} />
+          {days.map((day, rowIndex) => (
+            <tr key={rowIndex}>
+              <td>{day}</td>
+              {timeSlots.map((timeSlot, colIndex) => (
+                <td key={colIndex} className="has-class">
+                  -{/* Placeholder for class information */}
+                </td>
+              ))}
+            </tr>
           ))}
         </tbody>
       </table>
@@ -79,4 +34,4 @@ const Routine = () => {
   );
 };
 
-export default Routine;
+export default ClassRoutine;

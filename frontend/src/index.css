@@ -1027,44 +1027,46 @@ nav div a:hover {
   color:#02100cc7;
 }
 
-/* Apply these styles to match the previous CSS style */
+/* Add these styles to your ClassRoutine.css file */
+
 .routine-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background: #fff; /* Add background color */
+  background: #fff;
 }
 
 .routine-title {
   text-align: center;
   margin-bottom: 20px;
-  color: #1aac83; /* Match the primary color */
+  color: #1aac83;
 }
 
-/* Table styling */
 .routine-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px; /* Add margin at the top */
+  margin-top: 20px;
 }
 
 .routine-table th,
 .routine-table td {
-  padding: 10px;
+  padding: 30px; /* Increase padding for cells */
   text-align: center;
   border: 1px solid #ddd;
+  font-size: 18px; /* Increase font size for cells */
 }
 
 .routine-table th {
-  background-color: #f1f1f1; /* Match the background color of the header */
+  background-color: #f1f1f1;
 }
 
-/* Time slots with classes */
 .routine-table .has-class {
-  background-color: #f0f9e8; /* Light green for classes */
+  background-color: #f0f9e8;
 }
+
+
 
 
 
