@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const classSchema = new mongoose.Schema({
   courseName: {
     type: String,
-    required: true,
   },
   courseTeacher: {
     type: String,
