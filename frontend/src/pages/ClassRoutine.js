@@ -1,5 +1,7 @@
-import React,{useState} from "react";
+import React, {useState } from "react";
 import ClassCell from "../components/ClassCell";
+import ClipLoader from "react-spinners/ClipLoader";
+
 const ClassRoutine = () => {
   // Define the days and time slots
   const days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
@@ -15,23 +17,22 @@ const ClassRoutine = () => {
 
 
   return (
+ 
     <div>
       <h2 className="headings">
-      <i class="fa-solid fa-calendar-days"></i> Routine
+        <i class="fa-solid fa-calendar-days"></i> Routine
       </h2>
 
-
       <div className="routine-container">
-        
-      <div className="routineSearch">
-        <input
-          type="text"
-          placeholder="Search by course name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      
+        <div className="routineSearch">
+          <input
+            type="text"
+            placeholder="Search by course name"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         <h2 className="routine-title">Class Routine</h2>
         <table className="routine-table">
           <thead>
@@ -50,7 +51,11 @@ const ClassRoutine = () => {
                 </td>
                 {timeSlots.map((colIndex) => (
                   <td key={colIndex} className="has-class">
-                    <ClassCell rowIndex={rowIndex} colIndex={colIndex} searchQuery={searchTerm}/>
+                    <ClassCell
+                      rowIndex={rowIndex}
+                      colIndex={colIndex}
+                      searchQuery={searchTerm}
+                    />
                   </td>
                 ))}
               </tr>
@@ -60,8 +65,6 @@ const ClassRoutine = () => {
       </div>
     </div>
   );
-  
-  
 };
 
 export default ClassRoutine;
