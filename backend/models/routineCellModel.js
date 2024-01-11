@@ -20,7 +20,11 @@ const routineCellSchema = new mongoose.Schema({
   colIndex: {
     type:String,
     required: true,
-  }
+  },
+  user_id: {
+    type: String,
+    required: true,
+  },
 });
 
 const RoutineCellModel = mongoose.model('RoutineCell', routineCellSchema);

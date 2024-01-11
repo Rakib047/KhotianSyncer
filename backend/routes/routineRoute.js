@@ -3,7 +3,7 @@ const controllers =require("../controllers/routineController")
 const requireAuth=require("../middleware/requireAuth")
 const router=express.Router()
 
-//router.use(requireAuth)
+router.use(requireAuth)
 
 router.route("/")
       .post(controllers.saveCell)

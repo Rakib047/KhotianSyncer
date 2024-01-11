@@ -1,6 +1,7 @@
 // ClassCell.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ClassCell = ({ rowIndex, colIndex }) => {
   const [cellId, setCellId] = useState();
@@ -9,6 +10,7 @@ const ClassCell = ({ rowIndex, colIndex }) => {
   const [roomNumber, setRoomNumber] = useState();
   const [link, setLink] = useState();
   const [isEditing, setEditing] = useState(false);
+  const { user } = useAuthContext();
 
   const handleEditClick = () => {
     setEditing(true);
@@ -16,36 +18,47 @@ const ClassCell = ({ rowIndex, colIndex }) => {
 
   useEffect(() => {
     // Fetch initial data when component mounts
-      axios
-        .get(`/api/routine/${rowIndex}/${colIndex}`)
-        .then((response) => {
-          const { courseName, courseTeacher, roomNumber, onlineLink } =
-            response.data;
-          setCourseName(courseName);
-          setCourseTeacher(courseTeacher);
-          setRoomNumber(roomNumber);
-          setLink(onlineLink);
-          setCellId(response.data._id)
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-    }
-  , []); // Run the effect when cellId changes
+    axios
+      .get(`/api/routine/${rowIndex}/${colIndex}`, {
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      })
+      .then((response) => {
+        const { courseName, courseTeacher, roomNumber, onlineLink } =
+          response.data;
+        setCourseName(courseName);
+        setCourseTeacher(courseTeacher);
+        setRoomNumber(roomNumber);
+        setLink(onlineLink);
+        setCellId(response.data._id);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Run the effect when cellId changes
 
   const handleSaveClick = () => {
     // Determine whether it's an update or a create operation
     const axiosMethod = cellId ? axios.put : axios.post;
 
     // Send data to the backend
-    axiosMethod(`/api/routine${cellId ? `/${cellId}` : ""}`, {
-      courseName,
-      courseTeacher,
-      roomNumber,
-      onlineLink: link,
-      rowIndex,
-      colIndex
-    })
+    axiosMethod(
+      `/api/routine${cellId ? `/${cellId}` : ""}`,
+      {
+        courseName,
+        courseTeacher,
+        roomNumber,
+        onlineLink: link,
+        rowIndex,
+        colIndex
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      }
+    )
       .then((response) => {
         setCellId(response.data._id);
         setEditing(false);

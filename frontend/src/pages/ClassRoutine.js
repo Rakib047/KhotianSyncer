@@ -15,7 +15,7 @@ const ClassRoutine = () => {
   return (
     <div>
       <h2 className="headings">
-        <i class="fa-solid fa-address-card"></i> Routine
+      <i class="fa-solid fa-calendar-days"></i> Routine
       </h2>
 
       <div className="routine-container">

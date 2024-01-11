@@ -3,7 +3,19 @@ const routineCellModel = require("../models/routineCellModel");
 
 const saveCell = async (req, res) => {
   try {
-    const newCell = new routineCellModel(req.body);
+    const { courseTitle, courseTeacher, roomNumber, onlineLink,rowIndex,colIndex } = req.body;
+    const user_id = req.userProperty._id;
+
+    const newCell = new routineCellModel({
+      courseName,
+      courseTeacher,
+      roomNumber,
+      onlineLink,
+      rowIndex,
+      colIndex,
+      user_id,
+    });
+
     const savedCell = await newCell.save();
     res.status(200).json(savedCell);
   } catch (err) {
@@ -13,33 +25,46 @@ const saveCell = async (req, res) => {
 };
 
 const updateCell = async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
+  const user_id = req.userProperty._id;
 
-    try {
-      const updatedCell = await RoutineCellModel.findByIdAndUpdate(id, req.body, {
-        new: true,
-      });
-      res.json(updatedCell);
-    } catch (error) {
-      console.error('Error updating class:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+  try {
+    const updatedCell = await RoutineCellModel.findOneAndUpdate(
+      { _id: id, user_id },
+      req.body,
+      { new: true }
+    );
+
+    if (!updatedCell) {
+      return res.status(404).json({ error: "Cell not found or unauthorized" });
     }
+
+    res.json(updatedCell);
+  } catch (error) {
+    console.error('Error updating class:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
   
 };
 
 const getCell = async (req, res) => {
-  const { rowIndex,colIndex } = req.params;
+  const { rowIndex, colIndex } = req.params;
+  const user_id = req.userProperty._id;
 
   try {
-    const foundCell = await routineCellModel.findOne({ rowIndex, colIndex });
+    const foundCell = await routineCellModel.findOne({
+      rowIndex,
+      colIndex,
+      user_id,
+    });
 
     if (!foundCell) {
-      return res.status(404).json({ error: "Class not found" });
+      return res.status(404).json({ error: "Class not found or unauthorized" });
     }
 
     res.json(foundCell);
   } catch (err) {
-    console.error("Error fetching class:", error);
+    console.error("Error fetching class:", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
