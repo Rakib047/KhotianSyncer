@@ -16,7 +16,7 @@ body {
 header {
   background: #1aac83;
   color: #fff;
-  padding: 10px 0;
+  padding: 8px 0;
 }
 /* .container {
   max-width: 1400px;
@@ -717,7 +717,7 @@ nav div a:hover {
 
 .menu-icon {
   position: absolute;
-  top: 18px;
+  top: 20px;
   left: 30px;
   font-size: 24px;
   z-index: 1;
@@ -1037,6 +1037,13 @@ nav div a:hover {
   border-radius: 5px;
   background: #fff;
 }
+
+.routine-container:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.0002); /* Increase the size on hover */
+}
+
+
 
 .routine-title {
   text-align: center;
