@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import ClassCell from "../components/ClassCell";
 const ClassRoutine = () => {
   // Define the days and time slots
@@ -11,6 +11,8 @@ const ClassRoutine = () => {
     "12:00-01:00",
     "2:30-5:00",
   ];
+  const [searchTerm, setSearchTerm] = useState("");
+
 
   return (
     <div>
@@ -18,7 +20,18 @@ const ClassRoutine = () => {
       <i class="fa-solid fa-calendar-days"></i> Routine
       </h2>
 
+
       <div className="routine-container">
+        
+      <div className="routineSearch">
+        <input
+          type="text"
+          placeholder="Search by course name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      
         <h2 className="routine-title">Class Routine</h2>
         <table className="routine-table">
           <thead>
@@ -37,7 +50,7 @@ const ClassRoutine = () => {
                 </td>
                 {timeSlots.map((colIndex) => (
                   <td key={colIndex} className="has-class">
-                    <ClassCell rowIndex={rowIndex} colIndex={colIndex}/>
+                    <ClassCell rowIndex={rowIndex} colIndex={colIndex} searchQuery={searchTerm}/>
                   </td>
                 ))}
               </tr>
@@ -47,6 +60,8 @@ const ClassRoutine = () => {
       </div>
     </div>
   );
+  
+  
 };
 
 export default ClassRoutine;

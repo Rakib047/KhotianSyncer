@@ -3,7 +3,7 @@ const routineCellModel = require("../models/routineCellModel");
 
 const saveCell = async (req, res) => {
   try {
-    const { courseTitle, courseTeacher, roomNumber, onlineLink,rowIndex,colIndex } = req.body;
+    const { courseName, courseTeacher, roomNumber, onlineLink,rowIndex,colIndex } = req.body;
     const user_id = req.userProperty._id;
 
     const newCell = new routineCellModel({

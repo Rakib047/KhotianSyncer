@@ -1067,6 +1067,7 @@ nav div a:hover {
 }
 
 .class-cell-container button.edit-button {
+  
   background-color: #1aac83;
   color: #fff;
   padding: 3px 4px;
@@ -1096,8 +1097,55 @@ nav div a:hover {
 }
 
 .class-cell-container button.save-button:hover {
-  background-color: #bf0741;
+  background-color: #0e8b68;
 }
+
+.class-cell-container button.cancel-button{
+  background-color: #c8134c;
+  color: #fff;
+  padding: 3px 4px;
+  margin-left: 3px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.class-cell-container button.cancel-button:hover {
+  background-color: #9d0837;
+}
+
+.class-cell-container input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Add these styles to your stylesheet */
+
+.highlighted {
+  background-color: yellow;
+  /* You can customize the background color as per your design */
+  border: 2px solid #ffcc00; /* Add a border for better visibility */
+  box-shadow: 0 0 5px rgba(255, 204, 0, 0.5); /* Add a subtle box shadow */
+}
+
+.routineSearch input{
+  width: 20%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+
 
 
 

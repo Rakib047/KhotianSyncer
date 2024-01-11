@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const ClassCell = ({ rowIndex, colIndex }) => {
+const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
   const [cellId, setCellId] = useState();
   const [courseName, setCourseName] = useState();
   const [courseTeacher, setCourseTeacher] = useState();
@@ -51,7 +51,7 @@ const ClassCell = ({ rowIndex, colIndex }) => {
         roomNumber,
         onlineLink: link,
         rowIndex,
-        colIndex
+        colIndex,
       },
       {
         headers: {
@@ -76,33 +76,53 @@ const ClassCell = ({ rowIndex, colIndex }) => {
             type="text"
             value={courseName}
             onChange={(e) => setCourseName(e.target.value)}
+            placeholder="Enter Course/CT..."
           />
           <br />
           <input
             type="text"
             value={courseTeacher}
             onChange={(e) => setCourseTeacher(e.target.value)}
+            placeholder="Enter Course Teachers..."
           />
           <br />
           <input
             type="text"
             value={roomNumber}
             onChange={(e) => setRoomNumber(e.target.value)}
+            placeholder="Enter Room Number..."
           />
           <br />
           <input
             type="text"
             value={link}
             onChange={(e) => setLink(e.target.value)}
+            placeholder="Enter Zoom Link if any..."
           />
           <br />
           <button className="save-button" onClick={handleSaveClick}>
             Save
           </button>
+          <button className="cancel-button" onClick={() => setEditing(false)}>
+            Cancel
+          </button>
         </>
       ) : (
         <>
-          <strong>{courseName ? courseName : "-"}</strong>
+          <strong>
+            <div
+              className={
+                searchQuery &&
+                courseName &&
+                courseName.toLowerCase().includes(searchQuery.toLowerCase())
+                  ? "highlighted"
+                  : ""
+              }
+            >
+              {courseName ? courseName : "-"}
+            </div>
+          </strong>
+
           <br />
           {courseTeacher && <span>{courseTeacher}</span>}
           <br />
