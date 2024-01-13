@@ -9,6 +9,7 @@ const khotianRoute = require("./routes/khotianRoute");
 const userRoute = require("./routes/userRoute");
 const resourceLinkRoute = require("./routes/resourceLinkRoute");
 const slideRoute = require("./routes/slideRoute");
+const termFinalRoute=require("./routes/termFinalRoute")
 const routineRoute=require("./routes/routineRoute");
 
 //middleware
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 app.use("/api/khotian", khotianRoute);
 app.use("/api/resource", resourceLinkRoute);
 app.use("/api/slide",slideRoute)
+app.use("/api/termfinal",termFinalRoute)
 app.use("/api/routine",routineRoute)
 app.use("/api/user",userRoute)
 
