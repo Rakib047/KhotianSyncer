@@ -1,7 +1,8 @@
 // ClassCell.js
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
   const [cellId, setCellId] = useState();
@@ -12,12 +13,17 @@ const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
   const [isEditing, setEditing] = useState(false);
   const { user } = useAuthContext();
 
+  const [loading, setLoading] = useState(true);
+  const [spinnerColor, setSpinnerColor] = useState("#ffffff");
+
   const handleEditClick = () => {
     setEditing(true);
   };
 
   useEffect(() => {
     // Fetch initial data when component mounts
+    setLoading(true);
+
     axios
       .get(`/api/routine/${rowIndex}/${colIndex}`, {
         headers: {
@@ -35,6 +41,10 @@ const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      })
+      .finally(() => {
+        console.log("spinner");
+        setLoading(false); // Set loading to false after data is fetched or on error
       });
   }, []); // Run the effect when cellId changes
 
@@ -70,44 +80,11 @@ const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
 
   return (
     <div className="class-cell-container">
-      {isEditing ? (
-        <>
-          <input
-            type="text"
-            value={courseName}
-            onChange={(e) => setCourseName(e.target.value)}
-            placeholder="Enter Course/CT..."
-          />
-          <br />
-          <input
-            type="text"
-            value={courseTeacher}
-            onChange={(e) => setCourseTeacher(e.target.value)}
-            placeholder="Enter Course Teachers..."
-          />
-          <br />
-          <input
-            type="text"
-            value={roomNumber}
-            onChange={(e) => setRoomNumber(e.target.value)}
-            placeholder="Enter Room Number..."
-          />
-          <br />
-          <input
-            type="text"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-            placeholder="Enter Zoom Link if any..."
-          />
-          <br />
-          <button className="save-button" onClick={handleSaveClick}>
-            Save
-          </button>
-          <button className="cancel-button" onClick={() => setEditing(false)}>
-            Cancel
-          </button>
-        </>
+      {loading ? (
+        // Show loading spinner
+        <PropagateLoader color="#1aac83" />
       ) : (
+        // Show content once data is fetched
         <>
           <strong>
             <div
