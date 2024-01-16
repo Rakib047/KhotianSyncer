@@ -55,6 +55,7 @@ const {
   const getAllTermFinal = async (req, res) => {
     const user_id=req.userProperty._id
     const allTermFinal = await TermFinalModel.find({user_id});
+    
   
     // Loop over each termfinal
     for (const termfinal of allTermFinal) {
@@ -77,6 +78,7 @@ const {
     const { termFinalId } = req.params;
     const user_id=req.userProperty._id
     const termFinalToDelete = await TermFinalModel.findOne({ _id: termFinalId ,user_id});
+    //const termFinalToDelete = await TermFinalModel.findOne({ _id: termFinalId});
   
     if(!termFinalToDelete){
       res.status(404).json({message:"termfinal file not found"})

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ResourceLink } from "../components/ResourceLink";
+import { ResourceLink } from "../components/ResourceFile/ResourceLink";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
 

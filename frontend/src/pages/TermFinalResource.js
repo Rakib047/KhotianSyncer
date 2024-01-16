@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import {Slide} from '../components/ResourceFile/Slide'; // Import the Slide component
+import {TermFinal} from '../components/ResourceFile/TermFinal'; // Import the Slide component
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useAuthContext } from "../hooks/useAuthContext";
 
-export const CourseSlide = () => {
+export const TermFinalResource = () => {
   const [isFormOpen, setFormOpen] = useState(false);
   const [courseData, setCourseData] = useState({
     title: '',
-    semester: '',
+    batch: '',
     file: null,
   });
-  const [slides, setSlides] = useState([]);
+  const [termFinal, setTermFinal] = useState([]);
   const { user } = useAuthContext();
 
   useEffect(() => {
-    // Fetch slides from the server when the component mounts
-    fetchSlides();
+    // Fetch termFinal from the server when the component mounts
+    fetchTermFinal();
   }, []);
 
-  const fetchSlides = async () => {
+  const fetchTermFinal = async () => {
     try {
-      const response = await axios.get('/api/slide',{
+      const response = await axios.get('/api/termfinal',{
         headers: {
           Authorization: `Bearer ${user.jwtToken}`,
         },
       });
-      setSlides(response.data.allSlides);
+      setTermFinal(response.data.allTermFinal);
     } catch (error) {
-      console.error('Error fetching slides:', error);
+      console.error('Error fetching termFinal:', error);
     }
   };
 
@@ -42,7 +42,7 @@ export const CourseSlide = () => {
     // Reset form data when the form is closed
     setCourseData({
       title: '',
-      semester: '',
+      batch: '',
       file: null,
     });
   };
@@ -64,9 +64,9 @@ export const CourseSlide = () => {
     try {
       const formData = new FormData();
       formData.append('courseTitle', courseData.title);
-      formData.append('semester', courseData.semester);
-      formData.append('slide', courseData.file);
-      await axios.post('/api/slide', formData,{
+      formData.append('batch', courseData.batch);
+      formData.append('termfinal', courseData.file);
+      await axios.post('/api/termfinal', formData,{
         headers: {
           Authorization: `Bearer ${user.jwtToken}`,
         },
@@ -74,14 +74,14 @@ export const CourseSlide = () => {
 
       Swal.fire({
         icon: 'success',
-        title: 'New Slide!',
-        text: `${courseData.title}:${courseData.file.name} added to Slides!`,
+        title: 'New Term Resource!',
+        text: `${courseData.title}:${courseData.file.name} added to termFinal!`,
         confirmButtonColor: '#1aac83',
         background: '#f1f1f1',
       });
 
-      // Refresh slides after successful submission
-      fetchSlides();
+      // Refresh termFinal after successful submission
+      fetchTermFinal();
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -90,24 +90,24 @@ export const CourseSlide = () => {
   };
 
   const [searchQuery, setSearchQuery] = useState('');
-  const filteredSlides = slides.filter(
-    (slide) =>
-      slide.courseTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      slide.semester.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredtermFinal = termFinal.filter(
+    (tf) =>
+      tf.courseTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tf.batch.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
 
 
   return (
     <div>
-        <h2 className="headings"><i class="fa-regular fa-file-powerpoint"></i> Courses Slides</h2>
+        <h2 className="headings"><i class="fa-regular fa-newspaper"></i> Term Final Questions and Solutions</h2>
 
         <div>
-        <button className='add-resource-link-button' onClick={handleFormOpen}>Add Slide</button>
+        <button className='add-resource-link-button' onClick={handleFormOpen}>Add Term Resource</button>
         <input
           className="searchbar"
           type="text"
-          placeholder="Search by Title or Semester..."
+          placeholder="Search by Title or batch..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -129,11 +129,11 @@ export const CourseSlide = () => {
               />
             </label>
             <label>
-              Semester:
+              Batch:
               <input
                 type="text"
-                name="semester"
-                value={courseData.semester}
+                name="batch"
+                value={courseData.batch}
                 onChange={handleInputChange}
                 required
               />
@@ -154,20 +154,19 @@ export const CourseSlide = () => {
         </div>
       )}
       </div>
-      {/* Display slides */}
-      {filteredSlides.map((slide) => (
-        <Slide
-          key={slide._id}
-          slideId={slide._id}
-          courseTitle={slide.courseTitle}
-          semester={slide.semester}
-          slideName={slide.slideName}
-          slideUrl={slide.slideUrl}
-          fetchSlides={fetchSlides}
+      {/* Display termFinal */}
+      {filteredtermFinal.map((tf) => (
+        <TermFinal
+          key={tf._id}
+          termFinalId={tf._id}
+          courseTitle={tf.courseTitle}
+          batch={tf.batch}
+          termFinalFileName={tf.termFinalFileName}
+          termFinalUrl={tf.termFinalUrl}
+          fetchTermFinal={fetchTermFinal}
         />
       ))}
     </div>
   );
 };
 
-export default CourseSlide;

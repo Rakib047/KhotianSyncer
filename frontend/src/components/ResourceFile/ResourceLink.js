@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {useAuthContext} from "../hooks/useAuthContext"
+import {useAuthContext} from "../../hooks/useAuthContext"
 
 export const ResourceLink = ({_id,tag,updateLinks,title,semester,link}) => {
 

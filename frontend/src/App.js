@@ -9,6 +9,7 @@ import { Profile } from "./pages/Profile";
 import {Resource} from "./pages/Resource"
 import SeniorResource from "./pages/SeniorResource";
 import { CourseSlide } from "./pages/CourseSlide";
+import { TermFinalResource } from "./pages/TermFinalResource";
 import ClassRoutine from "./pages/ClassRoutine";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/resource" element={user? <Resource />:<Navigate to="/login" />} />
             <Route path="/resource/seniorresource" element={user? <SeniorResource/>:<Navigate to="/login" />} />
             <Route path="/resource/courseslide" element={user? <CourseSlide/>:<Navigate to="/login" />} />
+            <Route path="/resource/termfinal" element={user? <TermFinalResource/>:<Navigate to="/login" />} />
             <Route path="/routine" element={user?<ClassRoutine/>:<Navigate to="/login"/>} />
           </Routes>
         </div>
