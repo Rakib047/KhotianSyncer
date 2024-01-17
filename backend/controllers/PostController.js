@@ -41,7 +41,8 @@ const getPost = async (req, res) => {
 
 // Like a post
 const likePost = async (req, res) => {
-  const { postId, userId } = req.params;
+  const { postId } = req.params;
+  const userId = req.userProperty._id
 
   try {
     const post = await PostModel.findById(postId);
@@ -61,8 +62,9 @@ const likePost = async (req, res) => {
 
 // Comment on a post
 const commentOnPost = async (req, res) => {
-  const { postId, userId, text } = req.params;
-
+  const { postId, text } = req.params;
+  const userId = req.userProperty._id
+  
   try {
     const post = await PostModel.findById(postId);
     if (!post) {

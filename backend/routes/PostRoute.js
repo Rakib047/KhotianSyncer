@@ -13,9 +13,9 @@ router.route("/").get(postControllers.getAllPosts);
 router.route("/:postId").get(postControllers.getPost);
 
 // Like a post
-router.route("/:postId/like").post(postControllers.likePost);
+router.route("/:postId/like").post(requireAuth,postControllers.likePost);
 
 // Comment on a post
-router.route("/:postId/comment").post(postControllers.commentOnPost);
+router.route("/:postId/comment").post(requireAuth,postControllers.commentOnPost);
 
 module.exports = router;
