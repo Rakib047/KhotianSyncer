@@ -11,6 +11,7 @@ const resourceLinkRoute = require("./routes/resourceLinkRoute");
 const slideRoute = require("./routes/slideRoute");
 const termFinalRoute=require("./routes/termFinalRoute")
 const routineRoute=require("./routes/routineRoute");
+const postRoute=require("./routes/PostRoute")
 
 //middleware
 app.use(cors());
@@ -25,6 +26,7 @@ app.use("/api/slide",slideRoute)
 app.use("/api/termfinal",termFinalRoute)
 app.use("/api/routine",routineRoute)
 app.use("/api/user",userRoute)
+app.use("/api/post",postRoute)
 
 
 //connect to DB

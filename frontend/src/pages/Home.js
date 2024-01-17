@@ -26,6 +26,7 @@ const Home = () => {
           headers: { Authorization: `Bearer ${user.jwtToken}` },
         });
 
+
         if (response.status === 200) {
           const json = response.data;
           dispatch({ type: "SET_KHOTIANS", payload: json });
