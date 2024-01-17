@@ -1150,6 +1150,70 @@ nav div a:hover {
   box-sizing: border-box;
 }
 
+.post-container {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.post-header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.post-header h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.post-content {
+  padding: 20px;
+}
+
+.post-content p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.post-likes span {
+  font-size: 1em;
+  color: #333;
+}
+
+.post-comments {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.post-comments h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.post-comments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-comments li {
+  font-size: 1em;
+  color: #555;
+}
+
+
+
+
 
 
 

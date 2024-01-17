@@ -22,6 +22,7 @@ const requireAuth =async (req,res,next) =>{
         //attaching userProperty to req so that we can later use it
         //this userProperty(id) will be used to user specific khotians
         req.userProperty=await userModel.findOne({_id}).select("_id") 
+        req.userProperty=await userModel.findOne({_id}).select("username") 
         next()
     } catch (error) {
         console.log(error)

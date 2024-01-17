@@ -4,9 +4,10 @@ const PostModel = require("../models/PostModel");
 const createPost = async (req, res) => {
   const { content } = req.body;
   const userId = req.userProperty._id
+  const name = req.userProperty.username
 
   try {
-    const post = await PostModel.create({ content, user: userId });
+    const post = await PostModel.create({ content, user: userId , userName : name });
     res.status(201).json(post);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -42,7 +43,7 @@ const getPost = async (req, res) => {
 // Like a post
 const likePost = async (req, res) => {
   const { postId } = req.params;
-  const userId = req.userProperty._id
+  const userId = req.userProperty._id;
 
   try {
     const post = await PostModel.findById(postId);
@@ -50,15 +51,25 @@ const likePost = async (req, res) => {
       return res.status(404).json({ error: "Post not found" });
     }
 
-    // Add userId to the likes array
-    post.likes.push(userId);
+    // Check if userId is already in the likes array
+    const userIndex = post.likes.indexOf(userId);
+
+    if (userIndex !== -1) {
+      // If user already liked, remove the like
+      post.likes.splice(userIndex, 1);
+    } else {
+      // If user hasn't liked, add the like
+      post.likes.push(userId);
+    }
+
     await post.save();
 
-    res.status(200).json(post);
+    res.status(200).json(post.likes.length);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // Comment on a post
 const commentOnPost = async (req, res) => {

@@ -11,6 +11,7 @@ import SeniorResource from "./pages/SeniorResource";
 import { CourseSlide } from "./pages/CourseSlide";
 import { TermFinalResource } from "./pages/TermFinalResource";
 import ClassRoutine from "./pages/ClassRoutine";
+import Discussion from "./pages/Discussion";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/resource/courseslide" element={user? <CourseSlide/>:<Navigate to="/login" />} />
             <Route path="/resource/termfinal" element={user? <TermFinalResource/>:<Navigate to="/login" />} />
             <Route path="/routine" element={user?<ClassRoutine/>:<Navigate to="/login"/>} />
+            <Route path="/discussion" element={user?<Discussion/>:<Navigate to="/login"/>} />
           </Routes>
         </div>
       </BrowserRouter>

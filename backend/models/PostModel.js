@@ -12,6 +12,9 @@ const postSchema = new mongoose.Schema(
       ref: "User", // Reference to the User model
       required: true,
     },
+    userName: {
+      type:String
+    },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,
