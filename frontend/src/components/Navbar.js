@@ -41,6 +41,7 @@ const Navbar = () => {
                 <li><Link to="/profile" className="sidebarLink" onClick={handleToggleSidebar}>Profile</Link></li>
                 <li><Link to="/resource" className="sidebarLink" onClick={handleToggleSidebar}>Resources</Link></li>
                 <li><Link to="/routine" className="sidebarLink" onClick={handleToggleSidebar}>Class Routine</Link></li>
+                <li onClick={handleToggleSidebar}>Discussion</li>
                 <li onClick={()=>{handleToggleSidebar();  window.open("https://moodle.cse.buet.ac.bd/")}}>Moodle</li>
                 <li onClick={()=>{handleToggleSidebar();  window.open("https://biis.buet.ac.bd/")}}>BIIS</li>
                 <li onClick={handleToggleSidebar}>Notices</li>
