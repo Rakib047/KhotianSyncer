@@ -6,6 +6,7 @@ const Post = ({ postId, userName, content, likes, comments }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes.length);
   const { user } = useAuthContext();
+  const [postTime, setPostTime] = useState("");
 
   useEffect(() => {
     const likedPosts = JSON.parse(localStorage.getItem("likedPosts")) || [];
@@ -16,7 +17,23 @@ const Post = ({ postId, userName, content, likes, comments }) => {
     );
 
     setIsLiked(isPostLiked);
+
+    // Calculate and set the post time
+    const postDate = new Date(parseInt(postId.substring(0, 8), 16) * 1000);
+    setPostTime(formatPostTime(postDate));
   }, [postId, user.roll]);
+
+  const formatPostTime = (postDate) => {
+    const currentTime = new Date();
+    const timeDifference = Math.floor((currentTime - postDate) / (1000 * 60)); // in minutes
+
+    if (timeDifference < 60) {
+      return `${timeDifference} minutes ago`;
+    } else {
+      const hoursDifference = Math.floor(timeDifference / 60);
+      return `${hoursDifference} hours ago`;
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -58,6 +75,7 @@ const Post = ({ postId, userName, content, likes, comments }) => {
     <div className="post-container">
       <div className="post-header">
         <h2>{userName}</h2>
+        <span className="post-time">{postTime}</span>
       </div>
       <div className="post-content">
         <p>{content}</p>
@@ -65,9 +83,7 @@ const Post = ({ postId, userName, content, likes, comments }) => {
       <div className="post-footer">
         <div className="post-likes">
           <span>
-            
-            <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"} {likeCount}</button>
-            
+            <button onClick={handleLike}>{isLiked ?<i class="fa-solid fa-thumbs-down"></i> : <i class="fa-solid fa-thumbs-up"></i>}  {likeCount}</button>
           </span>
         </div>
         <div className="post-comments">
