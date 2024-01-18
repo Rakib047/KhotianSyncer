@@ -6,7 +6,6 @@ const Post = ({ postId, userName, content, likes, comments }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes.length);
   const { user } = useAuthContext();
-  
 
   useEffect(() => {
     const likedPosts = JSON.parse(localStorage.getItem("likedPosts")) || [];
@@ -66,8 +65,9 @@ const Post = ({ postId, userName, content, likes, comments }) => {
       <div className="post-footer">
         <div className="post-likes">
           <span>
-            {likeCount} Likes
-            <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"}</button>
+            
+            <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"} {likeCount}</button>
+            
           </span>
         </div>
         <div className="post-comments">

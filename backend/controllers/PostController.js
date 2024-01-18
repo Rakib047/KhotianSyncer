@@ -17,7 +17,7 @@ const createPost = async (req, res) => {
 // Get all posts
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await PostModel.find();
+    const posts = await PostModel.find().sort({ createdAt: -1 }); // Sort by createdAt field in descending order
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ error: error.message });
