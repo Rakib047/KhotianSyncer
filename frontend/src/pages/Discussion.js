@@ -10,7 +10,7 @@ const Discussion = () => {
   const { user } = useAuthContext();
 
   useEffect(() => {
-    // Fetch posts when the component mounts
+    // Fetch posts when the component mounts....
     axios
       .get("/api/post")
       .then((response) => {
