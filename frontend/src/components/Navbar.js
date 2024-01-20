@@ -37,7 +37,7 @@ const Navbar = () => {
 
             <div className="slideout-sidebar">
               <ul>
-                <li><Link to="/" className="sidebarLink" onClick={handleToggleSidebar}>Home</Link></li>
+                <li><Link to="/" className="sidebarLink" onClick={handleToggleSidebar}>Khotian</Link></li>
                 <li><Link to="/profile" className="sidebarLink" onClick={handleToggleSidebar}>Profile</Link></li>
                 <li><Link to="/resource" className="sidebarLink" onClick={handleToggleSidebar}>Resources</Link></li>
                 <li><Link to="/routine" className="sidebarLink" onClick={handleToggleSidebar}>Class Routine</Link></li>
@@ -54,9 +54,9 @@ const Navbar = () => {
         <Link to="/">
           <h1>
             <span className="logo-khotian">
-              <i class="fa-solid fa-clipboard-list"> </i> Khotian
+              <i class="fa-solid fa-clipboard-list"> </i> CSE
             </span>
-            <span className="logo-syncer">Syncer</span>
+            <span className="logo-syncer">Connect</span>
           </h1>
         </Link>
         <nav>
