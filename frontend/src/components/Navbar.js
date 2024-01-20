@@ -54,7 +54,7 @@ const Navbar = () => {
         <Link to="/">
           <h1>
             <span className="logo-khotian">
-              <i class="fa-solid fa-clipboard-list"> </i> CSE
+            <i class="fa-brands fa-connectdevelop"></i>  CSE
             </span>
             <span className="logo-syncer">Connect</span>
           </h1>
