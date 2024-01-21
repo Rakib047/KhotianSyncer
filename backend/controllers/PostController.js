@@ -73,21 +73,24 @@ const likePost = async (req, res) => {
 
 // Comment on a post
 const commentOnPost = async (req, res) => {
-  const { postId, text } = req.params;
+  const { postId } = req.params;
   const userId = req.userProperty._id
+  const { commenter,text } = req.body;
   
   try {
     const post = await PostModel.findById(postId);
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
-
+    
     // Add the comment to the comments array
-    post.comments.push({ user: userId, text });
+    post.comments.push({ commenter, text });
     await post.save();
+    console.log("here")
 
     res.status(200).json(post);
   } catch (error) {
+    console.log(error.message)
     res.status(500).json({ error: error.message });
   }
 };

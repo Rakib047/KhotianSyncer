@@ -7,6 +7,9 @@ const Post = ({ postId, userName, content, likes, comments }) => {
   const [likeCount, setLikeCount] = useState(likes.length);
   const { user } = useAuthContext();
   const [postTime, setPostTime] = useState("");
+  const [isCommenting, setIsCommenting] = useState(false);
+  const [newComment, setNewComment] = useState("");
+  const [postComments, setPostComments] = useState(comments);
 
   useEffect(() => {
     const likedPosts = JSON.parse(localStorage.getItem("likedPosts")) || [];
@@ -25,13 +28,19 @@ const Post = ({ postId, userName, content, likes, comments }) => {
 
   const formatPostTime = (postDate) => {
     const currentTime = new Date();
-    const timeDifference = Math.floor((currentTime - postDate) / (1000 * 60)); // in minutes
+    const timeDifference = Math.floor((currentTime - postDate) / 1000); // in seconds
 
     if (timeDifference < 60) {
-      return `${timeDifference} minutes ago`;
-    } else {
-      const hoursDifference = Math.floor(timeDifference / 60);
+      return `${timeDifference} seconds ago`;
+    } else if (timeDifference < 3600) {
+      const minutesDifference = Math.floor(timeDifference / 60);
+      return `${minutesDifference} minutes ago`;
+    } else if (timeDifference < 86400) {
+      const hoursDifference = Math.floor(timeDifference / 3600);
       return `${hoursDifference} hours ago`;
+    } else {
+      const daysDifference = Math.floor(timeDifference / 86400);
+      return `${daysDifference} days ago`;
     }
   };
 
@@ -71,6 +80,37 @@ const Post = ({ postId, userName, content, likes, comments }) => {
     }
   };
 
+  const handleCommentToggle = () => {
+    setIsCommenting(!isCommenting);
+  };
+
+  const handleCommentSubmit = async () => {
+    try {
+      // Send a request to the backend to add a new comment
+      const response = await axios.post(
+        `/api/post/${postId}/comment`,
+        {
+          commenter: user.username,
+          text: newComment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwtToken}`,
+          },
+        }
+      );
+
+      // Update the post comments based on the response
+      setPostComments(response.data.comments);
+      console.log(response.data.comments)
+
+      // Clear the comment input field
+      setNewComment("");
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+  };
+
   return (
     <div className="post-container">
       <div className="post-header">
@@ -83,16 +123,31 @@ const Post = ({ postId, userName, content, likes, comments }) => {
       <div className="post-footer">
         <div className="post-likes">
           <span>
-            <button onClick={handleLike}>{isLiked ?<i class="fa-solid fa-thumbs-down"></i> : <i class="fa-solid fa-thumbs-up"></i>}  {likeCount}</button>
+            <button onClick={handleLike}>
+              {isLiked ? <i class="fa-solid fa-thumbs-down"></i> : <i class="fa-solid fa-thumbs-up"></i>} {likeCount}
+            </button>
           </span>
         </div>
         <div className="post-comments">
           <h3>Comments</h3>
           <ul>
-            {comments.map((comment, index) => (
-              <li key={index}>{comment}</li>
+            {postComments.map((comment, index) => (
+              <li key={index}><strong style={{ color: '#1aac83' }}>{comment.commenter}</strong> : {comment.text}</li>
             ))}
           </ul>
+          {isCommenting && (
+            <div>
+              <textarea
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="Type your comment..."
+              />
+              <button onClick={handleCommentSubmit}>Submit Comment</button>
+            </div>
+          )}
+          <button onClick={handleCommentToggle}>
+            {isCommenting ? "Cancel Comment" : "Add a Comment"}
+          </button>
         </div>
       </div>
     </div>
