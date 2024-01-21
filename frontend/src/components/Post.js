@@ -102,7 +102,6 @@ const Post = ({ postId, userName, content, likes, comments }) => {
 
       // Update the post comments based on the response
       setPostComments(response.data.comments);
-      console.log(response.data.comments)
 
       // Clear the comment input field
       setNewComment("");
