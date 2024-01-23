@@ -25,6 +25,7 @@ const Post = ({ postId, userName, content, likes, comments }) => {
 
     // Calculate and set the post time
     const postDate = new Date(parseInt(postId.substring(0, 8), 16) * 1000);
+    
     setPostTime(formatPostTime(postDate));
   }, [postId, user.roll]);
 
@@ -151,8 +152,10 @@ const Post = ({ postId, userName, content, likes, comments }) => {
                   <li key={index}>
                     <strong style={{ color: "#1aac83" }}>
                       {comment.commenter}
+                      {/* {console.log(comment.createdAt)} */}
                     </strong>{" "}
-                    <br /> {comment.text}
+                      <br/>
+                     {comment.text}
                   </li>
                 ))}
               </ul>
