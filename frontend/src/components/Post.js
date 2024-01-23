@@ -10,6 +10,8 @@ const Post = ({ postId, userName, content, likes, comments }) => {
   const [isCommenting, setIsCommenting] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [postComments, setPostComments] = useState(comments);
+  const [isCommentsExpanded, setIsCommentsExpanded] = useState(false);
+  const [totalComment, setTotalComment] = useState(comments.length);
 
   useEffect(() => {
     const likedPosts = JSON.parse(localStorage.getItem("likedPosts")) || [];
@@ -84,6 +86,10 @@ const Post = ({ postId, userName, content, likes, comments }) => {
     setIsCommenting(!isCommenting);
   };
 
+  const handleCommentExpand = () => {
+    setIsCommentsExpanded(!isCommentsExpanded);
+  };
+
   const handleCommentSubmit = async () => {
     try {
       // Send a request to the backend to add a new comment
@@ -102,8 +108,10 @@ const Post = ({ postId, userName, content, likes, comments }) => {
 
       // Update the post comments based on the response
       setPostComments(response.data.comments);
+      setTotalComment(response.data.comments.length);
 
       // Clear the comment input field
+      setIsCommenting(!isCommenting);
       setNewComment("");
     } catch (error) {
       console.error("Error adding comment:", error);
@@ -123,17 +131,34 @@ const Post = ({ postId, userName, content, likes, comments }) => {
         <div className="post-likes">
           <span>
             <button onClick={handleLike}>
-              {isLiked ? <i class="fa-solid fa-thumbs-down"></i> : <i class="fa-solid fa-thumbs-up"></i>} {likeCount}
+              {isLiked ? (
+                <i class="fa-solid fa-thumbs-down"></i>
+              ) : (
+                <i class="fa-solid fa-thumbs-up"></i>
+              )}{" "}
+              {likeCount}
             </button>
           </span>
         </div>
         <div className="post-comments">
-          <h3>Comments</h3>
-          <ul>
-            {postComments.map((comment, index) => (
-              <li key={index}><strong style={{ color: '#1aac83' }}>{comment.commenter}</strong> : {comment.text}</li>
-            ))}
-          </ul>
+          <button onClick={handleCommentExpand}>
+            <i class="fa-solid fa-comment"></i> Comments {isCommentsExpanded?`(${totalComment})`:""}
+          </button>
+          {isCommentsExpanded && (
+            <div>
+              <ul>
+                {postComments.map((comment, index) => (
+                  <li key={index}>
+                    <strong style={{ color: "#1aac83" }}>
+                      {comment.commenter}
+                    </strong>{" "}
+                    <br /> {comment.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {isCommenting && (
             <div>
               <textarea
@@ -144,9 +169,11 @@ const Post = ({ postId, userName, content, likes, comments }) => {
               <button onClick={handleCommentSubmit}>Submit Comment</button>
             </div>
           )}
-          <button onClick={handleCommentToggle}>
-            {isCommenting ? "Cancel Comment" : "Add a Comment"}
-          </button>
+          {isCommentsExpanded && (
+            <button onClick={handleCommentToggle}>
+              {isCommenting ? "Cancel Comment" : "Add a Comment"}
+            </button>
+          )}
         </div>
       </div>
     </div>

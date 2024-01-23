@@ -1285,6 +1285,20 @@ nav div a:hover {
   margin-bottom: 15px;
 }
 
+.post-comments button {
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.post-comments button:hover {
+  background-color: #168f63;
+}
+
 
 
 
