@@ -1295,9 +1295,41 @@ nav div a:hover {
   transition: background-color 0.3s ease-in-out;
 }
 
+.post-comments li {
+  margin-top: 10px;
+}
+
 .post-comments button:hover {
   background-color: #168f63;
 }
+
+.add-comment {
+  display: flex;
+  margin-top: 14px;
+}
+
+.add-comment textarea {
+  
+  flex: 0.3; /* Use flex property to distribute available space equally among input fields */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100px;
+}
+
+.add-comment button {
+  height: 40px; /* Set the same height as the textarea */
+  margin-left: 5px;
+  padding: 0 15px; /* Add padding to the button */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
 
 
 

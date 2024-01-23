@@ -156,24 +156,17 @@ const Post = ({ postId, userName, content, likes, comments }) => {
                   </li>
                 ))}
               </ul>
-            </div>
-          )}
-
-          {isCommenting && (
-            <div>
+              <div className="add-comment">
               <textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Type your comment..."
               />
-              <button onClick={handleCommentSubmit}>Submit Comment</button>
+              <button onClick={handleCommentSubmit}><i class="fa-solid fa-plus"></i> Add</button>
+              </div>
             </div>
           )}
-          {isCommentsExpanded && (
-            <button onClick={handleCommentToggle}>
-              {isCommenting ? "Cancel Comment" : "Add a Comment"}
-            </button>
-          )}
+
         </div>
       </div>
     </div>
