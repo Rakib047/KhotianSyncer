@@ -29,7 +29,6 @@ const Discussion = () => {
       await axios.post(
         "/api/post",
         {
-          username: user.username,
           content: newPostContent,
         },
         {
@@ -42,6 +41,7 @@ const Discussion = () => {
       // Fetch the updated list of posts
       const response = await axios.get("/api/post");
       setPosts(response.data);
+      
 
       // Clear the input fields
       setNewPostContent("");
@@ -82,7 +82,7 @@ const Discussion = () => {
           <Post
             key={post._id} // Make sure each post has a unique key
             postId={post._id}
-            userName={post.userName}
+            postUser={post.user}
             content={post.content}
             likes={post.likes}
             comments={post.comments}

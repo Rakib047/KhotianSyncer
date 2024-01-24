@@ -1329,6 +1329,21 @@ nav div a:hover {
   box-sizing: border-box;
 }
 
+.delete-post-button-container {
+  position: relative;
+  left: 97%;
+}
+
+.delete-post-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #e7195a; /* Set the color you want */
+  font-size: 16px; /* Set the font size you want */
+}
+
+
+
 
 
 

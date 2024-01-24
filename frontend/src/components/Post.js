@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const Post = ({ postId, userName, content, likes, comments }) => {
+const Post = ({ postId, postUser, content, likes, comments }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes.length);
   const { user } = useAuthContext();
@@ -25,7 +25,7 @@ const Post = ({ postId, userName, content, likes, comments }) => {
 
     // Calculate and set the post time
     const postDate = new Date(parseInt(postId.substring(0, 8), 16) * 1000);
-    
+
     setPostTime(formatPostTime(postDate));
   }, [postId, user.roll]);
 
@@ -83,10 +83,6 @@ const Post = ({ postId, userName, content, likes, comments }) => {
     }
   };
 
-  const handleCommentToggle = () => {
-    setIsCommenting(!isCommenting);
-  };
-
   const handleCommentExpand = () => {
     setIsCommentsExpanded(!isCommentsExpanded);
   };
@@ -119,10 +115,19 @@ const Post = ({ postId, userName, content, likes, comments }) => {
     }
   };
 
+  const handleDeletePost = async (req, res) => {};
+
   return (
     <div className="post-container">
+      <div className="delete-post-button-container">
+      {user.roll === postUser.roll && (
+        <button onClick={handleDeletePost} className="delete-post-button">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      )}
+      </div>
       <div className="post-header">
-        <h2>{userName}</h2>
+        <h2>{postUser.username}</h2>
         <span className="post-time">{postTime}</span>
       </div>
       <div className="post-content">
@@ -143,8 +148,10 @@ const Post = ({ postId, userName, content, likes, comments }) => {
         </div>
         <div className="post-comments">
           <button onClick={handleCommentExpand}>
-            <i class="fa-solid fa-comment"></i> Comments {isCommentsExpanded?`(${totalComment})`:""}
+            <i class="fa-solid fa-comment"></i> Comments{" "}
+            {isCommentsExpanded ? `(${totalComment})` : ""}
           </button>
+
           {isCommentsExpanded && (
             <div>
               <ul>
@@ -154,22 +161,23 @@ const Post = ({ postId, userName, content, likes, comments }) => {
                       {comment.commenter}
                       {/* {console.log(comment.createdAt)} */}
                     </strong>{" "}
-                      <br/>
-                     {comment.text}
+                    <br />
+                    {comment.text}
                   </li>
                 ))}
               </ul>
               <div className="add-comment">
-              <textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Type your comment..."
-              />
-              <button onClick={handleCommentSubmit}><i class="fa-solid fa-plus"></i> Add</button>
+                <textarea
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder="Type your comment..."
+                />
+                <button onClick={handleCommentSubmit}>
+                  <i class="fa-solid fa-plus"></i> Add
+                </button>
               </div>
             </div>
           )}
-
         </div>
       </div>
     </div>

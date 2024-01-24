@@ -4,10 +4,9 @@ const PostModel = require("../models/PostModel");
 const createPost = async (req, res) => {
   const { content } = req.body;
   const userId = req.userProperty._id
-  const name = req.userProperty.username
 
   try {
-    const post = await PostModel.create({ content, user: userId , userName : name });
+    const post = await PostModel.create({ content, user: userId });
     res.status(201).json(post);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -17,7 +16,7 @@ const createPost = async (req, res) => {
 // Get all posts
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await PostModel.find().sort({ createdAt: -1 }); // Sort by createdAt field in descending order
+    const posts = await PostModel.find().sort({ createdAt: -1 }).populate('user'); // Sort by createdAt field in descending order
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ error: error.message });
