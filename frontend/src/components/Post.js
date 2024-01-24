@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
-const Post = ({ postId, postUser, content, likes, comments }) => {
+const Post = ({
+  postId,
+  postUser,
+  content,
+  likes,
+  comments,
+  updateAllPosts,
+}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes.length);
   const { user } = useAuthContext();
@@ -12,6 +21,8 @@ const Post = ({ postId, postUser, content, likes, comments }) => {
   const [postComments, setPostComments] = useState(comments);
   const [isCommentsExpanded, setIsCommentsExpanded] = useState(false);
   const [totalComment, setTotalComment] = useState(comments.length);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState(content);
 
   useEffect(() => {
     const likedPosts = JSON.parse(localStorage.getItem("likedPosts")) || [];
@@ -115,23 +126,94 @@ const Post = ({ postId, postUser, content, likes, comments }) => {
     }
   };
 
-  const handleDeletePost = async (req, res) => {};
+  const handleDeletePost = async () => {
+    try {
+      const response = await axios.delete(`/api/post/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${user.jwtToken}`,
+        },
+      });
+      updateAllPosts(response.data);
+      Swal.fire({
+        icon: "warning",
+        title: "Post deleted!",
+        text: "Your post has been deleted from Discussion Forum!",
+        confirmButtonColor: "#e7195a",
+        background: "#f1f1f1",
+      });
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+    setEditedContent(content);
+  };
+
+  const handleSave = async () => {
+    try {
+      // Send a request to the backend to save the edited post content
+      const response = await axios.put(
+        `/api/post/${postId}`,
+        {
+          editedContent: editedContent,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.jwtToken}`,
+          },
+        }
+      );
+      handleEditToggle()
+      
+      setEditedContent(response.data.content)
+
+      Swal.fire({
+        icon: "info",
+        title: "Post Edited!",
+        text: "Your post content has been edited!",
+        confirmButtonColor: "#1aac83",
+        background: "#f1f1f1",
+      });
+      
+    } catch (error) {
+      console.error("Error saving post content:", error);
+    }
+  };
 
   return (
     <div className="post-container">
       <div className="delete-post-button-container">
-      {user.roll === postUser.roll && (
-        <button onClick={handleDeletePost} className="delete-post-button">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      )}
+        {user.roll === postUser.roll && (
+          <>
+            <button onClick={handleEditToggle} className="edit-post-button">
+              <i class="fa-solid fa-pencil"></i> {isEditing ? "Cancel" : "Edit"}
+            </button>
+            <button onClick={handleDeletePost} className="delete-post-button">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </>
+        )}
       </div>
       <div className="post-header">
         <h2>{postUser.username}</h2>
         <span className="post-time">{postTime}</span>
       </div>
       <div className="post-content">
-        <p>{content}</p>
+        {isEditing ? (
+          <>
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              placeholder="Edit your post..."
+            />
+            <br />
+            <button onClick={handleSave}>Save</button>
+          </>
+        ) : (
+          <p>{editedContent}</p>
+        )}
       </div>
       <div className="post-footer">
         <div className="post-likes">

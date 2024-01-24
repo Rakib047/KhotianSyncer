@@ -1320,6 +1320,28 @@ nav div a:hover {
   width: 100px;
 }
 
+.post-content textarea{
+  flex: 1; /* Use flex property to distribute available space equally among input fields */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 35px;
+  width: 650px;
+}
+
+.post-content button{
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 590px;
+  transition: background-color 0.3s ease-in-out;
+}
+
 .add-comment button {
   height: 40px; /* Set the same height as the textarea */
   margin-left: 5px;
@@ -1330,16 +1352,39 @@ nav div a:hover {
 }
 
 .delete-post-button-container {
+  height: 1px;
   position: relative;
-  left: 97%;
+  left: 86.9%;
 }
 
 .delete-post-button {
-  background: none;
+  background-color: #e7195a;
+  color: #fff;
   border: none;
+  margin-left: 5px;
+  border-radius: 5px;
+  padding: 8px 16px;
   cursor: pointer;
-  color: #e7195a; /* Set the color you want */
-  font-size: 16px; /* Set the font size you want */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.delete-post-button:hover {
+  background-color: #9d0837;
+}
+
+.edit-post-button {
+  margin-left: 2px;
+  background-color: #1aac83;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.edit-post-button:hover {
+  background-color: #168f63;
 }
 
 

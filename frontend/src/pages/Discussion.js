@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Post from "../components/Post"; // Import the Post component
 import { useAuthContext } from "../hooks/useAuthContext";
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Discussion = () => {
   const [posts, setPosts] = useState([]);
@@ -41,6 +43,14 @@ const Discussion = () => {
       // Fetch the updated list of posts
       const response = await axios.get("/api/post");
       setPosts(response.data);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Post Added!',
+        text: 'Your post has been added to discussion forum!',
+        confirmButtonColor: '#1aac83',
+        background: '#f1f1f1',
+      });
       
 
       // Clear the input fields
@@ -52,9 +62,13 @@ const Discussion = () => {
     }
   };
 
+  const updateAllPosts = (currentAllPosts)=>{
+      setPosts(currentAllPosts)
+  }
+
   return (
     <div>
-      <h2 className="headings"><i class="fa-solid fa-square-rss"></i> Discussion Forum</h2>
+      <h2 className="headings"><i class="fa-solid fa-comments"></i> Discussion Forum</h2>
       <div className="writePostDiv"><button onClick={() => setIsFormOpen(true)} className="add-resource-link-button"><i class="fa-solid fa-pen-nib"></i> Create Post</button></div>
       
       
@@ -86,6 +100,7 @@ const Discussion = () => {
             content={post.content}
             likes={post.likes}
             comments={post.comments}
+            updateAllPosts={updateAllPosts}
           />
         ))}
       </div>
