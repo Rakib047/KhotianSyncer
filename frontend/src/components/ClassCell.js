@@ -18,6 +18,7 @@ const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
 
   const handleEditClick = () => {
     setEditing(true);
+    console.log("here")
   };
 
   useEffect(() => {
@@ -80,11 +81,44 @@ const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
 
   return (
     <div className="class-cell-container">
-      {loading ? (
-        // Show loading spinner
-        <PropagateLoader color="#1aac83" />
+      {isEditing ? (
+        <>
+          <input
+            type="text"
+            value={courseName}
+            onChange={(e) => setCourseName(e.target.value)}
+            placeholder="Enter Course/CT..."
+          />
+          <br />
+          <input
+            type="text"
+            value={courseTeacher}
+            onChange={(e) => setCourseTeacher(e.target.value)}
+            placeholder="Enter Course Teachers..."
+          />
+          <br />
+          <input
+            type="text"
+            value={roomNumber}
+            onChange={(e) => setRoomNumber(e.target.value)}
+            placeholder="Enter Room Number..."
+          />
+          <br />
+          <input
+            type="text"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            placeholder="Enter Zoom Link if any..."
+          />
+          <br />
+          <button className="save-button" onClick={handleSaveClick}>
+            Save
+          </button>
+          <button className="cancel-button" onClick={() => setEditing(false)}>
+            Cancel
+          </button>
+        </>
       ) : (
-        // Show content once data is fetched
         <>
           <strong>
             <div
@@ -127,5 +161,6 @@ const ClassCell = ({ rowIndex, colIndex, searchQuery }) => {
     </div>
   );
 };
+
 
 export default ClassCell;
