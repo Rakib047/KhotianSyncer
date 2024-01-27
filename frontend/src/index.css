@@ -1387,6 +1387,48 @@ nav div a:hover {
   background-color: #168f63;
 }
 
+.notification-modal {
+  display: block;
+  position: fixed;
+  top: calc(25% + 1px); /* Position below the notification icon */
+  left: 80%;
+  transform: translateX(-50%);
+  background-color: #eae6e6; /* White background */
+  z-index: 1000; /* Ensure modal appears above other content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+
+.modal-content {
+  height: 8cm;
+  width: 7cm;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff; /* Light gray background */
+  color: #000; /* Black text color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #1aac83; /* Green color */
+  font-size: 24px;
+}
+
+.close-button:hover {
+  color: #0a7247; /* Darker green color on hover */
+}
+
+
 
 
 
