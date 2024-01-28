@@ -1389,16 +1389,21 @@ nav div a:hover {
 
 .notification-modal {
   display: block;
-  position: fixed;
-  top: calc(25% + 1px); /* Position below the notification icon */
+  position: absolute; /* Change position to absolute */
+  top: calc(8% + 1px); /* Position below the notification icon */
   left: 80%;
-  transform: translateX(-50%);
+  transform: translateX(-30%);
   background-color: #eae6e6; /* White background */
   z-index: 1000; /* Ensure modal appears above other content */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
   border-radius: 8px;
   padding: 20px;
+  min-width: 250px;
+  max-height: 500px; /* Set a max height for scrollable area */
+  overflow-y: auto; /* Add vertical scrollbar when content overflows */
+  min-height: 250px; /* Set a minimum height for the modal */
 }
+
 
 
 .modal-content {
@@ -1427,6 +1432,22 @@ nav div a:hover {
 .close-button:hover {
   color: #0a7247; /* Darker green color on hover */
 }
+
+.notification-item {
+  font-size: 16px; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.notification-item > .actor-name {
+  font-weight: bold;
+  color: #1aac83;
+}
+
+.notification-divider {
+  border: 1px solid #ccc; /* Adjust border style and color as needed */
+  margin-top: 5px; /* Adjust margin as needed */
+}
+
 
 
 
