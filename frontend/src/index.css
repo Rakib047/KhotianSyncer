@@ -1418,11 +1418,15 @@ nav div a:hover {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
+  min-width: 250px;
+  max-height: 500px; /* Set a max height for scrollable area */
+  overflow-y: auto; /* Add vertical scrollbar when content overflows */
+  min-height: 200px; /* Set a minimum height for the modal */
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
+  top: 22px;
   right: 10px;
   cursor: pointer;
   color: #1aac83; /* Green color */
