@@ -59,6 +59,7 @@ const Post = ({
   };
 
   const handleLike = async () => {
+    console.log(postUser._id)
     try {
       // Send a request to the backend to update like count
       const response = await axios.post(`/api/post/${postId}/like`, null, {

@@ -14,4 +14,7 @@ router.route("/signup")
 router.route("/profile")
       .put(controllers.updateUser)
 
+router.route("/notification/:userId")
+      .post(controllers.pushNotification)
+
 module.exports = router;

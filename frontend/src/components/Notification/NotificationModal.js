@@ -1,4 +1,5 @@
 import React from "react";
+import NotificationItem from "./NotificationItem";
 
 const NotificationModal = ({ onClose }) => {
   return (
@@ -9,10 +10,9 @@ const NotificationModal = ({ onClose }) => {
         </span>
         <h2>Notifications</h2>
         <ul>
-          {/* Add your notifications here */}
-          <li>New notification 1</li>
-          <li>New notification 2</li>
-          <li>New notification 3</li>
+          <NotificationItem text="New notification 1" />
+          <NotificationItem text="New notification 2" />
+          <NotificationItem text="New notification 3" />
         </ul>
       </div>
     </div>
@@ -20,4 +20,3 @@ const NotificationModal = ({ onClose }) => {
 };
 
 export default NotificationModal;
-    
