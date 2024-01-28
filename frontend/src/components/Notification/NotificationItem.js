@@ -1,9 +1,11 @@
 import React from "react";
 
-const NotificationItem = ({ text }) => {
+const NotificationItem = ({ actorName, type }) => {
   return (
     <>
-      <li>{text}</li>
+      <li>
+        {actorName} {type}
+      </li>
       <hr className="notification-divider" />
     </>
   );

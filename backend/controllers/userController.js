@@ -137,6 +137,26 @@ const deleteNotification = async (req, res) => {
   }
 };
 
+const getNotifications = async (req, res) => {
+  const userId = req.userProperty._id
+  console.log("here")
+
+  try {
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Get notifications from the user object and return them in the response
+    const notifications = user.notifications;
+    console.log(notifications)
+    res.status(200).json({ notifications });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 module.exports = {
   loginUser,
@@ -144,4 +164,5 @@ module.exports = {
   updateUser,
   pushNotification,
   deleteNotification,
+  getNotifications
 };

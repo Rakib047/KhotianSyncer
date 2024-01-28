@@ -95,7 +95,7 @@ const Post = ({
           `/api/user/notification/${postUser._id}`,
           {
             actorRoll: user.roll,
-            actorName: user.name,
+            actorName: user.username,
             type: "Liked your post",
           }
         );

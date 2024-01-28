@@ -1,5 +1,6 @@
 const express = require("express");
 const controllers = require("../controllers/userController");
+const requireAuth = require('../middleware/requireAuth');
 const router = express.Router();
 
 //login route
@@ -17,5 +18,7 @@ router.route("/profile")
 router.route("/notification/:userId")
       .post(controllers.pushNotification)
       .delete(controllers.deleteNotification)
+router.route("/notification")
+      .get(requireAuth,controllers.getNotifications)
 
 module.exports = router;
