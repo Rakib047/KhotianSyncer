@@ -59,7 +59,7 @@ const Post = ({
   };
 
   const handleLike = async () => {
-    console.log(postUser._id)
+    
     try {
       // Send a request to the backend to update like count
       const response = await axios.post(`/api/post/${postId}/like`, null, {
@@ -67,6 +67,18 @@ const Post = ({
           Authorization: `Bearer ${user.jwtToken}`,
         },
       });
+
+      if(!isLiked){
+      const notificationResponse = await axios.post(`/api/user/notification/${postUser._id}`,
+        {
+          actorRoll:user.roll,
+          actorName:user.name,
+          type:"Liked your post"
+        }
+      )
+
+      console.log(notificationResponse.data)
+      }
 
       // Update the like count based on the response
       setLikeCount(response.data);
