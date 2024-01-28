@@ -91,12 +91,14 @@ const Post = ({
       localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
 
       if (!isLiked && user.roll !== postUser.roll) {
+        const firstFewWords = content.split(' ').slice(0, 1).join(' ');
         const notificationResponse = await axios.post(
           `/api/user/notification/${postUser._id}`,
           {
             actorRoll: user.roll,
             actorName: user.username,
-            type: "Liked your post",
+            postId:postId,
+            type: `Liked your post : "${firstFewWords}..."`,
           }
         );
 
@@ -108,6 +110,7 @@ const Post = ({
           {
             data: {
               actorRoll: user.roll,
+              postId:postId,
             },
           }
         );
@@ -145,9 +148,28 @@ const Post = ({
       // Clear the comment input field
       setIsCommenting(!isCommenting);
       setNewComment("");
+      
+      //sending comment notification to the poster
+      if (user.roll !== postUser.roll) {
+        const firstFewWords = content.split(' ').slice(0, 1).join(' ');
+        const notificationResponse = await axios.post(
+          `/api/user/notification/${postUser._id}`,
+          {
+            actorRoll: user.roll,
+            actorName: user.username,
+            postId:postId,
+            type: `Commented on your post : "${firstFewWords}..."`,
+          }
+        );
+
+        console.log(notificationResponse.data);
+      } 
+    
+
     } catch (error) {
       console.error("Error adding comment:", error);
     }
+
   };
 
   const handleDeletePost = async () => {

@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel");
+const PostModel = require("../models/PostModel")
 const jwt = require("jsonwebtoken");
 
 //generating jwt(token)
@@ -85,7 +86,7 @@ const updateUser = async (req, res) => {
 
 const pushNotification = async (req, res) => {
   const { userId } = req.params;
-  const { actorRoll, actorName, type } = req.body;
+  const { actorRoll, actorName,postId, type } = req.body;
 
   try {
     const user = await userModel.findById(userId);
@@ -95,7 +96,7 @@ const pushNotification = async (req, res) => {
     }
 
     // Push the new notification to the notifications array
-    user.notifications.push({ actorRoll, actorName, type });
+    user.notifications.push({ actorRoll, actorName,postId, type });
 
     // Save the user with the updated notifications
     await user.save();
@@ -108,7 +109,7 @@ const pushNotification = async (req, res) => {
 
 const deleteNotification = async (req, res) => {
   const { userId } = req.params;
-  const { actorRoll } = req.body;
+  const { actorRoll,postId } = req.body;
   console.log(req.body.actorRoll)
 
   try {
@@ -120,7 +121,7 @@ const deleteNotification = async (req, res) => {
 
     // Find the index of the notification with the specified actorRoll
     const notificationIndex = user.notifications.findIndex(
-      (notification) => notification.actorRoll === actorRoll
+      (notification) => (notification.actorRoll === actorRoll && notification.postId===postId)
     );
 
     // If the notification index is found, remove it from the notifications array
@@ -148,10 +149,25 @@ const getNotifications = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Get notifications from the user object and return them in the response
-    const notifications = user.notifications;
-    console.log(notifications)
-    res.status(200).json({ notifications });
+    // Fetch notifications that have a postId associated with an existing post
+    const notificationsWithValidPost = await Promise.all(
+      user.notifications.map(async (notification) => {
+        if (notification.postId) {
+          const post = await PostModel.findById(notification.postId);
+          if (post) {
+            return notification;
+          }
+        }
+        return null;
+      })
+    );
+
+    // Filter out null values (notifications without valid posts)
+    const validNotifications = notificationsWithValidPost.filter(
+      (notification) => notification !== null
+    );
+
+    res.status(200).json({ notifications: validNotifications });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
       },
+      postId:{
+        type:String,
+        required:false
+      },
       type: {
         type: String,
         required: false,
