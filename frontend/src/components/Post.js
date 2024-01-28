@@ -59,7 +59,6 @@ const Post = ({
   };
 
   const handleLike = async () => {
-    
     try {
       // Send a request to the backend to update like count
       const response = await axios.post(`/api/post/${postId}/like`, null, {
@@ -67,18 +66,6 @@ const Post = ({
           Authorization: `Bearer ${user.jwtToken}`,
         },
       });
-
-      if(!isLiked){
-      const notificationResponse = await axios.post(`/api/user/notification/${postUser._id}`,
-        {
-          actorRoll:user.roll,
-          actorName:user.name,
-          type:"Liked your post"
-        }
-      )
-
-      console.log(notificationResponse.data)
-      }
 
       // Update the like count based on the response
       setLikeCount(response.data);
@@ -102,6 +89,30 @@ const Post = ({
       }
 
       localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
+
+      if (!isLiked && user.roll !== postUser.roll) {
+        const notificationResponse = await axios.post(
+          `/api/user/notification/${postUser._id}`,
+          {
+            actorRoll: user.roll,
+            actorName: user.name,
+            type: "Liked your post",
+          }
+        );
+
+        console.log(notificationResponse.data);
+      } else if (user.roll !== postUser.roll) {
+        console.log(user.roll)
+        const notificationResponse = await axios.delete(
+          `/api/user/notification/${postUser._id}`,
+          {
+            data: {
+              actorRoll: user.roll,
+            },
+          }
+        );
+        console.log(notificationResponse.data);
+      }
     } catch (error) {
       console.error("Error liking post:", error);
     }
@@ -178,9 +189,9 @@ const Post = ({
           },
         }
       );
-      handleEditToggle()
-      
-      setEditedContent(response.data.content)
+      handleEditToggle();
+
+      setEditedContent(response.data.content);
 
       Swal.fire({
         icon: "info",
@@ -189,7 +200,6 @@ const Post = ({
         confirmButtonColor: "#1aac83",
         background: "#f1f1f1",
       });
-      
     } catch (error) {
       console.error("Error saving post content:", error);
     }

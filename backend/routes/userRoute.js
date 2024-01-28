@@ -16,5 +16,6 @@ router.route("/profile")
 
 router.route("/notification/:userId")
       .post(controllers.pushNotification)
+      .delete(controllers.deleteNotification)
 
 module.exports = router;

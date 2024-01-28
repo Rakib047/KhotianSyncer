@@ -106,9 +106,42 @@ const pushNotification = async (req, res) => {
   }
 };
 
+const deleteNotification = async (req, res) => {
+  const { userId } = req.params;
+  const { actorRoll } = req.body;
+  console.log(req.body.actorRoll)
+
+  try {
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Find the index of the notification with the specified actorRoll
+    const notificationIndex = user.notifications.findIndex(
+      (notification) => notification.actorRoll === actorRoll
+    );
+
+    // If the notification index is found, remove it from the notifications array
+    if (notificationIndex !== -1) {
+      console.log("found")
+      user.notifications.splice(notificationIndex, 1);
+      await user.save();
+      return res.status(200).json({ message: "Notification deleted successfully" });
+    } else {
+      return res.status(404).json({ error: "Notification not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 module.exports = {
   loginUser,
   signupUser,
   updateUser,
   pushNotification,
+  deleteNotification,
 };
