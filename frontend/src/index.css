@@ -1479,6 +1479,13 @@ nav div a:hover {
   align-items: center;
 }
 
+.loader-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 50vh; /* Set height to full viewport height */
+}
+
 
 
 

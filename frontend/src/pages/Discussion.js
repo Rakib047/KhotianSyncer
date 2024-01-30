@@ -4,11 +4,13 @@ import Post from "../components/Post"; // Import the Post component
 import { useAuthContext } from "../hooks/useAuthContext";
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader"; // Import HashLoader
 
 const Discussion = () => {
   const [posts, setPosts] = useState([]);
   const [newPostContent, setNewPostContent] = useState("");
   const [isFormOpen, setIsFormOpen] = useState(false); // State to track whether the form is open or not
+  const [isLoading, setIsLoading] = useState(true); // State to track loading
   const { user } = useAuthContext();
 
   useEffect(() => {
@@ -17,6 +19,10 @@ const Discussion = () => {
       .get("/api/post")
       .then((response) => {
         setPosts(response.data);
+        // Simulate loading for 2 seconds
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
@@ -71,39 +77,48 @@ const Discussion = () => {
       <h2 className="headings"><i class="fa-solid fa-comments"></i> Discussion Forum</h2>
       <div className="writePostDiv"><button onClick={() => setIsFormOpen(true)} className="add-resource-link-button"><i class="fa-solid fa-pen-nib"></i> Create Post</button></div>
       
-      
-      {isFormOpen && (
-        <div className="post-form">
-          <form onSubmit={handlePostSubmit}>
-            <label>
-              Create Post:
-              <textarea
-                value={newPostContent}
-                onChange={(e) => setNewPostContent(e.target.value)}
-                placeholder="Write Something...."
-              />
-            </label>
-            <br />
-            <button type="submit">Post</button>
-            <button type="button" onClick={() => setIsFormOpen(false)} className="cancel-button">
-              Cancel
-            </button>
-          </form>
+      {/* Display loading spinner if loading */}
+      {isLoading ? (
+        <div className="loader-container">
+          <ClimbingBoxLoader color="#1aac83" />
         </div>
+      ) : (
+        // If not loading, display actual content
+        <React.Fragment>
+          {isFormOpen && (
+            <div className="post-form">
+              <form onSubmit={handlePostSubmit}>
+                <label>
+                  Create Post:
+                  <textarea
+                    value={newPostContent}
+                    onChange={(e) => setNewPostContent(e.target.value)}
+                    placeholder="Write Something...."
+                  />
+                </label>
+                <br />
+                <button type="submit">Post</button>
+                <button type="button" onClick={() => setIsFormOpen(false)} className="cancel-button">
+                  Cancel
+                </button>
+              </form>
+            </div>
+          )}
+          <div>
+            {posts.map((post) => (
+              <Post
+                key={post._id} // Make sure each post has a unique key
+                postId={post._id}
+                postUser={post.user}
+                content={post.content}
+                likes={post.likes}
+                comments={post.comments}
+                updateAllPosts={updateAllPosts}
+              />
+            ))}
+          </div>
+        </React.Fragment>
       )}
-      <div>
-        {posts.map((post) => (
-          <Post
-            key={post._id} // Make sure each post has a unique key
-            postId={post._id}
-            postUser={post.user}
-            content={post.content}
-            likes={post.likes}
-            comments={post.comments}
-            updateAllPosts={updateAllPosts}
-          />
-        ))}
-      </div>
     </div>
   );
 };

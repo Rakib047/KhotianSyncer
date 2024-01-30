@@ -1,6 +1,6 @@
-import React, {useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ClassCell from "../components/ClassCell";
-import ClipLoader from "react-spinners/ClipLoader";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
 const ClassRoutine = () => {
   // Define the days and time slots
@@ -14,54 +14,71 @@ const ClassRoutine = () => {
     "2:30-5:00",
   ];
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // State to track loading
 
+  useEffect(() => {
+    // Simulate loading for 2 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    // Clear the timer on component unmount to avoid memory leaks
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
- 
     <div>
       <h2 className="headings">
         <i class="fa-solid fa-calendar-days"></i> Routine
       </h2>
 
       <div className="routine-container">
-        <div className="routineSearch">
-          <input
-            type="text"
-            placeholder="Search by course name"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        {isLoading ? (
+          <div className="loader-container">
+            <ClimbingBoxLoader color="#1aac83" />
+          </div>
+        ) : (
+          <React.Fragment>
+            <div className="routineSearch">
+              <input
+                type="text"
+                placeholder="Search by course name"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
 
-        <h2 className="routine-title">Class Routine</h2>
-        <table className="routine-table">
-          <thead>
-            <tr>
-              <th></th> {/* Empty cell for the top-left corner */}
-              {timeSlots.map((timeSlot, index) => (
-                <th key={index}>{timeSlot}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {days.map((day, rowIndex) => (
-              <tr key={rowIndex}>
-                <td>
-                  <b>{day}</b>
-                </td>
-                {timeSlots.map((colIndex) => (
-                  <td key={colIndex} className="has-class">
-                    <ClassCell
-                      rowIndex={rowIndex}
-                      colIndex={colIndex}
-                      searchQuery={searchTerm}
-                    />
-                  </td>
+            <h2 className="routine-title">Class Routine</h2>
+            <table className="routine-table">
+              <thead>
+                <tr>
+                  <th></th> {/* Empty cell for the top-left corner */}
+                  {timeSlots.map((timeSlot, index) => (
+                    <th key={index}>{timeSlot}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {days.map((day, rowIndex) => (
+                  <tr key={rowIndex}>
+                    <td>
+                      <b>{day}</b>
+                    </td>
+                    {timeSlots.map((colIndex) => (
+                      <td key={colIndex} className="has-class">
+                        <ClassCell
+                          rowIndex={rowIndex}
+                          colIndex={colIndex}
+                          searchQuery={searchTerm}
+                        />
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              </tbody>
+            </table>
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
