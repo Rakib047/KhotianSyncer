@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true, // Set default value to true for new notifications
       },
+      timestamp: {
+        type: Date,
+        default: Date.now
+      }
     },
   ],
 });

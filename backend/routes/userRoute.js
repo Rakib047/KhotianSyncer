@@ -18,6 +18,7 @@ router.route("/profile")
 router.route("/notification/:userId")
       .post(controllers.pushNotification)
       .delete(controllers.deleteNotification)
+      .put()
 router.route("/notification")
       .get(requireAuth,controllers.getNotifications)
 

@@ -215,6 +215,8 @@ const Post = ({
 
       setEditedContent(response.data.content);
 
+      
+
       Swal.fire({
         icon: "info",
         title: "Post Edited!",

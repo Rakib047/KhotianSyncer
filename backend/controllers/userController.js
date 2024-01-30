@@ -149,6 +149,8 @@ const getNotifications = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
+    user.notifications.sort((a, b) => b.timestamp - a.timestamp);
+    
     // Fetch notifications that have a postId associated with an existing post
     const notificationsWithValidPost = await Promise.all(
       user.notifications.map(async (notification) => {
@@ -173,6 +175,10 @@ const getNotifications = async (req, res) => {
   }
 };
 
+const updateNotification = async(req,res)=>{
+  const {userId}= req.params
+  
+}
 
 module.exports = {
   loginUser,
@@ -180,5 +186,6 @@ module.exports = {
   updateUser,
   pushNotification,
   deleteNotification,
-  getNotifications
+  getNotifications,
+  updateNotification
 };

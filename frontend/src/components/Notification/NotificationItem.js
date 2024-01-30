@@ -2,12 +2,12 @@ import React from "react";
 
 const NotificationItem = ({ actorName, type }) => {
   return (
-    <>
-      <li className="notification-item">
+    <div class="notification-item-container">
+      <div className="notification-item">
         <span className="actor-name">{actorName}</span> {type}
-      </li>
+      </div>
       <hr className="notification-divider" />
-    </>
+    </div>
   );
 };
 

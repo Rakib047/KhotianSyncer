@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   const handleOpenNotificationModal = () => {
-    setShowNotificationModal(true);
+    setShowNotificationModal(!showNotificationModal);
   };
 
   const handleCloseNotificationModal = () => {

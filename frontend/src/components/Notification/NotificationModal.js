@@ -15,7 +15,8 @@ const NotificationModal = ({ onClose }) => {
             Authorization: `Bearer ${user.jwtToken}`,
           },
         });
-        console.log(response.data)
+        console.log(response.data.notifications)
+        
         setNotifications(response.data.notifications);
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -25,14 +26,15 @@ const NotificationModal = ({ onClose }) => {
     fetchNotifications();
   }, []);
 
-  return (
-    <div className="notification-modal">
-      <div className="modal-content">
-        <span className="close-button" onClick={onClose}>
-          &times;
-        </span>
-        <h2>Notifications</h2>
-        <ul>
+  if (user) {
+    return (
+      <div className="notification-modal">
+        <div className="modal-content">
+          {/* <span className="close-button" onClick={onClose}>
+            &times;
+          </span> */}
+          <h2>Notifications</h2>
+          
           {notifications.map((notification, index) => (
             <NotificationItem
               key={index}
@@ -40,10 +42,12 @@ const NotificationModal = ({ onClose }) => {
               type={notification.type}
             />
           ))}
-        </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default NotificationModal;
